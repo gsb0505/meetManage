@@ -1,0 +1,12 @@
+2019-04-20 19:57:00,432 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorHTTP 404 Not Found
+2019-04-20 19:57:00,432 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorHTTP 404 Not Found
+2019-04-20 19:57:01,083 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2019-04-20 19:57:01,106 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2019-04-20 19:57:01,125 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2019-04-20 19:57:01,131 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2019-04-20 19:57:01,132 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2019-04-20 19:57:01,134 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy30
+2019-04-20 19:57:01,137 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2019-04-20 19:57:01,140 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2019-04-20 19:57:01,141 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2019-04-20 19:57:01,141 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.

@@ -1,0 +1,2 @@
+2017-07-14 11:02:33,596 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorHTTP 503 Service Unavailable
+2017-07-14 16:43:49,285 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect

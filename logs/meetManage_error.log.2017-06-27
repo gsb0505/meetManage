@@ -1,0 +1,23 @@
+2017-06-27 09:47:25,721 [1875503966@qtp-1688073955-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:47:25,872 [1875503966@qtp-1688073955-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:47:25,973 [1875503966@qtp-1688073955-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:47:26,059 [1875503966@qtp-1688073955-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:47:28,412 [387290512@qtp-1688073955-5] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:47:28,534 [387290512@qtp-1688073955-5] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:47:29,639 [387290512@qtp-1688073955-5] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:47:30,432 [387290512@qtp-1688073955-5] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:47:59,930 [1875503966@qtp-1688073955-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:48:00,550 [1875503966@qtp-1688073955-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:48:01,838 [1875503966@qtp-1688073955-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:48:53,360 [218492817@qtp-1688073955-11] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:48:53,570 [218492817@qtp-1688073955-11] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:48:53,694 [218492817@qtp-1688073955-11] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:48:53,811 [218492817@qtp-1688073955-11] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:48:58,301 [218492817@qtp-1688073955-11] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:49:02,011 [1875503966@qtp-1688073955-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:55:06,039 [399475298@qtp-1688073955-14] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:55:06,307 [399475298@qtp-1688073955-14] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:55:06,441 [399475298@qtp-1688073955-14] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:55:06,606 [399475298@qtp-1688073955-14] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 09:55:09,440 [1927950766@qtp-1688073955-17] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-27 15:15:34,739 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect

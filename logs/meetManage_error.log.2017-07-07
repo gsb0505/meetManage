@@ -1,0 +1,2 @@
+2017-07-07 09:09:15,555 [880457@qtp-1688073955-13] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-07-07 09:14:37,059 [1353957409@qtp-1688073955-19] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+                        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>t</short-name>
+	<uri>/ui-tags</uri>
+	<display-name>"自定义标签"</display-name>
+	
+	<tag>
+        <name>dataName</name>
+        <tag-class>com.kd.tag.ui.DataTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>输出名称</description>
+        <attribute>
+            <name>type</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>类型</description>
+        </attribute>
+        <attribute>
+            <name>code</name>
+            <rtexprvalue>true</rtexprvalue>
+            <description>代码</description>
+        </attribute>
+        <attribute>
+            <name>json</name>
+            <rtexprvalue>true</rtexprvalue>
+            <description>json类型</description>
+        </attribute>
+    </tag>
+    <tag>
+        <name>institution</name>
+        <tag-class>com.kd.tag.ui.InstitutionTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>输出名称</description>
+        <attribute>
+            <name>type</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>类型</description>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>ID</description>
+        </attribute>
+    </tag>
+    <tag>
+        <name>dataList</name>
+        <tag-class>com.kd.tag.ui.DataListTag</tag-class>
+        <body-content>JSP</body-content>
+        <description>输出名称</description>
+        <attribute>
+            <name>type</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <description>类型</description>
+        </attribute>
+    </tag>
+	
+</taglib>

@@ -1,0 +1,1 @@
+2017-07-06 14:09:06,339 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect

@@ -1,0 +1,228 @@
+2017-06-20 13:38:43,533 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect
+2017-06-20 13:38:43,533 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect
+2017-06-20 13:38:45,141 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 13:38:45,176 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 13:38:45,219 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 13:38:45,227 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 13:38:45,228 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 13:38:45,232 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy30
+2017-06-20 13:38:45,235 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 13:38:45,239 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 13:38:45,239 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 13:38:45,239 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 14:12:52,323 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 14:12:52,341 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 14:12:52,358 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 14:12:52,366 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 14:12:52,366 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 14:12:52,368 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 14:12:52,370 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 14:12:52,374 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 14:12:52,374 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 14:12:52,375 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 14:14:01,349 [462151375@qtp-1177019096-8] ERROR com.kd.manage.base.BaseController - java.text.ParseException: Unparseable date: "14:00"
+2017-06-20 14:14:01,349 [462151375@qtp-1177019096-8] ERROR com.kd.manage.base.BaseController - java.text.ParseException: Unparseable date: "14:00"
+2017-06-20 14:14:51,031 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 14:14:51,053 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 14:14:51,077 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 14:14:51,085 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 14:14:51,086 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 14:14:51,088 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 14:14:51,094 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 14:14:51,097 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 14:14:51,097 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 14:14:51,097 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 14:34:29,865 [1352803688@qtp-337775116-7] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 14:34:29,865 [1352803688@qtp-337775116-7] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 14:44:58,703 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect
+2017-06-20 14:44:58,703 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect
+2017-06-20 14:45:00,101 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 14:45:00,164 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 14:45:00,208 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 14:45:00,219 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 14:45:00,220 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 14:45:00,223 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy30
+2017-06-20 14:45:00,227 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 14:45:00,231 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 14:45:00,232 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 14:45:00,233 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 14:47:09,851 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect
+2017-06-20 14:47:09,851 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect
+2017-06-20 14:47:10,924 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 14:47:10,942 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 14:47:10,966 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 14:47:10,972 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 14:47:10,973 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 14:47:10,975 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy30
+2017-06-20 14:47:10,980 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 14:47:10,985 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 14:47:10,986 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 14:47:10,987 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 14:59:24,625 [1561682062@qtp-1052501168-5] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 14:59:24,625 [1561682062@qtp-1052501168-5] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:03:17,569 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 15:03:17,585 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 15:03:17,600 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 15:03:17,608 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 15:03:17,609 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 15:03:17,612 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 15:03:17,616 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 15:03:17,618 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 15:03:17,618 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 15:03:17,619 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 15:04:18,626 [1318939678@qtp-1052501168-4] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:04:18,626 [1318939678@qtp-1052501168-4] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:05:50,792 [1671946930@qtp-1052501168-12] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:05:50,792 [1671946930@qtp-1052501168-12] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:06:09,529 [1671946930@qtp-1052501168-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:06:09,529 [1671946930@qtp-1052501168-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:06:23,281 [1318939678@qtp-1052501168-4] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:06:23,281 [1318939678@qtp-1052501168-4] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:10:12,371 [1119232260@qtp-1052501168-2] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:10:12,371 [1119232260@qtp-1052501168-2] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:10:19,354 [1119232260@qtp-1052501168-2] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:10:19,354 [1119232260@qtp-1052501168-2] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:16:57,862 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 15:16:57,883 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 15:16:57,900 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 15:16:57,909 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 15:16:57,909 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 15:16:57,912 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 15:16:57,913 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 15:16:57,915 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 15:16:57,915 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 15:16:57,916 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 15:17:18,090 [718639947@qtp-1410508107-5] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:17:18,090 [718639947@qtp-1410508107-5] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:17:27,852 [718639947@qtp-1410508107-5] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:17:27,852 [718639947@qtp-1410508107-5] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:18:52,451 [550752075@qtp-1410508107-6] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:18:52,451 [550752075@qtp-1410508107-6] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:23:20,165 [631946039@qtp-1410508107-11] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:23:20,165 [631946039@qtp-1410508107-11] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:28:27,470 [2027978092@qtp-1410508107-7] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:28:27,470 [2027978092@qtp-1410508107-7] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:34:22,270 [1753083556@qtp-1410508107-23] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:34:22,270 [1753083556@qtp-1410508107-23] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:34:39,838 [1753083556@qtp-1410508107-23] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:34:39,838 [1753083556@qtp-1410508107-23] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:37:43,496 [180273943@qtp-1410508107-24] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:37:43,496 [180273943@qtp-1410508107-24] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:38:04,703 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 16:38:04,723 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 16:38:04,742 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 16:38:04,749 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 16:38:04,749 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 16:38:04,751 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 16:38:04,753 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 16:38:04,755 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 16:38:04,756 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 16:38:04,756 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 16:38:28,315 [1292684360@qtp-1177019096-6] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:38:28,315 [1292684360@qtp-1177019096-6] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:41:43,504 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 16:41:43,525 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 16:41:43,551 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 16:41:43,559 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 16:41:43,561 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 16:41:43,566 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 16:41:43,569 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 16:41:43,571 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 16:41:43,572 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 16:41:43,572 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 16:43:12,573 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 16:43:12,593 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 16:43:12,609 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 16:43:12,621 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 16:43:12,621 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 16:43:12,624 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 16:43:12,627 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 16:43:12,629 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 16:43:12,629 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 16:43:12,630 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 16:44:00,672 [1863216735@qtp-337775116-9] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:44:00,672 [1863216735@qtp-337775116-9] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:44:10,095 [1863216735@qtp-337775116-9] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:44:10,095 [1863216735@qtp-337775116-9] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:50:36,145 [582719228@qtp-337775116-13] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:50:36,145 [582719228@qtp-337775116-13] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:50:38,833 [582719228@qtp-337775116-13] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:50:38,833 [582719228@qtp-337775116-13] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:57:22,610 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 16:57:22,631 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 16:57:22,655 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 16:57:22,660 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 16:57:22,661 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 16:57:22,664 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 16:57:22,666 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 16:57:22,669 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 16:57:22,669 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 16:57:22,669 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 16:57:57,468 [75168992@qtp-1052501168-10] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:57:57,468 [75168992@qtp-1052501168-10] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:57:59,377 [75168992@qtp-1052501168-10] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:57:59,377 [75168992@qtp-1052501168-10] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 17:03:53,147 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 17:03:53,168 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 17:03:53,185 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 17:03:53,190 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 17:03:53,191 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 17:03:53,193 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 17:03:53,195 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 17:03:53,197 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 17:03:53,197 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 17:03:53,197 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 17:05:55,113 [857396762@qtp-1177019096-5] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 17:05:55,113 [857396762@qtp-1177019096-5] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 17:08:34,290 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 17:08:34,307 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 17:08:34,332 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 17:08:34,337 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 17:08:34,339 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 17:08:34,341 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 17:08:34,343 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 17:08:34,345 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 17:08:34,346 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 17:08:34,346 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 17:16:36,713 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 17:16:36,740 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 17:16:36,771 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 17:16:36,786 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 17:16:36,787 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 17:16:36,789 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 17:16:36,792 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 17:16:36,796 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 17:16:36,796 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 17:16:36,797 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 17:23:34,599 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 17:23:34,625 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 17:23:34,649 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 17:23:34,659 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 17:23:34,660 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 17:23:34,661 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 17:23:34,663 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 17:23:34,665 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 17:23:34,665 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 17:23:34,665 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+2017-06-20 17:44:09,476 [1390478931@qtp-337775116-7] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:09,476 [1390478931@qtp-337775116-7] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:12,505 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:12,505 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:15,534 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:15,534 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:18,758 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:18,758 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:21,898 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:21,898 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:25,594 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:25,594 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:43,943 [main] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+2017-06-20 17:44:43,962 [main] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-06-20 17:44:43,983 [main] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2017-06-20 17:44:43,991 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2017-06-20 17:44:43,991 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2017-06-20 17:44:43,993 [main] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy32
+2017-06-20 17:44:43,996 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2017-06-20 17:44:43,998 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+2017-06-20 17:44:43,999 [main] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2017-06-20 17:44:43,999 [main] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.

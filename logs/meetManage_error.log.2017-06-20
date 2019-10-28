@@ -1,0 +1,34 @@
+2017-06-20 13:38:43,533 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect
+2017-06-20 14:14:01,349 [462151375@qtp-1177019096-8] ERROR com.kd.manage.base.BaseController - java.text.ParseException: Unparseable date: "14:00"
+2017-06-20 14:34:29,865 [1352803688@qtp-337775116-7] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 14:44:58,703 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect
+2017-06-20 14:47:09,851 [main] ERROR com.kd.manage.listener.InitDataListener - spring initial errorjava.net.ConnectException: Connection refused: connect
+2017-06-20 14:59:24,625 [1561682062@qtp-1052501168-5] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:04:18,626 [1318939678@qtp-1052501168-4] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:05:50,792 [1671946930@qtp-1052501168-12] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:06:09,529 [1671946930@qtp-1052501168-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:06:23,281 [1318939678@qtp-1052501168-4] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:10:12,371 [1119232260@qtp-1052501168-2] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:10:19,354 [1119232260@qtp-1052501168-2] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:17:18,090 [718639947@qtp-1410508107-5] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:17:27,852 [718639947@qtp-1410508107-5] ERROR com.kd.manage.base.BaseController - javax.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+2017-06-20 15:18:52,451 [550752075@qtp-1410508107-6] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:23:20,165 [631946039@qtp-1410508107-11] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 15:28:27,470 [2027978092@qtp-1410508107-7] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:34:22,270 [1753083556@qtp-1410508107-23] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:34:39,838 [1753083556@qtp-1410508107-23] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:37:43,496 [180273943@qtp-1410508107-24] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:38:28,315 [1292684360@qtp-1177019096-6] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:44:00,672 [1863216735@qtp-337775116-9] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:44:10,095 [1863216735@qtp-337775116-9] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:50:36,145 [582719228@qtp-337775116-13] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:50:38,833 [582719228@qtp-337775116-13] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:57:57,468 [75168992@qtp-1052501168-10] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 16:57:59,377 [75168992@qtp-1052501168-10] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 17:05:55,113 [857396762@qtp-1177019096-5] ERROR com.kd.manage.base.BaseController - java.lang.NullPointerException
+2017-06-20 17:44:09,476 [1390478931@qtp-337775116-7] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:12,505 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:15,534 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:18,758 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:21,898 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
+2017-06-20 17:44:25,594 [1237862115@qtp-337775116-12] ERROR com.kd.manage.base.BaseController - javax.ws.rs.ProcessingException: java.net.ConnectException: Connection refused: connect
