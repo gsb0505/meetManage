@@ -47,7 +47,7 @@ import com.kd.manage.support.ExcelSupport;
 public class OrganizationController  extends BaseController{
 	private static WebTarget osu;
 	static {
-		osu = webTarget.get(BaseUri.organizationServiceUrl);
+		osu = BaseUri.webTarget.get(BaseUri.organizationServiceUrl);
 	}
 	
 	

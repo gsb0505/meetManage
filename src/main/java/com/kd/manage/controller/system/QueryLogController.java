@@ -27,7 +27,7 @@ import com.kd.manage.entity.UserLog;
 public class QueryLogController extends BaseController{
 	private static WebTarget ulsu;
 	static {
-		ulsu = webTarget.get(BaseUri.userLogServerUri);
+		ulsu = BaseUri.webTarget.get(BaseUri.userLogServerUri);
 	}
 
 

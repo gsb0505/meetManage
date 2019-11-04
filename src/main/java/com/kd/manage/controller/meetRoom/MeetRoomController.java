@@ -47,9 +47,9 @@ public class MeetRoomController extends BaseController{
 	private static WebTarget usu;
 	static{
 				
-		tsu = webTarget.get(BaseUri.meetRoomServiceUri);
-		odsu = webTarget.get(BaseUri.orderDetailServerUri);
-		usu = webTarget.get(BaseUri.userServerUri);
+		tsu = BaseUri.webTarget.get(BaseUri.meetRoomServiceUri);
+		odsu = BaseUri.webTarget.get(BaseUri.orderDetailServerUri);
+		usu = BaseUri.webTarget.get(BaseUri.userServerUri);
 		 
 	}
 	

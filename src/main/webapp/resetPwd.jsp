@@ -18,7 +18,7 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"></meta>
 <meta content="" name="description"></meta>
 <meta content="上海电科智能系统股份有限公司版权所有" name="Copyright"></meta>
-<%@ include file="/WEB-INF/pages/head/login.ini"%>
+<%@ include file="/WEB-INF/pages/head/login.jsp"%>
 <link href="<%=basePath %>plugin/ymPrompt/skin/qq/ymPrompt.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath %>css/datePicker.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath %>css/home.css" rel="stylesheet" type="text/css" />

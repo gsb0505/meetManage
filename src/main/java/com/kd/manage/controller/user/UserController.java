@@ -71,7 +71,7 @@ public class UserController extends BaseController {
 	static {
 		errNum = PropertiesUtil.readValue("configuri.LoginAction.queryById");
 
-		usu = webTarget.get(BaseUri.userServerUri);
+		usu = BaseUri.webTarget.get(BaseUri.userServerUri);
 		organizationServiceUrl = PropertiesUtil.readValue("organizationServiceUrl");
 		orgTarget = BaseClient.getWebTarget(organizationServiceUrl +"getAllOrg");
 		jobServiceUrl = PropertiesUtil.readValue("jobServiceUrl");

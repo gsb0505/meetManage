@@ -19,7 +19,7 @@
 <meta content="" name="description"></meta>
 <meta content="后台，管理，服务，平台，查账" name="keywords"></meta>
 <meta content="上海电科智能系统股份有限公司版权所有" name="Copyright"></meta>
-<%@ include file="/WEB-INF/pages/head/login.ini"%>
+<%@ include file="/WEB-INF/pages/head/login.jsp"%>
 <title>用户登录</title>
 <script type="text/javascript">
 	document.onkeyup = function(e) {

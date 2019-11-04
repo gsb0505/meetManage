@@ -11,7 +11,7 @@
 <HTML>
 <HEAD>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+	<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 	<link rel="stylesheet" href="<%=basePath%>plugin/zTreeStyle/zTreeStyle.css" type="text/css">
 	<script type="text/javascript" src="<%=basePath%>js/jquery/1.4.4/jquery-1.4.4.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>plugin/zTreeStyle/js/jquery.ztree.core-3.5.js"></script>

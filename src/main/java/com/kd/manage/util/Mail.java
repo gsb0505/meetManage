@@ -56,7 +56,7 @@ public class Mail extends BaseController {
 		mailPswID = PropertiesUtil.readValue("configuri.EmailPswAction.queryById");
 		mailmeetMailID = PropertiesUtil.readValue("configuri.EmailTitleAction.queryById");
 		mailConnentMailID = PropertiesUtil.readValue("configuri.EmailContentAction.queryById");
-		csu = webTarget.get(BaseUri.configServerUri);		
+		csu = BaseUri.webTarget.get(BaseUri.configServerUri);
 		InputStream in = PropertiesUtil.class.getClassLoader().getResourceAsStream("config/email.properties");
 		props = new Properties();
 		try {

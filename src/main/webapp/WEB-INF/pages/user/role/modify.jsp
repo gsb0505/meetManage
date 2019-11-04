@@ -10,14 +10,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 <script type="text/javascript">
 		
 		
 </script>
 </head>
 <body style="min-width:540px;overflow: auto; overflow:hidden">
-<div style="display:;" class="inputTable">
+<div style="" class="inputTable">
              	  <form id="roles" action="" method="post">
 						<table class="inputTable_liebiao clear">
 							<tbody>

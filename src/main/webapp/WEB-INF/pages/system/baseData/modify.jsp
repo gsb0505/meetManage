@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 <title>modifyBaseData</title>
 <script type="text/javascript">
 seajs.use('common/common.form.js', function(a) {});

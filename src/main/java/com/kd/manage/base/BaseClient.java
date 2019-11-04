@@ -7,6 +7,7 @@ package com.kd.manage.base;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
+import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.JerseyClient;
 import org.glassfish.jersey.client.JerseyClientBuilder;
 import org.glassfish.jersey.client.JerseyWebTarget;
@@ -15,6 +16,12 @@ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import com.kd.common.unit.util.TemporaryUtils;
 import com.kd.manage.controller.util.PropertiesUtil;
 import com.kd.manage.entity.PageCount;
+import org.glassfish.jersey.filter.LoggingFilter;
+
+import java.util.Date;
+import java.util.logging.Filter;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 
 /**
@@ -28,7 +35,7 @@ import com.kd.manage.entity.PageCount;
  */
 public class BaseClient{
 	
-	
+	private static final Logger log4jLogger = Logger.getLogger(BaseClient.class.getName());
 
 	private static JerseyClient jerseyClient = getJerseyClient();
 	private static Client client;
@@ -117,11 +124,26 @@ public class BaseClient{
 	 */
 	public static JerseyClient getJerseyClient(){
 		if(jerseyClient == null || jerseyClient.isClosed()){
+			ClientConfig clientConfig = new ClientConfig();
+			//configRequestLogging(clientConfig);
+			clientConfig.register(LoggingFilter.class);
 			jerseyClient = JerseyClientBuilder.createClient();
 		}
 		return jerseyClient;
 	}
-	
+
+	private static void configRequestLogging(ClientConfig config) {
+		Logger logger = Logger.getLogger(BaseClient.class.getName());
+		logger.setFilter(new Filter() {
+			@Override
+			public boolean isLoggable(LogRecord record) {
+				log4jLogger.info(new Date(record.getMillis()) + " " + record.getLevel() + " " + record.getMessage());
+				return false;
+			}
+		});
+		LoggingFilter logFilter = new LoggingFilter(logger, true);
+		config.register(logFilter);
+	}
 	
 	
 }

@@ -29,9 +29,9 @@ public class InstitutionTag extends TagSupport {
 	private String id;	//id
 	private String type; //type
 	
-	protected static WebTarget osu = BaseController.webTarget.get(BaseUri.organizationServiceUrl);
-	protected static WebTarget dsu = BaseController.webTarget.get(BaseUri.departmentServiceUrl);
-	protected static WebTarget jsu = BaseController.webTarget.get(BaseUri.jobServiceUrl);
+	protected static WebTarget osu = BaseUri.webTarget.get(BaseUri.organizationServiceUrl);
+	protected static WebTarget dsu = BaseUri.webTarget.get(BaseUri.departmentServiceUrl);
+	protected static WebTarget jsu = BaseUri.webTarget.get(BaseUri.jobServiceUrl);
 
 	public int doStartTag() throws JspTagException {
 		return EVAL_PAGE;

@@ -37,7 +37,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.kd.core.dto.ButtonDto;
 import com.kd.manage.controller.user.LoginController;
-import com.kd.manage.controller.util.PropertiesUtil;
 import com.kd.manage.entity.BaseData;
 import com.kd.manage.entity.Config;
 import com.kd.manage.entity.UserInfo;
@@ -50,7 +49,7 @@ import com.kd.manage.entity.UserInfo;
  * @修改备注:
  * @version
  */
-public class BaseController {
+public abstract class BaseController {
 
 	protected static final transient Logger log = Logger.getLogger(BaseController.class);
 	private HttpServletRequest request;
@@ -71,39 +70,12 @@ public class BaseController {
 
 	/** "验证结果"参数名称 */
 	private static final String CONSTRAINT_VIOLATIONS_ATTRIBUTE_NAME = "constraintViolations";
-	
-	
-	public final static Map<String,WebTarget> webTarget = new HashMap<String, WebTarget>();
-	
-	static{
-		Field[] fields = BaseUri.class.getDeclaredFields();
-		Class<?> bc = null;
-		String allname,pname;
-		try {
-			bc = Class.forName("com.kd.manage.base.BaseUri",true,BaseUri.class.getClassLoader());
-		if(bc != null){
-			for (Field field : fields) {
-				allname = field.getName();
-				pname = PropertiesUtil.readValue(allname);
-				System.out.println(allname);
-				field.setAccessible(true);
-				field.set(bc, pname);
-				System.out.println(BaseClient.getClient().target(pname));
-				webTarget.put(pname, BaseClient.getClient().target(pname));
-			}
-		}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-	}
-	
+
+
+
 	static {
-		ausu = webTarget.get(BaseUri.agentUserServerUri);
-		csu = webTarget.get(BaseUri.configServerUri);
+		ausu = BaseUri.webTarget.get(BaseUri.agentUserServerUri);
+		csu = BaseUri.webTarget.get(BaseUri.configServerUri);
 	}
 
 	public HttpServletRequest getRequest() {
@@ -211,7 +183,7 @@ public class BaseController {
 	 * @return
 	 */
 	public List<BaseData> getBaseDateList(String type) {
-		WebTarget target2 = webTarget.get(BaseUri.commonServerUri).path("query"+ "/" + type);
+		WebTarget target2 = BaseUri.webTarget.get(BaseUri.commonServerUri).path("query"+ "/" + type);
 		List<BaseData> list = target2.request().get(new GenericType<List<BaseData>>() {
 		});
 		return list;
@@ -260,7 +232,7 @@ public class BaseController {
 	 * @return
 	 */
 	public Config getSystemConfig(String id) {
-		WebTarget tar_config = webTarget.get(BaseUri.configServerUri).path("queryById").queryParam("id", id);
+		WebTarget tar_config = BaseUri.webTarget.get(BaseUri.configServerUri).path("queryById").queryParam("id", id);
 		Config config = tar_config.request().get(new GenericType<Config>() {});
 		return config;
 	}
@@ -272,7 +244,7 @@ public class BaseController {
 	 * @return
 	 */
 	public Config getSystemConfigByCode(String code) {
-		WebTarget tar_config = webTarget.get(BaseUri.configServerUri).path("queryByCode").queryParam("code", code);
+		WebTarget tar_config = BaseUri.webTarget.get(BaseUri.configServerUri).path("queryByCode").queryParam("code", code);
 		Config config = tar_config.request().get(new GenericType<Config>() {});
 		return config;
 	}

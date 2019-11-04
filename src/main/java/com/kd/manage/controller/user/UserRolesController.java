@@ -51,8 +51,8 @@ public class UserRolesController extends BaseController{
 	private static WebTarget rsu;
 	static {
 		
-		ursu = webTarget.get(BaseUri.userRolesServerUri);
-		rsu = webTarget.get(BaseUri.rolesServerUri);
+		ursu = BaseUri.webTarget.get(BaseUri.userRolesServerUri);
+		rsu = BaseUri.webTarget.get(BaseUri.rolesServerUri);
 	}
 
 	/**

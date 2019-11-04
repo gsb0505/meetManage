@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 <title>Insert title here</title>
 <script>
 var jqGrid = Class.create(BaseJqGrid, {

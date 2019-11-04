@@ -1,6 +1,10 @@
 package com.kd.manage.base;
 
 
+import javax.ws.rs.client.WebTarget;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Base uri
  * @author zlm
@@ -129,25 +133,11 @@ public class BaseUri {
 	 * 结算 
 	 */
 	public static String settleDetailServerUri;
-	
-	/*static{
-		Class<?> bc = null;
-		Field[] fields = BaseUri.class.getDeclaredFields();
-		try {
-			bc = Class.forName("com.kd.manage.base.BaseUri",true,BaseUri.class.getClassLoader());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(bc != null){
-			for (Field field : fields) {
-				field.setAccessible(true);
-				field.set(bc, allname);
-				PropertiesUtil.readValue("cardServiceUri");
-			}
-		}
-		
-	}*/
+
+	/**
+	 * URI Map
+	 */
+	public final static Map<String,WebTarget> webTarget = new HashMap<String, WebTarget>();
 	
 	
 }

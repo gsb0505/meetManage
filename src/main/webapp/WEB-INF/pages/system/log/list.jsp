@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>FusionCharts Free Documentation</title>
-<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 <script type="text/javascript">
 	var jqGrid = Class.create(BaseJqGrid,{  
 		pager: "pager", //分页工具栏  

@@ -10,7 +10,7 @@
 <Html>
 <Head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 		<script type="text/javascript">
 			 var jqGrid = Class.create(BaseJqGrid,{  
 					pager: "pager", //分页工具栏  

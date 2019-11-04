@@ -6,7 +6,7 @@
 <Head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="<%=basePath %>plugin/jquery.fn/jquery.sumoselect/sumoselect.css" rel="stylesheet" type="text/css" />
-<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 <script type="text/javascript" src="<%=basePath %>js/owned/download.js"></script>
 <script type="text/javascript" src="<%=basePath%>plugin/jquery.fn/jquery.sumoselect/jquery.sumoselect.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/owned/jquery.datalink2.js"></script>

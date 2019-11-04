@@ -62,7 +62,7 @@ import com.kd.manage.entity.Role;
 public class RoleController extends BaseController{
 	private static WebTarget rsu;
 	static {
-		rsu = webTarget.get(BaseUri.rolesServerUri);
+		rsu = BaseUri.webTarget.get(BaseUri.rolesServerUri);
 	}
 	/**
 	 * 

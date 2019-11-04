@@ -45,8 +45,8 @@ public class MeetNoticeController extends BaseController{
 	private static WebTarget tsu;
 	private static WebTarget usu;
 	static{
-		tsu = webTarget.get(BaseUri.meetNoticeServiceUri);
-		usu = webTarget.get(BaseUri.meetRoomServiceUri);
+		tsu = BaseUri.webTarget.get(BaseUri.meetNoticeServiceUri);
+		usu = BaseUri.webTarget.get(BaseUri.meetRoomServiceUri);
 		 
 	}
 	

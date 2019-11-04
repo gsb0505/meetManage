@@ -53,7 +53,7 @@ import com.kd.manage.support.ExcelSupport;
 @Controller
 @RequestMapping("/departmentAction")
 public class DepartmentController  extends BaseController{
-	private static WebTarget dsu = webTarget.get(BaseUri.departmentServiceUrl);
+	private static WebTarget dsu = BaseUri.webTarget.get(BaseUri.departmentServiceUrl);
 	
 	@RequestMapping(value = "/list.do")
 	public void viewList(Department Department,PageCount pageCount,HttpServletResponse res) throws  Exception{

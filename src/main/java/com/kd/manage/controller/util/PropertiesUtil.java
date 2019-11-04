@@ -9,10 +9,14 @@
  */
 package com.kd.manage.controller.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.Properties;
+
 /**
 *
 * 
@@ -23,16 +27,24 @@ import java.util.Properties;
 *
 */
 public class PropertiesUtil {
+	private static final Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
+
 	private static Properties config = null;
+	private static Properties configBase = null;
 	static {
 		InputStream in = PropertiesUtil.class.getClassLoader()
 				.getResourceAsStream("config/manage.properties");
+		InputStream ini = PropertiesUtil.class.getClassLoader()
+				.getResourceAsStream("config/uri-base.properties");
 		config = new Properties();
+		configBase = new Properties();
 		try {
 			config.load(in);
+			configBase.load(ini);
 			in.close();
+			ini.close();
 		} catch (IOException e) {
-			System.out.println("No manage.properties defined error");
+			logger.error("No manage.properties defined error");
 		}
 	}
 
@@ -59,6 +71,16 @@ public class PropertiesUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("ConfigInfoError" + e.toString());
+		}
+	}
+
+	public static String getBaseUri(){
+		try {
+			String value = configBase.getProperty("base.uri");
+			return value;
+		} catch (Exception e) {
+			logger.error("ConfigInfoError" + e.toString());
+			return null;
 		}
 	}
 

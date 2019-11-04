@@ -9,7 +9,7 @@
 <Html>
 <Head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 <script type="text/javascript" src="<%=basePath%>pageJs/meetDesk/list.js?vs=<%=System.currentTimeMillis()%>"></script>
 <style type="text/css">
 <!--

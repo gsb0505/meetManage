@@ -41,7 +41,7 @@ public class ConfigController extends BaseController {
 		commonServerUri = PropertiesUtil.readValue("commonServerUri");
 		noticeTableid = PropertiesUtil.readValue("commonServerUri.basetype.query9");*/
 		
-		csu = webTarget.get(BaseUri.configServerUri);
+		csu = BaseUri.webTarget.get(BaseUri.configServerUri);
 	}
 
 	@RequestMapping("listView.do")

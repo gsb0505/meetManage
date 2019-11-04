@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 <script type="text/javascript" src="<%=basePath%>js/jquery.fn/jquery.validate.custom.js"></script>
 <script type="text/javascript">
 seajs.use('common/common.form.js', function(a) {});

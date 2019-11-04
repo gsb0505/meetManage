@@ -20,7 +20,7 @@
 <meta content="后台，管理，服务，平台，中心" name="keywords"></meta>
 <meta content="版权所有" name="Copyright"></meta>
 <title>后台管理中心</title>
-<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 <script type="text/javascript" src="<%=basePath %>js/menu-mal.js"></script> 
 <script type="text/javascript">
 var userId = "${user.userId}";

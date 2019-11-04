@@ -43,8 +43,8 @@ public class meetDeskController extends BaseController {
 	private static WebTarget usu;
 
 	static {
-		odsu = webTarget.get(BaseUri.orderDetailServerUri);
-		usu = webTarget.get(BaseUri.meetRoomServiceUri);
+		odsu = BaseUri.webTarget.get(BaseUri.orderDetailServerUri);
+		usu = BaseUri.webTarget.get(BaseUri.meetRoomServiceUri);
 	}
 
 	/**

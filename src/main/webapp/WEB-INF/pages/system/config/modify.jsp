@@ -12,7 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<%@ include file="/WEB-INF/pages/head/pagehead.ini"%>
+<%@ include file="/WEB-INF/pages/head/pagehead.jsp"%>
 <script type="text/javascript" src="<%=basePath%>js/jquery.fn/jquery.validate.custom.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/owned/js.js"></script>
 <style>

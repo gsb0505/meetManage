@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"> 
+<log4j:configuration>
   
 	<appender class="org.apache.log4j.DailyRollingFileAppender"
 		name="logfile_bug">
@@ -81,99 +81,107 @@
 		<appender-ref ref="stdout" />
 	</logger>
 	
-	<logger name="com.kd">
-		<level value="debug" />
-		<appender-ref ref="logfile_bug" />
-		<appender-ref ref="logfile_error" />
-		<appender-ref ref="error_stdout" />
-		<appender-ref ref="stdout" />
-	</logger>
+	<!--<logger name="com.kd">-->
+		<!--<level value="debug" />-->
+		<!--<appender-ref ref="logfile_bug" />-->
+		<!--<appender-ref ref="logfile_error" />-->
+		<!--<appender-ref ref="error_stdout" />-->
+		<!--<appender-ref ref="stdout" />-->
+	<!--</logger>-->
 
-		
-	<logger name="java.sql">
-		<level value="debug" />
-		<appender-ref ref="logfile_bug" />
-		<appender-ref ref="logfile_error" />
-		<appender-ref ref="error_stdout" />
-		<appender-ref ref="stdout" />
-	</logger>
-	
-	<logger name="org.springframework">
-		<level value="error" />
-		<appender-ref ref="logfile_bug" />
-		<appender-ref ref="logfile_error" />
-	</logger>
+		<!---->
+	<!--<logger name="java.sql">-->
+		<!--<level value="debug" />-->
+		<!--<appender-ref ref="logfile_bug" />-->
+		<!--<appender-ref ref="logfile_error" />-->
+		<!--<appender-ref ref="error_stdout" />-->
+		<!--<appender-ref ref="stdout" />-->
+	<!--</logger>-->
+	<!---->
+	<!--<logger name="org.springframework">-->
+		<!--<level value="error" />-->
+		<!--<appender-ref ref="logfile_bug" />-->
+		<!--<appender-ref ref="logfile_error" />-->
+	<!--</logger>-->
 
-	<logger name="org.logicalcobwebs">
-		<level value="error" />
-		<appender-ref ref="logfile_bug" />
-		<appender-ref ref="logfile_error" />
-	</logger>
+	<!--<logger name="org.logicalcobwebs">-->
+		<!--<level value="error" />-->
+		<!--<appender-ref ref="logfile_bug" />-->
+		<!--<appender-ref ref="logfile_error" />-->
+	<!--</logger>-->
 
-	<logger name="org.apache.cxf">
-		<level value="error" />
-		<appender-ref ref="logfile_bug" />
-		<appender-ref ref="logfile_error" />
-	</logger>
+	<!--<logger name="org.apache.cxf">-->
+		<!--<level value="error" />-->
+		<!--<appender-ref ref="logfile_bug" />-->
+		<!--<appender-ref ref="logfile_error" />-->
+	<!--</logger>-->
 
-	<logger name="org.quartz">
-		<level value="error" />
-		<appender-ref ref="logfile_bug" />
-		<appender-ref ref="logfile_error" />
-	</logger>
+	<!--<logger name="org.quartz">-->
+		<!--<level value="error" />-->
+		<!--<appender-ref ref="logfile_bug" />-->
+		<!--<appender-ref ref="logfile_error" />-->
+	<!--</logger>-->
 
-	<logger name="org.apache.xml">
-		<level value="error" />
-		<appender-ref ref="logfile_bug" />
-		<appender-ref ref="logfile_error" />
-	</logger>
-	
-	<logger name="org.apache.ws">
-		<level value="error" />
-		<appender-ref ref="logfile_bug" />
-		<appender-ref ref="logfile_error" />
-	</logger>
-	
-	<logger name="org.apache.axis2">
-        <level value="error" />
-        <appender-ref ref="logfile_bug" />
-        <appender-ref ref="logfile_error" />
-    </logger>
-    
-    <logger name="org.apache.axiom">
-        <level value="error" />
-        <appender-ref ref="logfile_bug" />
-        <appender-ref ref="logfile_error" />
-    </logger>
-    
-    <logger name="org.apache.commons.httpclient">
-        <level value="debug" />
-        <appender-ref ref="logfile_bug" />
-        <appender-ref ref="logfile_error" />
-    </logger>
-    
-    <logger name="httpclient">
-        <level value="debug" />
-        <appender-ref ref="logfile_bug" />
-        <appender-ref ref="logfile_error" />
-    </logger>
-    
-    <logger name="org.apache.cxf.bus">
-        <level value="error" />
-        <appender-ref ref="logfile_bug" />
-        <appender-ref ref="logfile_error" />
-    </logger>
-    
-    <logger name="org.apache.commons.beanutils">
-        <level value="error" />
-        <appender-ref ref="logfile_bug" />
-        <appender-ref ref="logfile_error" />
-    </logger>
+	<!--<logger name="org.apache.xml">-->
+		<!--<level value="error" />-->
+		<!--<appender-ref ref="logfile_bug" />-->
+		<!--<appender-ref ref="logfile_error" />-->
+	<!--</logger>-->
+	<!---->
+	<!--<logger name="org.apache.ws">-->
+		<!--<level value="error" />-->
+		<!--<appender-ref ref="logfile_bug" />-->
+		<!--<appender-ref ref="logfile_error" />-->
+	<!--</logger>-->
+	<!---->
+	<!--<logger name="org.apache.axis2">-->
+        <!--<level value="error" />-->
+        <!--<appender-ref ref="logfile_bug" />-->
+        <!--<appender-ref ref="logfile_error" />-->
+    <!--</logger>-->
+    <!---->
+    <!--<logger name="org.apache.axiom">-->
+        <!--<level value="error" />-->
+        <!--<appender-ref ref="logfile_bug" />-->
+        <!--<appender-ref ref="logfile_error" />-->
+    <!--</logger>-->
+    <!---->
+    <!--<logger name="org.apache.commons.httpclient">-->
+        <!--<level value="debug" />-->
+        <!--<appender-ref ref="logfile_bug" />-->
+        <!--<appender-ref ref="logfile_error" />-->
+    <!--</logger>-->
+    <!---->
+    <!--<logger name="httpclient">-->
+        <!--<level value="debug" />-->
+        <!--<appender-ref ref="logfile_bug" />-->
+        <!--<appender-ref ref="logfile_error" />-->
+    <!--</logger>-->
+    <!---->
+    <!--<logger name="org.apache.cxf.bus">-->
+        <!--<level value="error" />-->
+        <!--<appender-ref ref="logfile_bug" />-->
+        <!--<appender-ref ref="logfile_error" />-->
+    <!--</logger>-->
+    <!---->
+    <!--<logger name="org.apache.commons.beanutils">-->
+        <!--<level value="error" />-->
+        <!--<appender-ref ref="logfile_bug" />-->
+        <!--<appender-ref ref="logfile_error" />-->
+    <!--</logger>-->
+
+	<!--<logger name="com.sun.jersey.api.container.filter.LoggingFilter">-->
+		<!--<level value="info" />-->
+		<!--<appender-ref ref="logfile_bug" />-->
+		<!--<appender-ref ref="stdout" />-->
+	<!--</logger>-->
    
 	<root>
 		<level value="debug" />
-		<appender-ref ref="stdout" />  
-  		<appender-ref ref="logfile_bug" />  
+		<appender-ref ref="logfile_bug" />
+		<appender-ref ref="logfile_error" />
+		<appender-ref ref="error_stdout" />
+		<appender-ref ref="stdout" />
 	</root>
 
 </log4j:configuration>

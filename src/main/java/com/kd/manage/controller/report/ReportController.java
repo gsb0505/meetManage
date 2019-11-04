@@ -52,8 +52,8 @@ public class ReportController extends BaseController {
 		SDF = new SimpleDateFormat("yyyy-MM-dd");
 		SDF_2 = new SimpleDateFormat("yyyy-MM");
 		SDF_3 = new SimpleDateFormat("yyyy");
-		rsu = webTarget.get(BaseUri.reportServiceUri);
-		usu = webTarget.get(BaseUri.meetRoomServiceUri);
+		rsu = BaseUri.webTarget.get(BaseUri.reportServiceUri);
+		usu = BaseUri.webTarget.get(BaseUri.meetRoomServiceUri);
 	}
 	
 	@InitBinder

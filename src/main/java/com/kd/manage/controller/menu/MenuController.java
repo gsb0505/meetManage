@@ -46,8 +46,8 @@ public class MenuController extends BaseController{
 		/*menuServerUri = PropertiesUtil.readValue("menuServerUri");
 		buttonServerUri = PropertiesUtil.readValue("buttonServerUri");*/
 		
-		msu = webTarget.get(BaseUri.menuServerUri);
-		bsu = webTarget.get(BaseUri.buttonServerUri);
+		msu = BaseUri.webTarget.get(BaseUri.menuServerUri);
+		bsu = BaseUri.webTarget.get(BaseUri.buttonServerUri);
 	}
 	
 	/**

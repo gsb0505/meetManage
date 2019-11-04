@@ -67,9 +67,9 @@ public class LoginController extends BaseController {
 	static {
 		errNum = PropertiesUtil.readValue("configuri.LoginAction.queryById");
 		
-		usu = webTarget.get(BaseUri.userServerUri);
-		ulsu = webTarget.get(BaseUri.userLogServerUri);
-		ausu = webTarget.get(BaseUri.agentUserServerUri);
+		usu = BaseUri.webTarget.get(BaseUri.userServerUri);
+		ulsu = BaseUri.webTarget.get(BaseUri.userLogServerUri);
+		ausu = BaseUri.webTarget.get(BaseUri.agentUserServerUri);
 	}
 
 	/**

@@ -48,7 +48,7 @@ import com.kd.manage.support.DataDictDefault;
 public class BaseDataController extends BaseController {
 	private static WebTarget csu;
 	static {
-		csu = webTarget.get(BaseUri.commonServerUri);
+		csu = BaseUri.webTarget.get(BaseUri.commonServerUri);
 	}
 
 	// 首页
