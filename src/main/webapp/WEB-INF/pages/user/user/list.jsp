@@ -203,6 +203,7 @@
 		map["flag"] = jQuery("#flag").val();
 		search('tabGrid',map);
 	}
+
  </script>
 </head>
 
@@ -251,6 +252,6 @@
 	</center>
 
 
-
+	<script type="text/javascript" src="<%=basePath%>pageJs/common/list.view.frame.js"></script>
 </body>
 </html>

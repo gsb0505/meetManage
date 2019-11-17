@@ -17,7 +17,19 @@
 	<context:component-scan base-package="com.kd.manage" />
 
 	<!-- 声明注解驱动的 MVC 控制器 -->
-	<mvc:annotation-driven validator="validator" />
+	<mvc:annotation-driven validator="validator" >
+		<!--<mvc:message-converters register-defaults="true">-->
+			<!--<bean class="org.springframework.http.converter.StringHttpMessageConverter">-->
+				<!--<property name="supportedMediaTypes">-->
+					<!--<list>-->
+						<!--<value>text/html;charset=UTF-8</value>-->
+						<!--<value>application/json;charset=UTF-8</value>-->
+						<!--<value>*/*;charset=UTF-8</value>-->
+					<!--</list>-->
+				<!--</property>-->
+			<!--</bean>-->
+		<!--</mvc:message-converters>-->
+	</mvc:annotation-driven>
 	
 	
 	<aop:aspectj-autoproxy proxy-target-class="true"/> 
@@ -56,7 +68,14 @@
             <bean id="loginInterceptor" class="com.kd.manage.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-    
+
+	<!-- 上传图片配置MultipartFile接口实现类且id必须为如下 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 设置上传图片文件的大小 单位为Byte 5M=1024*1024*5 -->
+		<property name="maxUploadSize" value="5242880"></property>
+	</bean>
+
+
     
     <!--  <aop:config proxy-target-class="true" expose-proxy="true">
 		<aop:aspect id="asp" ref="logAopInterceptor">

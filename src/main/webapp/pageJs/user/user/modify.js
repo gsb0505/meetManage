@@ -12,12 +12,42 @@ jQuery().ready(function() {
 		return this.optional(element) || (tel2.test(value));
 	}, "请正确填写您的电话号码");
 
-	jQuery.validator.addMethod("isloginPSW", function(value, element) {
+	// jQuery.validator.addMethod("isloginPSW", function(value, element) {
+	// 	//电话号码与手机号码同时验证
+	// 	var tel2=/^[a-zA-Z]\w{5,17}$/;
+	// 	return this.optional(element) || (tel2.test(value));
+	// }, "登录密码以字母开头6~18位长度，只能包含字符、数字和下划线");
 
-		//电话号码与手机号码同时验证
-		var tel2=/^[a-zA-Z]\w{5,17}$/;
-		return this.optional(element) || (tel2.test(value));
-	}, "登录密码以字母开头6~18位长度，只能包含字符、数字和下划线");
+    jQuery.validator.addMethod("isloginPSW", function(value, element) {
+        //电话号码与手机号码同时验证
+        var tel2=/^[a-zA-Z]?\w{5,17}$/;
+        return this.optional(element) || (tel2.test(value));
+    }, "登录密码6~18位长度，只能包含字符、数字和下划线");
+
+    jQuery.validator.addMethod("isPhoto", function(value, element) {
+		var photo = true;
+        var photoExt=value.substr(value.lastIndexOf(".")).toLowerCase();//获得文件后缀名
+        if(photoExt!=".png"&&photoExt!=".jpg"){
+            //alert("请上传后缀名为jpg或png的照片!");
+            photo = (false);
+        }
+        // var fileSize = 0;
+        // var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+        // if (isIE && !obj.files) {
+        //     var filePath = obj.value;
+        //     var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+        //     var file = fileSystem.GetFile (filePath);
+        //     fileSize = file.Size;
+        // }else {
+        //     fileSize = obj.files[0].size;
+        // }
+        // fileSize=Math.round(fileSize/1024*100)/100; //单位为KB
+        // if(fileSize>=100){
+        //     alert("照片最大尺寸为100KB，请重新上传!");
+        //     return (false);
+        // }
+        return this.optional(element) || photo;
+    }, "请上传后缀名为jpg或png的照片!");
 
 	jQuery("#user").validate({
 		debug : true,
@@ -46,14 +76,22 @@ jQuery().ready(function() {
 			},
 			depId:{
 				required : true
+			},
+            photoUrl:{
+                isPhoto:true
 			}
 		},
 		submitHandler : function(form) {
-			var user = jQuery("#user").serialize();
-			jQuery.ajax({
+			var user = jQuery("#user");
+            var formData = new FormData(user[0]);
+            formData.append('photoFile', jQuery("#photoUrl")[0].files[0]);
+            jQuery.ajax({
 				url : _path + 'userAction/modify.do',
 				type : "post",
-				data : user,
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+				data : formData,
 				async : false,
 				success : function(data) {
 					if (data == "success") {

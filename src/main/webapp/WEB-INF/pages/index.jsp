@@ -87,14 +87,15 @@ var userId = "${user.userId}";
        </div>
 	</div>
       <!--右侧内容-->
-      <div class="con_right" id="iframe" style="width:84.4%;">
-      <div class="">
+        <div class="con_right" id="iframe" style="width:84.4%;">
 
-      <p>&nbsp;&nbsp;欢迎您使用会议预约系统</p>
-            
-           </div>
-       <p>&nbsp;</p>
-    </div>
+            <div class="">
+
+                <p>&nbsp;&nbsp;欢迎您使用会议预约系统</p>
+
+            </div>
+            <p>&nbsp;</p>
+        </div>
     </div>
 
 

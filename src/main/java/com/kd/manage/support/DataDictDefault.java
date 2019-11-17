@@ -34,11 +34,11 @@ public class DataDictDefault{
 	 */
 	public final static String type1 = PropertiesUtil.readValue("commonServerUri.type1");
 	/**
-	 * 卡状态表type-id
+	 * 商家类型type-id
 	 */
 	public final static String type2 = PropertiesUtil.readValue("commonServerUri.type2");
 	/**
-	 * 卡类型表type-id
+	 * 商品种类表type-id
 	 */
 	public final static String type3 = PropertiesUtil.readValue("commonServerUri.type3");
 	/**
@@ -56,7 +56,7 @@ public class DataDictDefault{
 	/**
 	 * 终端类型表type-id
 	 */
-	public final static String type7 = PropertiesUtil.getBaseUri()+PropertiesUtil.readValue("commonServerUri.type7");
+	public final static String type7 = PropertiesUtil.readValue("commonServerUri.type7");
 	/**
 	 * 园区表type-id
 	 */

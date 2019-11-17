@@ -16,7 +16,6 @@ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import com.kd.common.unit.util.TemporaryUtils;
 import com.kd.manage.controller.util.PropertiesUtil;
 import com.kd.manage.entity.PageCount;
-import org.glassfish.jersey.filter.LoggingFilter;
 
 import java.util.Date;
 import java.util.logging.Filter;
@@ -39,10 +38,10 @@ public class BaseClient{
 
 	private static JerseyClient jerseyClient = getJerseyClient();
 	private static Client client;
-	public static final String agentRoleServerUri;
+	//public static final String agentRoleServerUri;
 		
 	static{
-		agentRoleServerUri = PropertiesUtil.readValue("agentRoleServerUri");
+		//agentRoleServerUri = PropertiesUtil.readValue("agentRoleServerUri");
 	} 
 	
 	/**
@@ -126,7 +125,6 @@ public class BaseClient{
 		if(jerseyClient == null || jerseyClient.isClosed()){
 			ClientConfig clientConfig = new ClientConfig();
 			//configRequestLogging(clientConfig);
-			clientConfig.register(LoggingFilter.class);
 			jerseyClient = JerseyClientBuilder.createClient();
 		}
 		return jerseyClient;
@@ -141,8 +139,6 @@ public class BaseClient{
 				return false;
 			}
 		});
-		LoggingFilter logFilter = new LoggingFilter(logger, true);
-		config.register(logFilter);
 	}
 	
 	

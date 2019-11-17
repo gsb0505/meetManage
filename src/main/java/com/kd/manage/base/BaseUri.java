@@ -133,6 +133,10 @@ public class BaseUri {
 	 * 结算 
 	 */
 	public static String settleDetailServerUri;
+	/**
+	 * 商品
+	 */
+	public static String productServiceUri;
 
 	/**
 	 * URI Map

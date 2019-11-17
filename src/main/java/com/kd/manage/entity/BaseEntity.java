@@ -26,7 +26,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  *@修改备注:
  *@version 
  */
-public class BaseEntity {
+public abstract class BaseEntity {
 	private String id;//主键id
 	private String creator;//创建人
 	private String auditor;//修改人

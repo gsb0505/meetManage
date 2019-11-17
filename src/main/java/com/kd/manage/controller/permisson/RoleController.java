@@ -24,8 +24,8 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.alibaba.fastjson.JSONObject;
 import org.glassfish.jersey.client.JerseyWebTarget;
-import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -88,7 +88,7 @@ public class RoleController extends BaseController{
 //		pform.setRecords(roleList.size());
 //		pform.setPageCount(roleList.size()/10+1);
 		pform.setRows(roleList);
-		JSONObject j = new JSONObject(pform);
+		Object j = JSONObject.toJSON(pform);
 		try {
 			PrintWriter out = response.getWriter();
 			out.print(j);

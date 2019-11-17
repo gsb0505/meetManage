@@ -1,62 +1,79 @@
 jQuery().ready(function() {
 
-		/**
-		**	编号名称验证
-		**/
-	  function addzero(v) {if (v < 10) return '0' + v;return v.toString();}
-		jQuery.validator.addMethod("isUnique", function(value, element) {
-			var result=false;
-			var meetDate = jQuery("#meetDate").val();
-			var meetStartTime =jQuery("#meetStartTime").val(); 
-			var meetEndTime =jQuery("#meetEndTime").val(); 
-			var meetRoomID=jQuery("#meetRoomID").val();
-			
-			var d = new Date();
-			var year = d.getFullYear();       //年
-	        var month = d.getMonth() + 1;     //月
-	        var day = d.getDate();            //日
-	       
-	        var hh = d.getHours();            //时
-	        var mm = d.getMinutes();          //分
-	        var curdate=year+'-'+addzero(month)+'-'+addzero(day);
-			var curhhmm=addzero(hh)+':'+addzero(mm);
-			if (meetDate.toString() == curdate.toString()){
-				if (meetStartTime.toString()< curhhmm.toString()){
-					//alert(meetStartTime+'--'+curhhmm);
-					result=false;	
-				}else{
-				result=true;	
-				}
-			}else if (meetDate < curdate){
-				result=false;
-			}else{			
-				result=true;
-			}
-	        if (result==true){
-			// 设置同步
-	        jQuery.ajaxSetup({
-	            async: false
-	        });
-	        jQuery.ajax({
-	    		url : _path + 'orderDetailAction/isUnique.do',
-	    		data : {'meetDate':meetDate,'meetStartTime':meetStartTime,'meetEndTime':meetEndTime,'meetRoomID':meetRoomID},
-	    		type : "post",
-	    		success : function(data) {
-	    			if(data!="exception"){
-		    			result=(data=="true"?true:false);
-	    			}else{
-	    				data="会议预约验证合法性异常，请重试！";	
-	    			}
-	    		}
-	    	});
-	        // 恢复异步
-	        jQuery.ajaxSetup({
-	            async: true
-	        });
-	        }
-    		return this.optional(element) || (result);
-			
-		}, "该时间已被预约!");
+    jQuery("#product").click(function() {
+        showWindow('查找商品', 700,350,
+            _path+'userAction/listView.do?menuId=wf_');
+    });
+
+	/**
+	**	编号名称验证
+	**/
+	function addzero(v) {
+		if (v < 10) return '0' + v;
+		return v.toString();
+	}
+
+    jQuery.validator.addMethod("isUnique", function (value, element) {
+        var result = false;
+        var meetDate = jQuery("#meetDate").val();
+        var meetStartTime = jQuery("#meetStartTime").val();
+        var meetEndTime = jQuery("#meetEndTime").val();
+        var meetRoomID = jQuery("#meetRoomID").val();
+		if(!meetDate || !meetStartTime || !meetEndTime || !meetRoomID){
+			return true;
+		}
+
+        var d = new Date();
+        var year = d.getFullYear();       //年
+        var month = d.getMonth() + 1;     //月
+        var day = d.getDate();            //日
+
+        var hh = d.getHours();            //时
+        var mm = d.getMinutes();          //分
+        var curdate = year + '-' + addzero(month) + '-' + addzero(day);
+        var curhhmm = addzero(hh) + ':' + addzero(mm);
+        if (meetDate.toString() == curdate.toString()) {
+            if (meetStartTime.toString() < curhhmm.toString()) {
+                //alert(meetStartTime+'--'+curhhmm);
+                result = false;
+            } else {
+                result = true;
+            }
+        } else if (meetDate < curdate) {
+            result = false;
+        } else {
+            result = true;
+        }
+        if (result == true) {
+            // 设置同步
+            jQuery.ajaxSetup({
+                async: false
+            });
+            jQuery.ajax({
+                url: _path + 'orderDetailAction/isUnique.do',
+                data: {
+                    'meetDate': meetDate,
+                    'meetStartTime': meetStartTime,
+                    'meetEndTime': meetEndTime,
+                    'meetRoomID': meetRoomID
+                },
+                type: "post",
+                success: function (data) {
+                    if (data != "exception") {
+                        result = (data == "true" ? true : false);
+                    } else {
+                        data = "会议预约验证合法性异常，请重试！";
+                    }
+                }
+            });
+            // 恢复异步
+            jQuery.ajaxSetup({
+                async: true
+            });
+        }
+        return this.optional(element) || (result);
+
+    }, "该时间已被预约!");
 		
 //		jQuery.validator.addMethod("isUniquedate", function(value, element) {
 //			var result=false;

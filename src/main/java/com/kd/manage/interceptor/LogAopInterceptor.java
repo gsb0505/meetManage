@@ -7,10 +7,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.kd.manage.base.BaseUri;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Aspect;
-import org.glassfish.jersey.client.JerseyWebTarget;
+import org.glassfish.jersey.client.*;
 import org.springframework.stereotype.Component;
 
 import com.kd.manage.base.BaseClient;
@@ -18,6 +19,7 @@ import com.kd.manage.controller.user.LoginController;
 import com.kd.manage.controller.util.PropertiesUtil;
 import com.kd.manage.entity.UserInfo;
 import com.kd.manage.entity.UserLog;
+import org.glassfish.hk2.api.*;
 
 @Component  
 @Aspect  
@@ -28,7 +30,7 @@ public class LogAopInterceptor {
 	private static String logUri="";
 	
 	static {
-		logUri=PropertiesUtil.readValue("userLogServerUri");
+		logUri=BaseUri.userLogServerUri;
 	}
 	
     private Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {  
@@ -61,7 +63,7 @@ public class LogAopInterceptor {
 		userLog.setUserId(userId);
 		userLog.setUserIp(userIp);
 		userLog.setType("1");
-		
+
 		JerseyWebTarget target=BaseClient.getWebTarget(logUri+"insert");
 		Response res=target.request().post(Entity.entity(userLog, MediaType.APPLICATION_XML));
 		String value=res.readEntity(String.class);

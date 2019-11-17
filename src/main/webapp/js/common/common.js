@@ -269,11 +269,13 @@ if(typeof jQuery !='undefined'){
 	        // 提示形如：发送AJAX请求到"/index.html"时出错[404]：Not Found
 	        //alert( '发送请求' + '时出错[' + jqXHR.status + ']：<br/>' + "请与管理员联系！" ); 
 			//alert("异常！！请联系管理员");
-	    	
+
 	    	if(textStatus=='timeout'){
 	    		jQuery.ajaxSetup({ async: true  });
 	    		alert("请求超时...请检查网络");
-	    	}
+	    	}else{
+	    		alert();
+			}
 	    },
 	    beforeSend:function(XHR){
 	    	//XHR.setRequestHeader("If-Modified-Since","0"); 

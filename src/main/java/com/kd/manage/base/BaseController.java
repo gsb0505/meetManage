@@ -1,19 +1,19 @@
 package com.kd.manage.base;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.lang.reflect.Field;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import com.kd.core.dto.ButtonDto;
+import com.kd.manage.controller.user.LoginController;
+import com.kd.manage.entity.BaseData;
+import com.kd.manage.entity.Config;
+import com.kd.manage.entity.UserInfo;
+import net.sf.json.JSONObject;
+import org.apache.log4j.Logger;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -24,22 +24,10 @@ import javax.validation.Validator;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
-
-import net.sf.json.JSONObject;
-
-import org.apache.log4j.Logger;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-
-import com.kd.core.dto.ButtonDto;
-import com.kd.manage.controller.user.LoginController;
-import com.kd.manage.entity.BaseData;
-import com.kd.manage.entity.Config;
-import com.kd.manage.entity.UserInfo;
+import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.*;
 
 /**
  *
@@ -57,6 +45,9 @@ public abstract class BaseController {
 	public static final String FAIL = "fail";
 	public static final String EXSIT = "exsit";
 	public static final String EXCEPTION = "exception";
+	public static final String windowFrame = "wf_";
+	public static final String resultTrue = "true";
+	public static final String resultFasle = "false";
 	public UserInfo user = null;
 	protected Client client = BaseClient.getClient();// 新建客户端对象
 	//protected Client client = BaseClient.getJerseyClient();// 新建客户端对象
@@ -86,7 +77,24 @@ public abstract class BaseController {
 		@SuppressWarnings("unchecked")
 		Map<String, List<ButtonDto>> btmap = (Map<String, List<ButtonDto>>) request.getSession().getAttribute("btmap");
 		System.out.println(btmap.toString());
-		List<ButtonDto> btns = btmap.get(menuId);
+		List<ButtonDto> btns = new ArrayList<>();
+		//模板窗口按钮
+		if(!StringUtils.isEmpty(menuId) && windowFrame.equals(menuId)){
+			ButtonDto dto = new ButtonDto();
+			ButtonDto dto2 = new ButtonDto();
+			dto.setBtnId("okclick");
+			dto.setBtnText("确定");
+			dto.setBtnCss("r_button r_button08 common_icon");
+			dto2.setBtnId("closeclick");
+			dto2.setBtnText("取消");
+			dto2.setBtnCss("r_button r_button09 common_icon");
+
+			btns.add(dto);
+			btns.add(dto2);
+		}else {
+			//权限按钮
+			btns = btmap.get(menuId);
+		}
 		model.addAttribute("btns", btns);
 	}
 
@@ -240,7 +248,7 @@ public abstract class BaseController {
 	/**
 	 * 根据code获取系统配置
 	 * 
-	 * @param id
+	 * @param code
 	 * @return
 	 */
 	public Config getSystemConfigByCode(String code) {
@@ -361,8 +369,37 @@ public abstract class BaseController {
 		return ssi;
 	}
 
+	/**
+	 * 根据true、false，输出结果内容
+	 * @param out
+	 * @param value
+	 */
+	protected void pinrtWriter(PrintWriter out, String value) {
+		if (resultTrue.equals(value)) {
+			out.print(SUCCESS);
+		} else if (resultFasle.equals(value)) {
+			out.print(FAIL);
+		} else {
+			out.print(EXCEPTION);
+		}
+	}
+	/**
+	 * 根据true、false，输出结果内容
+	 * @param value
+	 */
+	protected String result(String value) {
+		if (resultTrue.equals(value)) {
+			return SUCCESS;
+		} else if (resultFasle.equals(value)) {
+			return FAIL;
+		} else {
+			return EXCEPTION;
+		}
+	}
 
-
+	protected BtResponse outPutResponse(Integer out, String value){
+		return new BtResponse(out, value);
+	}
 	
 
 }
