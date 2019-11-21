@@ -63,6 +63,8 @@ public class UserController extends BaseController {
     private static WebTarget orgTarget;
     private static String jobServiceUrl = "";
     private static String departmentServiceUrl = "";
+    //资源路径
+    private final static String prefix = PropertiesUtil.readValue("head.prefix");
     /**
      * 获取密码错误次数，判断是否锁定用户
      */
@@ -339,7 +341,7 @@ public class UserController extends BaseController {
      * @throws Exception
      */
     @RequestMapping(value = "/modify.do", method = RequestMethod.POST)
-    public void update(UserInfo userInfo, @RequestParam(value = "photoFile", required = false) MultipartFile photoUrl,
+    public void update(UserInfo userInfo, @RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
                        HttpServletResponse response, HttpServletRequest request) throws Exception {
         PrintWriter out = response.getWriter();
         try {
@@ -355,7 +357,7 @@ public class UserController extends BaseController {
                 UserInfo user1 = res.readEntity(UserInfo.class);
                 userInfo.setLoginPSW(user1.getLoginPSW());
             }
-            savePhoto(photoUrl, request, userInfo);
+            savePhoto(photoFile, request, userInfo);
 
             WebTarget target = usu.path("modify");
             Response res = target.request().put(
@@ -577,10 +579,9 @@ public class UserController extends BaseController {
     //保存头像图片
     private void savePhoto(MultipartFile photoUrl, HttpServletRequest request, UserInfo user) throws IOException {
         //保存头像图片
-        if (photoUrl != null && photoUrl.getName() != null) {
+        if (photoUrl != null && photoUrl.getSize() > 0 && photoUrl.getName() != null) {
             String name = photoUrl.getOriginalFilename();
             String subffix = name.substring(name.lastIndexOf("."), name.length());
-            String prefix = PropertiesUtil.readValue("head.prefix");    //资源路径
             String filePath = UUID.randomUUID().toString() + subffix;
             String path = request.getSession().getServletContext().getRealPath(prefix);
             File localFile = new File(path + filePath);

@@ -69,7 +69,7 @@
                 </td>
                 <td></td>
                 <th>头像:</th>
-                <td><input name="photoUrl" type="file" class="formText" maxlength="500"></input>
+                <td><input name="photoUrl" id="photoUrl" type="file" class="formText" maxlength="500"></input>
                 </td>
                 <td></td>
             </tr>

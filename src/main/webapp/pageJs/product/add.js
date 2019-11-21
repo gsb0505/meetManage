@@ -1,36 +1,6 @@
 jQuery().ready(function() {
 
-		/**
-		**	编号名称验证
-		**/
-		jQuery.validator.addMethod("isUnique", function(value, element) {
-			var result=false;
-			
-			// 设置同步
-	        jQuery.ajaxSetup({
-	            async: false
-	        });
-	        jQuery.ajax({
-	    		url : _path + 'meetRoom/isUnique.do',
-	    		data : {'name':value},
-	    		type : "post",
-	    		success : function(data) {
-	    			if(data!="exception"){
-		    			result=(data=="true"?true:false);
-	    			}else{
-	    				data="会议室名称验证合法性异常，请重试！";	
-	    			}
-	    		}
-	    	});
-	        // 恢复异步
-	        jQuery.ajaxSetup({
-	            async: true
-	        });
-    		return this.optional(element) || (result);
-			
-		}, "该名称已被注册!");
-		
-		jQuery("#user").validate({
+		jQuery("#product").validate({
 			debug : true,
 			errorElement : "em",
 			errorPlacement : function(error, element) {
@@ -48,25 +18,32 @@ jQuery().ready(function() {
                 storeCode:{
 					required : true
 				},
-                doublePrice:{
+                price:{
 					required : true
 				},count:{
 					required : true
-				}
+				},
+                photoFile:{
+                    isPhoto:true
+                }
 			},
 			submitHandler : function(form) {
-				
 				//jQuery("#goodsName").val(trim(jQuery("#goodsName").val())); //去空格
-				var product = jQuery("#product").serialize();
+				//var product = jQuery("#product").serialize();
+
+				var form = new FormData(jQuery("#product")[0]);
+                form.append("photoFile",jQuery("#photoUrl")[0].files[0]);
 				jQuery.ajax({
 					url : _path + 'product/add.do',
 					type : "post",
-					data : product,
+					data : form,
+                    processData: false,
+                    contentType: false,
 					async : false,
 					success : function(data) {
 						if (data == "success") {
 							alert("添加成功！");
-						//	setTimeout("iFClose();", 1000);
+							setTimeout("iFClose()", 1000);
 						} else if (data == "fail") {
 							alert("添加失败！请重试！");
 						} else if (data == "exsit") {
@@ -98,4 +75,3 @@ jQuery().ready(function() {
 		// });
 		
 });
-seajs.use('common/common.form.js', function(a) {});

@@ -13,6 +13,17 @@
     <%@ include file="/WEB-INF/pages/head/pagehead.jsp" %>
     <script type="text/javascript" src="<%=basePath%>pageJs/organization/org.js"></script>
     <script type="text/javascript">
+        var _path = "<%=systemPath %>";
+        jQuery().ready(function() {
+            jQuery("#viewPhone").click(function () {
+                var url = "${user.photoUrl}";
+                if(!url || url == ""){
+                    alert("没有上传图片，无法查看！");
+                    return;
+                }
+                window.open(_path+"${user.photoUrl}");
+            })
+        });
 
     </script>
 </head>
@@ -75,18 +86,17 @@
                            class="formText" name="remark" maxlength="20"></input></td>
                 <td></td>
                 <th>头像:</th>
-                <td><input id="photoUrl" type="file" value="${user.photoUrl}"
-                           class="formText" maxlength="500"></input>
+                <td>
+                    <input name="photoUrl" type="hidden" value="${user.photoUrl}">
+                    <input id="photoUrl" name="photoFile"  type="file" class="formText" maxlength="500"></input>
                 </td>
-                <td><a style="font-size: 8px;" href="${user.photoUrl}" target="_blank">[头像浏览]</a></td>
+                <td><a style="font-size: 8px;" id="viewPhone" href="#">[头像浏览]</a></td>
             </tr>
             </tbody>
         </table>
         <div class="tanchu_box_button">
-
-            <input type="submit" class="tanchu_button03" value="保存"
-            ></input> <input type="button"
-                             class="tanchu_button04" value="取消" onclick="iFClose()"></input>
+            <input type="submit" class="tanchu_button03" value="保存"></input>
+            <input type="button" class="tanchu_button04" value="取消" onclick="iFClose()"></input>
 
         </div>
     </form>

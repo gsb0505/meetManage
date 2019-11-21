@@ -23,7 +23,7 @@
             height: 465,
             colModel: [
                 {label: '', name: 'id', sortable: false, width: 1, hidden:true},
-                {label: '商品名称', name: 'goodsName', sortable: false, width: 150, align: "center"},
+                {label: '商品名称', name: 'goodsName', sortable: false, width: 150, align: "center",editable : true,editoptions : {size : 10}},
                 {
                     label: '商品分类',
                     name: 'typeCode',
@@ -83,98 +83,6 @@
             return jQuery("span", cell).attr("val");
         }
 
-        jQuery(function ($) {
-            var jGrid = new jqGrid();
-            loadJqGrid("#tabGrid", "#pager", jGrid);
-            var btnzj = jQuery("#insert");
-            var btnbj = jQuery("#modify");
-            var btncx = jQuery("#activation");
-            var btnsc = jQuery("#delete");
-            // 绑定增加点击事件
-            if (btnzj != null) {
-                btnzj.click(function () {
-                    showWindow('添加商品', 640, 580,
-                        _path + 'product/addView.do');
-                });
-            }
-
-            if (btnbj != null) {
-                btnbj.click(function () {
-                    var id = getChecked();
-                    if (id.length != 1) {
-                        alert('请选定一条记录!');
-                        return;
-                    }
-                    showWindow('更新商品', 660, 580,
-                        _path + 'product/modifyView.do?id='
-                        + id);
-                });
-            }
-
-            // 绑定增加点击事件
-            if (btnzx != null) {
-                btnzx.click(function () {
-                    var id = getChecked();
-                    if (id.length != 1) {
-                        alert('请选定一条记录!');
-                        return;
-                    }
-                    var row = jQuery("#tabGrid").jqGrid('getRowData', id);
-                    var statu = jQuery("#tabGrid").getCell(id, 'status');
-                    if (statu == "1") {
-                        alert("选择的商品已下架!!!");
-                        return;
-                    }
-                    jQuery.ajax({
-                        url: _path + 'product/lowerShelf.do?id=' + id,
-                        type: "post",
-                        async: false,
-                        success: function (data) {
-                            if (data == "success") {
-                                alert_auto("下架成功");
-                            } else if (data == "fail") {
-                                alert("下架失败");
-                            } else {
-                                alert("异常！！请联系管理员");
-                            }
-                        }
-                    });
-                    jQuery(window.document).find('#searchResult').click();
-                });
-            }
-
-            if (btnsc != null) {
-                btnsc.click(function () {
-                    var id = getChecked();
-                    if (id.length != 1) {
-                        alert('请选定一条记录!');
-                        return;
-                    }
-                    var row = jQuery("#tabGrid").jqGrid('getRowData', id);
-                    var r = confirm("删除后商品无法恢复，确定删除该商品吗?");
-                    if (r) {
-                        jQuery.ajax({
-                            url: _path + 'meetRoom/delete.do?id=' + id,
-                            type: "post",
-                            async: false,
-                            success: function (data) {
-                                if (data == "success") {
-                                    alert_auto("删除成功");
-                                } else if (data == "fail") {
-                                    alert("删除失败");
-                                } else {
-                                    alert("异常！！请联系管理员");
-                                }
-                            }
-                        });
-                        jQuery(window.document).find('#searchResult').click();
-                    }
-                });
-            }
-
-
-        });
-
         function searchResult() {
             var map = {};
             //map["meetRoomID"] = jQuery("#meetRoomID").val();
@@ -184,6 +92,12 @@
             map["storeCode"] = jQuery("#storeCode").val();
             search('tabGrid', map);
         }
+        jQuery("#copy").click(function() {
+            jQuery("#tabGrid").jqGrid('editGridRow', "new", {
+                height : 300,
+                reloadAfterSubmit : false
+            });
+        });
     </script>
 </head>
 
@@ -246,11 +160,13 @@
 
         </tbody>
     </table>
-
+    <div><input type="button" id="copy" value="水电费水电费水电费" /></div>
 </div>
 <center>
     <table id="tabGrid"></table>
     <div id="pager"></div>
 </center>
+
+<script type="text/javascript" src="<%=basePath%>pageJs/product/list.js?vs=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

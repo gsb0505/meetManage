@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * 商品管理
@@ -68,10 +70,10 @@ public class ProductController extends BaseController{
 		Response res = target.request().get();
 		GoodsInfo t = res.readEntity(new GenericType<GoodsInfo>(){});
 
-		if(t != null){
-			//价格处理
-			t.setDoublePrice(t.getPrice() / priceUnit);
-		}
+//		if(t != null){
+//			//价格处理
+//			t.setDoublePrice(t.getPrice() / priceUnit);
+//		}
 
 		List<BaseData> base1List = DataDictDefault.getList(DataDictDefault.type3);
 		List<BaseData> storeList = getStoreCode();
@@ -159,21 +161,24 @@ public class ProductController extends BaseController{
 	 * @throws IOException 
 	 */
 	@RequestMapping(value = "/add.do", method = RequestMethod.POST)
-	public String add(GoodsInfo goodsInfo, HttpServletResponse response,HttpServletRequest request) throws IOException{
+	public String add(GoodsInfo goodsInfo, @RequestParam(value = "photoUrl", required = false) MultipartFile photoUrl,
+					  HttpServletResponse response, HttpServletRequest request) throws IOException{
 		Response responses = null;
 		try {
 			//价格处理
-			double doup =goodsInfo.getDoublePrice();
-			if(!StringUtils.isEmpty(doup)) {
-				;BigDecimal decimal=new BigDecimal(doup);
-				goodsInfo.setPrice((int)(decimal.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue() * priceUnit));
-			}
+//			double doup =goodsInfo.getDoublePrice();
+//			if(!StringUtils.isEmpty(doup)) {
+//				;BigDecimal decimal=new BigDecimal(doup);
+//				goodsInfo.setPrice((double)(decimal.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue() * priceUnit));
+//			}
+			savePhoto(photoUrl, request, goodsInfo);
 
 			WebTarget target = productServiceUri.path("add");
 			responses = target.request().buildPost(Entity.entity(goodsInfo,MediaType.APPLICATION_XML)).invoke();
 			String value = responses.readEntity(String.class);
+			String result = result(value);
 
-			return result(value);
+			return result;
 		} catch (Exception e) {
 			logException(e);
 			return EXCEPTION;
@@ -190,10 +195,13 @@ public class ProductController extends BaseController{
 	 */
 	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String modify(GoodsInfo goodsInfo, HttpServletResponse response,HttpServletRequest request) throws Exception {
+	public String modify(GoodsInfo goodsInfo,@RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
+						 HttpServletResponse response,HttpServletRequest request) throws Exception {
 		WebTarget target = productServiceUri.path("modify");
 		Response res = null;
 		try {
+			savePhoto(photoFile, request, goodsInfo);
+
 			res = target.request().put(
 					Entity.entity(goodsInfo, MediaType.APPLICATION_XML));
 			String value = res.readEntity(String.class);
@@ -222,17 +230,8 @@ public class ProductController extends BaseController{
 		if(StringUtils.isEmpty(id)){
 			return "参数异常";
 		}
+		Boolean rest = executeShelf(id,"2");
 
-		PrintWriter out = response.getWriter();
-		//修改下架状态
-		GoodsInfo goodsInfo = new GoodsInfo();
-		goodsInfo.setId(id);
-		goodsInfo.setStatus("2");
-		String sendData = new Gson().toJson(goodsInfo);
-		WebTarget targetw = productServiceUri.path("modify");
-
-		Response resw = targetw.request().get();
-		Boolean rest = resw.readEntity(Boolean.class);
 		try {
 			if(rest == null || !rest){
 				return FAIL;
@@ -245,6 +244,51 @@ public class ProductController extends BaseController{
 			logException(e);
 			return EXCEPTION;
 		}
+	}
+	/**
+	 * 商品上架
+	 * @param id
+	 * @param response
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/shelf.do")
+	@ResponseBody
+	public String shelf(String id, HttpServletResponse response)
+			throws Exception {
+		if(StringUtils.isEmpty(id)){
+			return "参数异常";
+		}
+		Boolean rest = executeShelf(id,"1");
+
+		try {
+			if(rest == null || !rest){
+				return FAIL;
+			}else if (rest) {
+				return SUCCESS;
+			} else {
+				return EXCEPTION;
+			}
+		} catch (Exception e) {
+			logException(e);
+			return EXCEPTION;
+		}
+	}
+
+	/**
+	 * 修改上架/下架
+	 * @param id
+	 * @return
+	 */
+	private Boolean executeShelf(String id, String status) {
+		//修改下架状态
+		GoodsInfo goodsInfo = new GoodsInfo();
+		goodsInfo.setId(id);
+		goodsInfo.setStatus(status);
+		String sendData = new Gson().toJson(goodsInfo);
+		WebTarget targetw = productServiceUri.path("modify");
+
+		Response resw = targetw.request().put(Entity.entity(goodsInfo,MediaType.APPLICATION_XML));
+		return resw.readEntity(Boolean.class);
 	}
 
 	/**
@@ -298,6 +342,19 @@ public class ProductController extends BaseController{
 	}
 
 	/**
+	 * 商品是否下单判断
+	 * @param response
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/confirmOrder.do")
+	@ResponseBody
+	public String confirmOrder(HttpServletResponse response,HttpServletRequest request){
+
+		return null;
+	}
+
+	/**
 	 * 删除商品图片
 	 */
 	class DelePhoto implements Runnable{
@@ -338,6 +395,20 @@ public class ProductController extends BaseController{
 			return Lists.newArrayList();
 		}else{
 			return list;
+		}
+	}
+
+	//保存图片
+	private void savePhoto(MultipartFile photoUrl, HttpServletRequest request, GoodsInfo goodsInfo) throws IOException {
+		//保存图片
+		if (photoUrl != null && photoUrl.getSize() > 0 && photoUrl.getName() != null) {
+			String name = photoUrl.getOriginalFilename();
+			String subffix = name.substring(name.lastIndexOf("."), name.length());
+			String filePath = UUID.randomUUID().toString() + subffix;
+			String path = request.getSession().getServletContext().getRealPath(prefix);
+			File localFile = new File(path + filePath);
+			photoUrl.transferTo(localFile);
+			goodsInfo.setPhotoUrl(prefix + filePath);
 		}
 	}
 	

@@ -1,43 +1,11 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
-<%
-    String systemPath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
+<%@ include file="../head/modifyhead.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link href="<%=basePath %>plugin/ymPrompt/skin/qq/ymPrompt.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=basePath %>css/datePicker.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=basePath %>css/home.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=basePath %>css/styles.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="<%=basePath%>js/jquery/1.7.2/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/jquery-ui-1.7.2.custom.min.js"></script>
-    <script type="text/javascript" src="<%=basePath %>plugin/ymPrompt/ymPrompt.js"></script>
-    <script type="text/javascript" src="<%=basePath %>js/jquery.validate.js"></script>
-    <script type="text/javascript" src="<%=basePath %>js/common/messages_cn.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/common/common.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/owned/sea.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/owned/jquery.datalink2.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/owned/jquery.tmpl2.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/owned/js.js"></script>
-    <script src="<%=basePath%>js/card.operator/xjcardObj.js"></script>
-  
     <script type="text/javascript">
-        var _path = "<%=systemPath %>";
-        seajs.config({
-            'base': '<%=basePath %>js/'
-        });
-        var models = "${models}";
         function clearNoNum(obj) {
             obj.value = obj.value.replace(/[^\d.]/g, "");
             obj.value = obj.value.replace(/^\./g, "");
@@ -85,7 +53,7 @@
                 <td width="80px"><span style="color:red;font-size:20px">*</span></td>
                 <th>单价:</th>
                 <td>
-                    <input type="text" name="doublePrice" class="formText" maxlength="8"
+                    <input type="text" name="price" class="formText" maxlength="8"
                            onkeyup="value=value.replace(/[^\d.]/g,'')"  onblur="value=value.replace(/[^\d.]/g,'')" />
                 </td>
                 <td width="80px"><span style="color:red;font-size:20px">*</span></td>
@@ -97,18 +65,14 @@
                            onkeyup="value=value.replace(/[^\d]/g,'')"  onblur="value=value.replace(/[^\d]/g,'')" />
                 </td>
                 <td width="80px"><span style="color:red;font-size:20px">*</span></td>
-                <th>状态</th>
-                <td>
-                    <select name="status" class="formText">
-                        <option value="1">上架中</option>
-                        <option value="2">已下架</option>
-                    </select>
+                <th>商品图片:</th>
+                <td><input type="file" name="photoUrl" id="photoUrl" class="formText" />
                 </td>
-                <td width="80px"></td>
+                <td width="80px"><span style="color:red;font-size:20px">*</span></td>
             </tr>
         </table>
         <div class="tanchu_box_button">
-
+            <input type="hidden" name="status" value="2" />
             <input type="submit" name="submitName" class="tanchu_button03" value="保存"/> <input
                 type="button" name="closeButton" class="tanchu_button04" value="取消"
                 onClick="iFClose()"/>
@@ -119,7 +83,7 @@
 
 
 </div>
-<script type="text/javascript" src="<%=basePath%>pageJs/meetRoom/add.js?vs=<%=System.currentTimeMillis()%>"></script>
+<script type="text/javascript" src="<%=basePath%>pageJs/product/add.js?vs=<%=System.currentTimeMillis()%>"></script>
 <script type="text/javascript">
 
 jQuery().ready(function() {

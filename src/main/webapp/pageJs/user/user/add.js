@@ -80,6 +80,9 @@ jQuery().ready(function () {
             },
             depId: {
                 required: true
+            },
+            photoFile:{
+                isPhoto:true
             }
         },
         submitHandler: function (form) {

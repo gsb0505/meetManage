@@ -1,34 +1,39 @@
 package com.kd.manage.entity;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import com.kd.manage.entity.BaseEntity;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class GoodsInfo extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = -7638820873381398720L;
-	
+
 	//商品名称
 	private String goodsName;
-	
+
 	//商家
 	private String storeCode;
-	
+
 	//商品类型
 	private String typeCode;
-	
+
 	//单价 以分为单位
-	private int price;
-	//单价 以分为单位
-	private double doublePrice;
-	
-	private int orderNum;
-	
+	private Double price;
+
+	private Integer orderNum;
+
 	//剩余数量
-	private int count;
-	
+	private Integer count;
+
 	//状态：1上架 2 下架
 	private String status;
+
+	//商家头像地址
+	private String photoUrl;
 
 	/**
 	 * @return the goodsName
@@ -75,42 +80,42 @@ public class GoodsInfo extends BaseEntity implements Serializable {
 	/**
 	 * @return the price
 	 */
-	public int getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
 	/**
 	 * @param price the price to set
 	 */
-	public void setPrice(int price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
 	/**
 	 * @return the orderNum
 	 */
-	public int getOrderNum() {
+	public Integer getOrderNum() {
 		return orderNum;
 	}
 
 	/**
 	 * @param orderNum the orderNum to set
 	 */
-	public void setOrderNum(int orderNum) {
+	public void setOrderNum(Integer orderNum) {
 		this.orderNum = orderNum;
 	}
 
 	/**
 	 * @return the count
 	 */
-	public int getCount() {
+	public Integer getCount() {
 		return count;
 	}
 
 	/**
 	 * @param count the count to set
 	 */
-	public void setCount(int count) {
+	public void setCount(Integer count) {
 		this.count = count;
 	}
 
@@ -128,11 +133,12 @@ public class GoodsInfo extends BaseEntity implements Serializable {
 		this.status = status;
 	}
 
-	public double getDoublePrice() {
-		return doublePrice;
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
 
-	public void setDoublePrice(double doublePrice) {
-		this.doublePrice = doublePrice;
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
+
 }

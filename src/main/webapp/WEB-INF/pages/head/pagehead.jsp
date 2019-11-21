@@ -66,3 +66,4 @@
         'base': '<%=basePath %>js/'
     });
 </script>
+<script type="text/javascript" src="<%=basePath %>js/common/additional-methods.js"></script>
