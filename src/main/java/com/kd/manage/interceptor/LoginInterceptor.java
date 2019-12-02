@@ -42,14 +42,14 @@ import com.kd.manage.entity.UserLog;
  * @修改备注:
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
-    //, "/Login/","/loginAction/login.do"
-    private static final String[] IGNORE_URI = {"loginAction/validLogin.do", "/loginAction/validRandom.do", "/login.jsp", "/loginAction/logout.do", "loginAction/resetPwd.do", "sessJudge.do"};
+    private static final String[] IGNORE_URI = {"loginAction/validLogin.do", "/loginAction/validRandom.do",
+            "/login.jsp", "/loginAction/logout.do", "loginAction/resetPwd.do", "sessJudge.do","/semail/"};
     //	private static Map<String,String> menuMap=new HashMap<String, String>();//这个集合表示数据库需要进行日志记录的Action  TODO
-    private final String WEB_URI = "/meetManage";
+    private final static String WEB_URI = PropertiesUtil.readValue("WEB_URI");
     //private static String logUri="";
     private static WebTarget target;
     private static final String[] IGNORE_URI1 = {"loginAction/validLogin.do",
-            "/userRolesAction/getUserRolesList.do",
+            "/userRolesAction/getUserRolesList.do","/semail/",
             "/userMenu/queryOneLevel.do", "/card/add_1.do", "userMenu/queryOtherLevel.do"};
 
     static {

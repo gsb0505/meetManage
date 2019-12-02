@@ -42,7 +42,7 @@
                     }
                 },
                 {label: '商家编号', name: 'storeCode', index: 'storeCode', sortable: false, width: 150, align: "center"},
-                {label: '商家名称', name: 'goodsName', index: 'goodsName', sortable: false, width: 150, align: "center",
+                {label: '商家名称', name: 'storeName', sortable: false, width: 150, align: "center",
                     formatter: function (cellvalue, options, rowObject) {
                         if (storeCode == "") {
                             return "-";
@@ -78,7 +78,6 @@
             ]
         });
 
-
         function valFormat(cellvalue, options, cell) {
             return jQuery("span", cell).attr("val");
         }
@@ -92,12 +91,12 @@
             map["storeCode"] = jQuery("#storeCode").val();
             search('tabGrid', map);
         }
-        jQuery("#copy").click(function() {
-            jQuery("#tabGrid").jqGrid('editGridRow', "new", {
-                height : 300,
-                reloadAfterSubmit : false
-            });
-        });
+        // jQuery("#copy").click(function() {
+        //     jQuery("#tabGrid").jqGrid('editGridRow', "new", {
+        //         height : 300,
+        //         reloadAfterSubmit : false
+        //     });
+        // });
     </script>
 </head>
 
@@ -160,13 +159,12 @@
 
         </tbody>
     </table>
-    <div><input type="button" id="copy" value="水电费水电费水电费" /></div>
 </div>
 <center>
     <table id="tabGrid"></table>
     <div id="pager"></div>
 </center>
-
+<script type="text/javascript" src="<%=basePath%>pageJs/common/list.view.frame.js"></script>
 <script type="text/javascript" src="<%=basePath%>pageJs/product/list.js?vs=<%=System.currentTimeMillis()%>"></script>
 </body>
 </html>

@@ -72,6 +72,8 @@ public class MeetRoom extends BaseEntity{
     private String person;
   //负责人 
     private Integer personID;
+    //图片
+	private String photoUrl;
     
     public Integer getPersonID() {
 		return personID;
@@ -89,5 +91,13 @@ public class MeetRoom extends BaseEntity{
    	public void setOrderDetailList(List<OrderDetail> orderDetailList) {
    		this.orderDetailList = orderDetailList;
    	}
+
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
 }
 

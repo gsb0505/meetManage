@@ -251,7 +251,5 @@
 		<div id="pager"></div>
 	</center>
 
-
-	<script type="text/javascript" src="<%=basePath%>pageJs/common/list.view.frame.js"></script>
 </body>
 </html>

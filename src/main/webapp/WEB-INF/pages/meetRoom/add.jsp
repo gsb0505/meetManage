@@ -15,37 +15,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link href="<%=basePath %>plugin/ymPrompt/skin/qq/ymPrompt.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=basePath %>css/datePicker.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=basePath %>css/home.css" rel="stylesheet" type="text/css"/>
-    <link href="<%=basePath %>css/styles.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="<%=basePath%>js/jquery/1.7.2/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/jquery-ui-1.7.2.custom.min.js"></script>
-    <script type="text/javascript" src="<%=basePath %>plugin/ymPrompt/ymPrompt.js"></script>
-    <script type="text/javascript" src="<%=basePath %>js/jquery.validate.js"></script>
-    <script type="text/javascript" src="<%=basePath %>js/common/messages_cn.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/common/common.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/owned/sea.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/owned/jquery.datalink2.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/owned/jquery.tmpl2.js"></script>
-    <script type="text/javascript" src="<%=basePath%>js/owned/js.js"></script>
-    <script src="<%=basePath%>js/card.operator/xjcardObj.js"></script>
-  
-    <script type="text/javascript">
-        var _path = "<%=systemPath %>";
-        seajs.config({
-            'base': '<%=basePath %>js/'
-        });
-        var models = "${models}";
-        function clearNoNum(obj) {
-            obj.value = obj.value.replace(/[^\d.]/g, "");
-            obj.value = obj.value.replace(/^\./g, "");
-            obj.value = obj.value.replace(/\.{2,}/g, "");
-        }
-        
-        
-    </script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<%@ include file="../head/modifyhead.jsp" %>
+
+<script type="text/javascript">
+    function clearNoNum(obj) {
+        obj.value = obj.value.replace(/[^\d.]/g, "");
+        obj.value = obj.value.replace(/^\./g, "");
+        obj.value = obj.value.replace(/\.{2,}/g, "");
+    }
+</script>
 </head>
 <body style="min-width: 540px; overflow: auto; overflow: hidden">
 <div style="display:;" class="inputTable">
@@ -107,7 +86,14 @@
                     </select>
                 </td>
                 <td width="80px"></td>
-                </tr>
+            </tr>
+            <tr>
+                <th>会议室图片:</th>
+                <td><input type="file" name="photoUrl" class="formText"
+                           id="photoUrl"></input>
+                </td>
+                <td width="80px"><span style="color:red;font-size:20px">*</span></td>
+            </tr>
         </table>
         <div class="tanchu_box_button">
 

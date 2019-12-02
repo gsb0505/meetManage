@@ -1,9 +1,23 @@
 jQuery().ready(function() {
-
-    jQuery("#product").click(function() {
-        showWindow('查找商品', 700,350,
-            _path+'userAction/listView.do?menuId=wf_');
+    //商品项添加删除
+    jQuery("#addProduct").click(addProFuntion);
+    jQuery(".delProduct").live("click",function(){
+        var parent=jQuery(this).parents("tr");
+        var clas=parent.attr("class");
+    	if(clas == "tr-pro0" || clas=== "tr-pro0"){
+		}else{
+            productCount--;
+            parent.remove();
+		}
     });
+
+    jQuery("#clearItem").click(function () {
+    	//确定清空内容？
+		jQuery("input[name^='goodsDetailList[]']").val("");
+		jQuery("p[name^='goodsDetailList[]']").html("");
+    });
+
+
 
 	/**
 	**	编号名称验证
@@ -58,6 +72,8 @@ jQuery().ready(function() {
                     'meetRoomID': meetRoomID
                 },
                 type: "post",
+                dataType: "json",
+                contentType: "application/json",
                 success: function (data) {
                     if (data != "exception") {
                         result = (data == "true" ? true : false);
@@ -120,32 +136,51 @@ jQuery().ready(function() {
 				},
 				meetDate:{
 					required : true,
-					isUnique : true
+					//isUnique : true
 				},
 				meetStartTime:{
 					required : true,
-					isUnique : true
+					//isUnique : true
 					//isUniquedate:true
 				},meetEndTime:{
 					required : true,
-					isUnique : true
+					//isUnique : true
 				},meetRoomID:{
 					required : true,
-					isUnique : true
+					//isUnique : true
 				}
 			},
 			submitHandler : function(form) {
 				jQuery("#meetName").val(trim(jQuery("#meetName").val())); //去空格
-				var user = jQuery("#user").serialize();
+				var user = jQuery("#user").serializeJSON();
+                var formSerial = {};
+                console.log("user=>"+JSON.stringify(user));
+
+                //var productSerial = [];
+                // jQuery(jQuery("#user").serializeArray()).each(function(){
+                //     if(this.name.indexOf("goodsDetailList[]") != -1){
+                //         productSerial.push()
+					// }else{
+                //         formSerial[this.name] = this.value;
+					// }
+                // });
+                //var formData = new FormData(jQuery("#user")[0]);
+
+                //var fromValue = JSON.stringify(formSerial);
+                //console.log("fromValue=>"+fromValue);
+                //console.log("user=>"+user);
+                //console.log("formData=>"+formData.get("goodsDetailList[]"));
 				jQuery.ajax({
 					url : _path + 'orderDetailAction/add.do',
 					type : "post",
-					data :user,
+					data :JSON.stringify(user),
 					async : false,
+                    dataType: "json",
+                    contentType: "application/json",
 					success : function(data) {
 						if (data == "success") {
 							alert("添加成功！");
-							
+
 							jQuery("#meetName").val(""); //去空格
 							jQuery("#meetDate").val(""); //去空格
 							jQuery("#meetStartTime").val(""); //去空格
@@ -166,7 +201,7 @@ jQuery().ready(function() {
 					fail:function(data){
 						alert("3_fail");
 					}
-				
+
 				});
 
 			}

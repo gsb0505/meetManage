@@ -1,11 +1,13 @@
 package com.kd.manage.controller.meetRoom;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.kd.manage.controller.util.PropertiesUtil;
 import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
@@ -33,6 +36,8 @@ import com.kd.manage.entity.OrderDetail;
 import com.kd.manage.entity.PageCount;
 import com.kd.manage.entity.UserInfo;
 import com.kd.manage.support.DataDictDefault;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 会议室管理
@@ -45,6 +50,8 @@ public class MeetRoomController extends BaseController{
 	private static WebTarget tsu;
 	private static WebTarget odsu;
 	private static WebTarget usu;
+	//资源路径
+	private final static String prefix = PropertiesUtil.readValue("meetRoom.prefix");
 	static{
 				
 		tsu = BaseUri.webTarget.get(BaseUri.meetRoomServiceUri);
@@ -219,9 +226,12 @@ public class MeetRoomController extends BaseController{
 	 * @throws IOException 
 	 */
 	@RequestMapping(value = "/add.do", method = RequestMethod.POST)
-	public void add(MeetRoom meetRoom, HttpServletResponse response,HttpServletRequest request) throws IOException{
+	public void add(MeetRoom meetRoom, @RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
+					HttpServletResponse response, HttpServletRequest request) throws IOException{
 		PrintWriter out = response.getWriter();
 		try {
+			savePhoto(photoFile, request, meetRoom);
+
 			WebTarget target = tsu.path("add");
 			String user = this.getUserId(request);
 			meetRoom.setCreator(user);
@@ -273,8 +283,11 @@ public class MeetRoomController extends BaseController{
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
-	public void modify(MeetRoom meetRoom, HttpServletResponse response,HttpServletRequest request) throws Exception {
+	public void modify(MeetRoom meetRoom, @RequestParam(value = "photoFile", required = false) MultipartFile photoFile
+			, HttpServletResponse response,HttpServletRequest request) throws Exception {
 		PrintWriter out = response.getWriter();
+
+		savePhoto(photoFile, request, meetRoom);
 
 		WebTarget target = tsu.path("modify");
 		try {
@@ -461,6 +474,20 @@ public class MeetRoomController extends BaseController{
 	private List<BaseData> getMeetRoomType(){
 		List<BaseData> list =  DataDictDefault.getList(DataDictDefault.type1);
 		return list;
+	}
+
+	//保存头像图片
+	private void savePhoto(MultipartFile photoUrl, HttpServletRequest request, MeetRoom meetRoom) throws IOException {
+		//保存头像图片
+		if (photoUrl != null && photoUrl.getSize() > 0 && photoUrl.getName() != null) {
+			String name = photoUrl.getOriginalFilename();
+			String subffix = name.substring(name.lastIndexOf("."), name.length());
+			String filePath = UUID.randomUUID().toString() + subffix;
+			String path = request.getSession().getServletContext().getRealPath(prefix);
+			File localFile = new File(path + filePath);
+			photoUrl.transferTo(localFile);
+			meetRoom.setPhotoUrl(prefix + filePath);
+		}
 	}
 	
 }

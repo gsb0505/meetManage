@@ -30,7 +30,7 @@ public class GoodsInfo extends BaseEntity implements Serializable {
 	private Integer count;
 
 	//状态：1上架 2 下架
-	private String status;
+	private String status="1";
 
 	//商家头像地址
 	private String photoUrl;

@@ -26,7 +26,9 @@
 var userId = "${user.userId}";
 </script>
 </head>
-
+<style>
+    .coolscrollbar{scrollbar-arrow-color:#fafcff;scrollbar-base-color:#fafcff;}
+</style>
  <body id="loading">
 <input type="hidden" value="${userId}" name="userId" id="userId">
 <input type="hidden" value="${userId}" id="index_user_id">

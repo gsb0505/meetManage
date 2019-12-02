@@ -57,17 +57,20 @@ jQuery().ready(function() {
 				},terminalNo:{
 					required : true,
 					maxlength:20
-				}
+				},photoFile:{
+                    isPhoto:true
+                }
 			},
 			submitHandler : function(form) {
-				
 				jQuery("#meetRoomName").val(trim(jQuery("#meetRoomName").val())); //去空格
+                var formData = new FormData(user);
+                formData.append('photoFile', jQuery("#photoUrl")[0].files[0]);
 				var user = jQuery("#user").serialize();
 				alert(user);
 				jQuery.ajax({
 					url : _path + 'meetRoom/add.do',
 					type : "post",
-					data : user,
+					data : formData,
 					async : false,
 					success : function(data) {
 						if (data == "success") {

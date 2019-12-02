@@ -1,6 +1,8 @@
 package com.kd.manage.entity;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @XmlRootElement(name="orderDetail")
@@ -122,11 +124,21 @@ public class OrderDetail extends BaseEntity {
     private Integer errCode;
     private String phone;
 
+	private List<GoodsDetail> goodsDetailList = new ArrayList<>();
+
 	public String getPhone() {
 		return phone;
 	}
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public List<GoodsDetail> getGoodsDetailList() {
+		return goodsDetailList;
+	}
+
+	public void setGoodsDetailList(List<GoodsDetail> goodsDetailList) {
+		this.goodsDetailList = goodsDetailList;
 	}
 }
