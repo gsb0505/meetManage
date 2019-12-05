@@ -122,12 +122,12 @@ public class ProductController extends BaseController{
 	 */
 	@RequestMapping("/list.do")
 	@ResponseBody
-	public PageCount list(GoodsInfo goodsInfo, PageCount pageCount,HttpServletResponse res,HttpServletRequest request) throws Exception{
+	public PageCount list(final GoodsInfo goodsInfo, PageCount pageCount, HttpServletResponse res, HttpServletRequest request) throws Exception{
 		goodsInfo.setPageCount(pageCount);
 		String sendData = new Gson().toJson(goodsInfo,GoodsInfo.class);
 		//WebTarget target = productServiceUri.path("query").queryParam("goodsInfo", URLEncoder.encode(sendData, "utf-8"));
-		Response responses = productServiceUri.path("query").request().buildPost(Entity.entity(goodsInfo,MediaType.APPLICATION_XML)).invoke();
-		List<GoodsInfo> GoodsInfoList = responses.readEntity(new GenericType<List<GoodsInfo>>() {});
+		Response responses = productServiceUri.path("query").request().post(Entity.entity(goodsInfo,MediaType.APPLICATION_XML));
+		List<GoodsInfo> GoodsInfoList = responses.readEntity(new GenericType<List<GoodsInfo>>(){});
 		pageCount = ManageUtil.packPage(GoodsInfoList, pageCount);
 		//JSONObject json = JSONObject.fromObject(pageCount);// 转化成json对象(jQgrid只能识别json对象)
 		//PrintWriter out = res.getWriter();
@@ -312,7 +312,7 @@ public class ProductController extends BaseController{
 		String sendData = new Gson().toJson(goodsInfo);
 		WebTarget targetw = productServiceUri.path("getModel");
 
-		Response resw = targetw.request().buildPost(Entity.entity(goodsInfo,MediaType.APPLICATION_XML)).invoke();
+		Response resw = targetw.request().post(Entity.entity(goodsInfo,MediaType.APPLICATION_XML));
 		GoodsInfo rest = resw.readEntity(GoodsInfo.class);
 		if(rest != null && "2".equals(rest.getStatus())){
 			return "请先下架商品！";

@@ -3,10 +3,8 @@ package com.kd.manage.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class GoodsDetail {
-	
-	//商品明细编号
-	private String id;
+public class GoodsDetail extends BaseEntity {
+
 	//商品名称
 	private String goodsName;
 	//会议id
