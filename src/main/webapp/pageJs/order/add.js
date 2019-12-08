@@ -20,7 +20,7 @@ jQuery().ready(function() {
 
 
 	/**
-	**	编号名称验证
+	**	个位数加零
 	**/
 	function addzero(v) {
 		if (v < 10) return '0' + v;
@@ -136,18 +136,18 @@ jQuery().ready(function() {
 				},
 				meetDate:{
 					required : true,
-					//isUnique : true
+					isUnique : true
 				},
 				meetStartTime:{
 					required : true,
-					//isUnique : true
+					isUnique : true,
 					//isUniquedate:true
 				},meetEndTime:{
 					required : true,
-					//isUnique : true
+					isUnique : true
 				},meetRoomID:{
 					required : true,
-					//isUnique : true
+					isUnique : true
 				}
 			},
 			submitHandler : function(form) {

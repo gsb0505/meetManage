@@ -33,7 +33,9 @@
 </style>
 <script type="text/javascript">
     var winSign="";
-    var productCount = 1;
+    var trCount = 1;
+    var productAmount = 0.00;
+    var productCount = 0;
     var d = new Date();
     function addzero(v) {if (v < 10) return '0' + v;return v.toString();}
     var s = addzero(d.getHours()) +":"+ addzero(d.getMinutes());
@@ -56,7 +58,7 @@
             '                <td><input type="text" name="goodsDetailList[][num]" class="formText" style="width: 80px" value="0" onkeyup="opnumber(this)"/></td>\n' +
             '                <th style="min-width: 20px">库存:</th>\n' +
             '                <td><p name="goodsDetailList[][count]" style="width: 50px">0</p></td>\n' +
-            '                <th style="min-width: 20px">总价:</th>\n' +
+            '                <th style="min-width: 20px">小计:</th>\n' +
             '                <td><input name="goodsDetailList[][amount]" class="formText" style="width: 50px" value="0" readonly /></td>'+
             '                <th style="min-width: 20px">备注:</th>\n' +
             '                <td><textarea name="goodsDetailList[][remark]" class="formText" style="width: 100px" /></td>\n' +
@@ -83,8 +85,8 @@
         obj.find("p[name='goodsDetailList[][count]']").html(param[0].count);
         if(param.length > 1){
             for (var i = 1; i < param.length; i++) {
-                obj.parent().append("<tr class='tr-pro0"+productCount+"'> "+productTr(param[i].id, param[i].goodsName, param[i].price) +"</tr>");
-                productCount++;
+                obj.parent().append("<tr class='tr-pro0"+trCount+"'> "+productTr(param[i].id, param[i].goodsName, param[i].price) +"</tr>");
+                trCount++;
             }
         }
         window.ymPrompt.close();
@@ -99,15 +101,34 @@
     }
     function addProFuntion(){
         var parent=jQuery(this).parents("tr");
-        parent.parent().append("<tr class='tr-pro0"+productCount+"'> "+productTr() +"</tr>");
-        productCount++;
+        parent.parent().append("<tr class='tr-pro0"+trCount+"'> "+productTr() +"</tr>");
+        trCount++;
     }
     function opnumber(a) {
         var price = jQuery(a).parents("tr").find("input[name='goodsDetailList[][price]']").val();
         var number = jQuery(a).val();
         jQuery(a).parents("tr").find("input[name='goodsDetailList[][amount]']").val(price * number);
         jQuery(a).val(a.value.replace(/[^\d]/g,''));
+
+        //更新显示数量、总价
+        var goodsAmount = jQuery("#product_tab").find("input[name='goodsDetailList[][amount]']");
+        productAmount = 0.0;
+        productCount = 0;
+        for (var i = 0; i < goodsAmount.length; i++) {
+            productAmount +=  parseFloat(goodsAmount[i].value,2);
+        }
+        var goodsNum = jQuery("#product_tab").find("input[name='goodsDetailList[][num]']");
+        for (var i = 0; i < goodsNum.length; i++) {
+            productCount +=  parseInt(goodsNum[i].value);
+        }
+        updateAmountTabel();
     }
+
+    function updateAmountTabel() {
+        jQuery("#productAmount").html(productAmount);
+        jQuery("#productCount").html(productCount);
+    }
+
 </script>
 <body style="min-width: 540px;">
 <div class="inputTable" style="overflow: scroll; height: 770px;">
@@ -191,7 +212,7 @@
                 <td><input type="text" name="goodsDetailList[][num]" class="formText" style="width: 80px" onkeyup="opnumber(this)"/></td>
                 <th style="min-width: 20px">库存:</th>
                 <td><p name="goodsDetailList[][count]" style="width: 50px">0</p></td>
-                <th style="min-width: 20px">总价:</th>
+                <th style="min-width: 20px">小计:</th>
                 <td><input class="formText" name="goodsDetailList[][amount]" value="0" style="width: 50px" readonly/></td>
                 <th style="min-width: 20px">备注:</th>
                 <td><textarea name="goodsDetailList[][remark]" class="formText" style="width: 100px" /></td>
@@ -199,12 +220,9 @@
             </tr>
         </table>
         <div class="tanchu_box_button">
-
-            <input type="submit" class="tanchu_button03" value="保存"/> <input
-                type="button" name="closeButton" class="tanchu_button04" value="取消"
-                onClick="iFClose()"/>
-
+            <input type="submit" class="tanchu_button03" value="保存"/>
         </div>
+        <div style="margin: 10px auto; line-height: 45px;"> <a style="width: 150px;font-size: 18px;">预定数量：<em id="productCount">0</em>&nbsp;件.&nbsp;总价：<em id="productAmount">0.00</em></a></div>
     </form>
 
 
