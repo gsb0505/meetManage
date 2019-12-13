@@ -49,7 +49,7 @@
         return '' +
             '                <th style="min-width: 40px">商品名称:</th>\n' +
             '                <td>' +
-            '					<input type="hidden" name="goodsDetailList[][id]" value="'+i+'" />' +
+            '					<input type="hidden" name="goodsDetailList[][ginfoId]" value="'+i+'" />' +
             '					<input type="text" name="goodsDetailList[][productName]" value="'+n+'" class="formText" readonly /></td>\n' +
             '                <td><a onclick="openProWin(this)" >【选择商品】</a></td>\n' +
             '                <th style="min-width: 20px">单价:</th>\n' +
@@ -79,7 +79,7 @@
         //获取商品信息
         var obj = jQuery("."+winSign);
 
-        obj.find("input[name='goodsDetailList[][id]']").val(param[0].id);
+        obj.find("input[name='goodsDetailList[][ginfoId]']").val(param[0].id);
         obj.find("input[name='goodsDetailList[][productName]']").val(param[0].goodsName);
         obj.find("input[name='goodsDetailList[][price]']").val(param[0].price);
         obj.find("p[name='goodsDetailList[][count]']").html(param[0].count);
@@ -202,7 +202,7 @@
             <tr class="tr-pro0">
                 <th style="min-width: 40px">商品名称:</th>
                 <td>
-                    <input type="hidden" name="goodsDetailList[][id]" />
+                    <input type="hidden" name="goodsDetailList[][ginfoId]" />
                     <input type="text" name="goodsDetailList[][productName]" class="formText" readonly/>
                 </td>
                 <td><a onclick="openProWin(this)" >【选择商品】</a></td>

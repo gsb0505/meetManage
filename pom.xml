@@ -213,7 +213,12 @@
             <artifactId>gson</artifactId>
             <version>${google.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>common</groupId>
+            <artifactId>common</artifactId>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/common.jar</systemPath>
+        </dependency>
 
 
     </dependencies>

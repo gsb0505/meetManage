@@ -29,95 +29,62 @@ jQuery().ready(function() {
 
     jQuery.validator.addMethod("isUnique", function (value, element) {
         var result = false;
-        var meetDate = jQuery("#meetDate").val();
-        var meetStartTime = jQuery("#meetStartTime").val();
-        var meetEndTime = jQuery("#meetEndTime").val();
-        var meetRoomID = jQuery("#meetRoomID").val();
-		if(!meetDate || !meetStartTime || !meetEndTime || !meetRoomID){
-			return true;
-		}
-
-        var d = new Date();
-        var year = d.getFullYear();       //年
-        var month = d.getMonth() + 1;     //月
-        var day = d.getDate();            //日
-
-        var hh = d.getHours();            //时
-        var mm = d.getMinutes();          //分
-        var curdate = year + '-' + addzero(month) + '-' + addzero(day);
-        var curhhmm = addzero(hh) + ':' + addzero(mm);
-        if (meetDate.toString() == curdate.toString()) {
-            if (meetStartTime.toString() < curhhmm.toString()) {
-                //alert(meetStartTime+'--'+curhhmm);
-                result = false;
-            } else {
-                result = true;
-            }
-        } else if (meetDate < curdate) {
-            result = false;
-        } else {
-            result = true;
-        }
-        if (result == true) {
-            // 设置同步
-            jQuery.ajaxSetup({
-                async: false
-            });
-            jQuery.ajax({
-                url: _path + 'orderDetailAction/isUnique.do',
-                data: {
-                    'meetDate': meetDate,
-                    'meetStartTime': meetStartTime,
-                    'meetEndTime': meetEndTime,
-                    'meetRoomID': meetRoomID
-                },
-                type: "post",
-                dataType: "json",
-                contentType: "application/json",
-                success: function (data) {
-                    if (data != "exception") {
-                        result = (data == "true" ? true : false);
-                    } else {
-                        data = "会议预约验证合法性异常，请重试！";
-                    }
-                }
-            });
-            // 恢复异步
-            jQuery.ajaxSetup({
-                async: true
-            });
-        }
+        result = checkForm();
         return this.optional(element) || (result);
 
     }, "该时间已被预约!");
-		
-//		jQuery.validator.addMethod("isUniquedate", function(value, element) {
-//			var result=false;
-//			var d = new Date();
-//			var year = d.getFullYear();       //年
-//	        var month = d.getMonth() + 1;     //月
-//	        var day = d.getDate();            //日
-//	       
-//	        var hh = d.getHours();            //时
-//	        var mm = d.getMinutes();          //分
-//	        
-//			var meetDate = jQuery("#meetDate").val();
-//			var meetStartTime =jQuery("#meetStartTime").val(); 
-//			var meetEndTime =jQuery("#meetEndTime").val(); 
-//			var curdate=year+'-'+month+'-'+day;
-//			var curhhmm=hh+':'+mm;
-//			if (meetDate == curdate){
-//				if (meetStartTime<curhhmm){
-//					result=false;	
-//				}
-//			}else if (meetDate < curdate){
-//				result=false;
-//			}else{			
-//				result=true;
-//			}
-//    		return this.optional(element) || (result);
-//			
-//		}, "该时间已过期!");
+
+
+
+    // jQuery.validator.addMethod("checkMeetDate", function(value, element) {
+    //     var result=false;
+    //     var meetStartTime = jQuery("#meetStartTime").val();
+    //     var meetEndTime = jQuery("#meetEndTime").val();
+    //     if(!value){
+    //         return true;
+    //     }
+    //
+    //     var d = new Date();
+    //     var year = d.getFullYear();       //年
+    //     var month = d.getMonth() + 1;     //月
+    //     var day = d.getDate();            //日
+    //
+    //     var hh = d.getHours();            //时
+    //     var mm = d.getMinutes();          //分
+    //     var curdate = year + '-' + addzero(month) + '-' + addzero(day);
+    //     var curhhmm = addzero(hh) + ':' + addzero(mm);
+		// if (value < curdate) {
+    //         result = false;
+    //     } else {
+    //         result = true;
+    //     }
+    //     return this.optional(element) || (result);
+    //
+    // }, "请选择大于当前的日期!");
+    // jQuery.validator.addMethod("checkMeetStartTime", function(value, element) {
+    //     var result=false;
+    //     var meetEndTime = jQuery("#meetEndTime").val();
+    //     if(!value){
+    //         return true;
+    //     }
+    //
+    //     var d = new Date();
+    //     var year = d.getFullYear();       //年
+    //     var month = d.getMonth() + 1;     //月
+    //     var day = d.getDate();            //日
+    //
+    //     var hh = d.getHours();            //时
+    //     var mm = d.getMinutes();          //分
+    //     var curdate = year + '-' + addzero(month) + '-' + addzero(day);
+    //     var curhhmm = addzero(hh) + ':' + addzero(mm);
+		// if (value.toString() < curhhmm.toString()) {
+		// 	result = false;
+		// } else {
+		// 	result = true;
+		// }
+    //     return this.optional(element) || (result);
+    //
+    // }, "请选择大于当前的时间!");
 		
 		jQuery("#user").validate({
 			debug : true,
@@ -136,12 +103,11 @@ jQuery().ready(function() {
 				},
 				meetDate:{
 					required : true,
-					isUnique : true
+					isUnique : true,
 				},
 				meetStartTime:{
 					required : true,
 					isUnique : true,
-					//isUniquedate:true
 				},meetEndTime:{
 					required : true,
 					isUnique : true
@@ -155,7 +121,10 @@ jQuery().ready(function() {
 				var user = jQuery("#user").serializeJSON();
                 var formSerial = {};
                 console.log("user=>"+JSON.stringify(user));
-
+				if(checkForm() == false){
+					alert("该时间已被预约!");
+					return;
+				}
                 //var productSerial = [];
                 // jQuery(jQuery("#user").serializeArray()).each(function(){
                 //     if(this.name.indexOf("goodsDetailList[]") != -1){
@@ -210,3 +179,64 @@ jQuery().ready(function() {
 		
 });
 seajs.use('common/common.form.js', function(a) {});
+
+function checkForm(){
+    var result = false;
+    var meetDate = jQuery("#meetDate").val();
+    var meetStartTime = jQuery("#meetStartTime").val();
+    var meetEndTime = jQuery("#meetEndTime").val();
+    var meetRoomID = jQuery("#meetRoomID").val();
+    if(!meetDate || !meetStartTime || !meetEndTime || !meetRoomID){
+        return true;
+    }
+
+    var d = new Date();
+    var year = d.getFullYear();       //年
+    var month = d.getMonth() + 1;     //月
+    var day = d.getDate();            //日
+
+    var hh = d.getHours();            //时
+    var mm = d.getMinutes();          //分
+    var curdate = year + '-' + addzero(month) + '-' + addzero(day);
+    var curhhmm = addzero(hh) + ':' + addzero(mm);
+    if (meetDate.toString() == curdate.toString()) {
+        if (meetStartTime.toString() < curhhmm.toString()) {
+            //alert(meetStartTime+'--'+curhhmm);
+            result = false;
+        } else {
+            result = true;
+        }
+    } else if (meetDate < curdate) {
+        result = false;
+    } else {
+        result = true;
+    }
+    if (result == true) {
+        // 设置同步
+        jQuery.ajaxSetup({ async: false });
+        var param= {
+            'meetDate': meetDate,
+            'meetStartTime': meetStartTime,
+            'meetEndTime': meetEndTime,
+            'meetRoomID': meetRoomID
+        }
+        console.log("param=>"+JSON.stringify(param));
+        jQuery.ajax({
+            url: _path + 'orderDetailAction/isUnique.do',
+            data: param,
+            type: "get",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                if (data != "exception") {
+                    result = true;//(data == "true" ? true : false);
+                } else {
+                    data = "会议预约验证合法性异常，请重试！";
+                }
+            }
+        });
+        // 恢复异步
+        jQuery.ajaxSetup({ async: true });
+    }
+    return  result;
+}

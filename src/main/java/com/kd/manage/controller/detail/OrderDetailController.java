@@ -23,9 +23,7 @@ import org.apache.poi.ss.usermodel.Font;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import com.google.gson.Gson;
 import com.kd.manage.base.BaseController;
@@ -35,7 +33,6 @@ import com.kd.manage.entity.MeetRoom;
 import com.kd.manage.entity.OrderDetail;
 import com.kd.manage.entity.PageCount;
 import com.kd.manage.util.Mail;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 订单明细-Action
@@ -56,9 +53,10 @@ public class OrderDetailController extends BaseController {
     /**
      * 终端名称唯一验证
      */
-    @RequestMapping(value = "/isUnique.do", method = RequestMethod.POST)
-    public void isUnique(String meetDate, String meetStartTime,
-                         String meetEndTime, String meetRoomID, String glideNo,
+    @RequestMapping(value = "/isUnique.do", method = {RequestMethod.POST,RequestMethod.GET},consumes="application/json")
+    public void isUnique(@RequestParam(value = "meetDate",required = false) String meetDate, @RequestParam(value ="meetStartTime",required = false)String meetStartTime,
+                         @RequestParam(value ="meetEndTime",required = false)String meetEndTime, @RequestParam(value ="meetRoomID",required = false)String meetRoomID,
+                         @RequestParam(value ="glideNo",required = false)String glideNo,
                          HttpServletResponse response) throws Exception {
         PrintWriter out = response.getWriter();
         try {
@@ -178,36 +176,30 @@ public class OrderDetailController extends BaseController {
      * @throws IOException
      */
     @RequestMapping(value = "/add.do", method = RequestMethod.POST)
-    public void add(@RequestBody OrderDetail dto, HttpServletResponse response,
+    @ResponseBody
+    public String add(@RequestBody OrderDetail dto, HttpServletResponse response,
                     HttpServletRequest request) throws IOException {
-        PrintWriter out = response.getWriter();
         try {
-
             WebTarget target = odsu.path("add");
 
             String user = this.getUserId(request);
             dto.setCreator(user);
             dto.setErrCode(1);
-            //.property("goodsDetailList",goodsDetailList)
             Response responses = target.request()
                     .buildPost(Entity.entity(dto, MediaType.APPLICATION_XML))
                     .invoke();
             String value = responses.readEntity(String.class);
             responses.close();
             if ("true".equals(value)) {
-
-                out.print(SUCCESS);
+                return SUCCESS;
             } else if ("false".equals(value)) {
-                out.print(FAIL);
+                return FAIL;
             } else {
-                out.print(EXCEPTION);
+                return EXCEPTION;
             }
         } catch (Exception e) {
             logException(e);
-            out.print(EXCEPTION);
-        } finally {
-            out.flush();
-            out.close();
+            return EXCEPTION;
         }
     }
 

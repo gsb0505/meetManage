@@ -24,6 +24,8 @@ public class GoodsDetail extends BaseEntity {
 	//更新时间
 	private Date update_time;
 
+	private String ginfoId;
+
 	/**
 	 * @return the goodsName
 	 */
@@ -159,4 +161,11 @@ public class GoodsDetail extends BaseEntity {
 		this.update_time = update_time;
 	}
 
+	public String getGinfoId() {
+		return ginfoId;
+	}
+
+	public void setGinfoId(String ginfoId) {
+		this.ginfoId = ginfoId;
+	}
 }
