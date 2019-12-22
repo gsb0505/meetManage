@@ -101,7 +101,7 @@
                     	 alert('预约注销记录无法进行修改!');
                          return;
                     }else{
-                    showWindow('修改会议预约信息', 720, 600,
+                    showWindow('修改会议预约信息', 1220, 700,
                         _path + 'orderDetailAction/modifyView.do?ordId='
                         + row.glideNo);
                     }

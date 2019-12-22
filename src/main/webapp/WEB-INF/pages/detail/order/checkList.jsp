@@ -83,7 +83,7 @@
             }
             var row = jQuery("#tabGrid").jqGrid('getRowData', id);
 
-            showWindow('审核会议预约信息', 700, 500, _path + 'orderDetailAction/checkView.do?ordId=' + row.glideNo);
+            showWindow('审核会议预约信息', 870, 700, _path + 'orderDetailAction/checkView.do?ordId=' + row.glideNo);
         }
 
     </script>

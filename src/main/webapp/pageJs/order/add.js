@@ -15,6 +15,8 @@ jQuery().ready(function() {
     	//确定清空内容？
 		jQuery("input[name^='goodsDetailList[]']").val("");
 		jQuery("p[name^='goodsDetailList[]']").html("");
+		jQuery("#productCount").html("0");
+		jQuery("#productAmount").html("0");
     });
 
 
@@ -125,6 +127,14 @@ jQuery().ready(function() {
 					alert("该时间已被预约!");
 					return;
 				}
+				var nums = jQuery("input[name='goodsDetailList[][num]']");
+				for(var i=0;i< nums.length;i++){
+					var _this= jQuery(nums[0]);
+					if(_this.val() == "" || _this.val() == undefined){
+                        alert("请输入预约的商品数量!");
+                        return;
+					}
+				}
                 //var productSerial = [];
                 // jQuery(jQuery("#user").serializeArray()).each(function(){
                 //     if(this.name.indexOf("goodsDetailList[]") != -1){
@@ -139,6 +149,7 @@ jQuery().ready(function() {
                 //console.log("fromValue=>"+fromValue);
                 //console.log("user=>"+user);
                 //console.log("formData=>"+formData.get("goodsDetailList[]"));
+
 				jQuery.ajax({
 					url : _path + 'orderDetailAction/add.do',
 					type : "post",
@@ -147,6 +158,7 @@ jQuery().ready(function() {
                     dataType: "json",
                     contentType: "application/json",
 					success : function(data) {
+						console.log("orderDetailAction/add.do =>"+JSON.stringify(data));
 						if (data == "success") {
 							alert("添加成功！");
 
@@ -165,7 +177,6 @@ jQuery().ready(function() {
 						} else{
 							alert(data);
 						}
-
 					},
 					fail:function(data){
 						alert("3_fail");

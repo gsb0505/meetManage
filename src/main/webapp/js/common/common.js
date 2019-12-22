@@ -280,10 +280,12 @@ if(typeof jQuery !='undefined'){
 	    beforeSend:function(XHR){
 	    	//XHR.setRequestHeader("If-Modified-Since","0"); 
 	    	XHR.setRequestHeader("Cache-Control","no-cache");
+            jQuery("form").find("input[type='submit']").attr("disabled","disabled");
 
 	    	return true;
 	    },
 	    complete: function (XHR, TS) {
+            jQuery("form").find("input[type='submit']").removeAttr("disabled");
 	    	XHR = null;
 	    }
 	});

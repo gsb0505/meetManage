@@ -49,15 +49,17 @@
         return '' +
             '                <th style="min-width: 40px">商品名称:</th>\n' +
             '                <td>' +
+            '					<input type="hidden" name="goodsDetailList[][typeCode]" value="" />' +
+            '					<input type="hidden" name="goodsDetailList[][storeCode]" value="" />' +
             '					<input type="hidden" name="goodsDetailList[][ginfoId]" value="'+i+'" />' +
-            '					<input type="text" name="goodsDetailList[][productName]" value="'+n+'" class="formText" readonly /></td>\n' +
+            '					<input type="text" name="goodsDetailList[][goodsName]" value="'+n+'" class="formText" readonly /></td>\n' +
             '                <td><a onclick="openProWin(this)" >【选择商品】</a></td>\n' +
             '                <th style="min-width: 20px">单价:</th>\n' +
             '                <td><input name="goodsDetailList[][price]" class="formText" style="width: 50px;color: #a9ccff;" value="'+p+'" readonly /></td>\n' +
             '                <th style="min-width: 20px">预定数量:</th>\n' +
             '                <td><input type="text" name="goodsDetailList[][num]" class="formText" style="width: 80px" value="0" onkeyup="opnumber(this)"/></td>\n' +
             '                <th style="min-width: 20px">库存:</th>\n' +
-            '                <td><p name="goodsDetailList[][count]" style="width: 50px">0</p></td>\n' +
+            '                <td><input type="text" name="goodsDetailList[][count]" style="width: 50px" disabled /></td>\n' +
             '                <th style="min-width: 20px">小计:</th>\n' +
             '                <td><input name="goodsDetailList[][amount]" class="formText" style="width: 50px" value="0" readonly /></td>'+
             '                <th style="min-width: 20px">备注:</th>\n' +
@@ -78,17 +80,19 @@
         console.log("点击回调函数："+JSON.stringify(param));
         //获取商品信息
         var obj = jQuery("."+winSign);
-
-        obj.find("input[name='goodsDetailList[][ginfoId]']").val(param[0].id);
-        obj.find("input[name='goodsDetailList[][productName]']").val(param[0].goodsName);
-        obj.find("input[name='goodsDetailList[][price]']").val(param[0].price);
-        obj.find("p[name='goodsDetailList[][count]']").html(param[0].count);
         if(param.length > 1){
             for (var i = 1; i < param.length; i++) {
                 obj.parent().append("<tr class='tr-pro0"+trCount+"'> "+productTr(param[i].id, param[i].goodsName, param[i].price) +"</tr>");
                 trCount++;
             }
         }
+        obj.find("input[name='goodsDetailList[][ginfoId]']").val(param[0].id);
+        obj.find("input[name='goodsDetailList[][typeCode]']").val(param[0].typeCode);
+        obj.find("input[name='goodsDetailList[][storeCode]']").val(param[0].storeCode);
+        obj.find("input[name='goodsDetailList[][goodsName]']").val(param[0].goodsName);
+        obj.find("input[name='goodsDetailList[][price]']").val(param[0].price);
+        obj.find("p[name='goodsDetailList[][count]']").html(param[0].count);
+
         window.ymPrompt.close();
     }
     //打开商品窗口
@@ -106,7 +110,14 @@
     }
     function opnumber(a) {
         var price = jQuery(a).parents("tr").find("input[name='goodsDetailList[][price]']").val();
+        var count = jQuery(a).parents("tr").find("input[name='goodsDetailList[][count]']").val();
         var number = jQuery(a).val();
+        if(count < number){
+            jQuery(a).val("");
+            alert("当前商品库存不足！");
+            return;
+        }
+
         jQuery(a).parents("tr").find("input[name='goodsDetailList[][amount]']").val(price * number);
         jQuery(a).val(a.value.replace(/[^\d]/g,''));
 
@@ -203,7 +214,9 @@
                 <th style="min-width: 40px">商品名称:</th>
                 <td>
                     <input type="hidden" name="goodsDetailList[][ginfoId]" />
-                    <input type="text" name="goodsDetailList[][productName]" class="formText" readonly/>
+                    <input type="hidden" name="goodsDetailList[][typeCode]" />
+                    <input type="hidden" name="goodsDetailList[][storeCode]" />
+                    <input type="text" name="goodsDetailList[][goodsName]" class="formText" readonly/>
                 </td>
                 <td><a onclick="openProWin(this)" >【选择商品】</a></td>
                 <th style="min-width: 20px">单价:</th>
@@ -211,12 +224,12 @@
                 <th style="min-width: 20px">预定数量:</th>
                 <td><input type="text" name="goodsDetailList[][num]" class="formText" style="width: 80px" onkeyup="opnumber(this)"/></td>
                 <th style="min-width: 20px">库存:</th>
-                <td><p name="goodsDetailList[][count]" style="width: 50px">0</p></td>
+                <td><input type="text" name="goodsDetailList[][count]" style="width: 50px" disabled /></td>
                 <th style="min-width: 20px">小计:</th>
                 <td><input class="formText" name="goodsDetailList[][amount]" value="0" style="width: 50px" readonly/></td>
                 <th style="min-width: 20px">备注:</th>
                 <td><textarea name="goodsDetailList[][remark]" class="formText" style="width: 100px" /></td>
-                <td><a id="addProduct">【添加行】</a>&nbsp;<a id="clearItem">【清空所有内容】</a></td>
+                <td><a id="addProduct">【添加行】</a>&nbsp;<a id="clearItem">【清空所有商品】</a></td>
             </tr>
         </table>
         <div class="tanchu_box_button">

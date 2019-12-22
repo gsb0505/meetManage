@@ -1,5 +1,33 @@
 jQuery().ready(function() {
 
+    //商品项添加删除
+    jQuery("#addProduct").click(addProFuntion);
+    jQuery(".delProduct").live("click",function(){
+        var parent=jQuery(this).parents("tr");
+        var clas=parent.attr("class");
+        if(clas == "tr-pro0" || clas=== "tr-pro0"){
+        }else{
+            productCount--;
+            parent.remove();
+        }
+    });
+
+    jQuery("#clearItem").click(function () {
+        //确定清空内容？
+        jQuery("input[name^='goodsDetailList[]']").val("");
+        jQuery("p[name^='goodsDetailList[]']").html("");
+        jQuery("#productCount").html("0");
+        jQuery("#productAmount").html("0");
+
+    });
+    function addProFuntion(){
+        var parent=jQuery(this).parents("tr");
+        parent.parent().append("<tr class='tr-pro0"+trCount+"'> "+productTr() +"</tr>");
+        trCount++;
+    }
+
+
+
 		/**
 		**	编号名称验证
 		**/

@@ -77,7 +77,7 @@ public class meetDeskController extends BaseController {
 	 */
 	@RequestMapping(value = "/listView.do")
 	public String ListView(String menuId, Model model,
-			HttpServletRequest request) throws Exception {
+			HttpServletRequest request) throws Exception{
 		WebTarget target = usu.path("queryList");
 
 		List<MeetRoom> meetRoomList = target.request().get(

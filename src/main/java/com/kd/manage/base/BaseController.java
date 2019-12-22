@@ -142,12 +142,16 @@ public abstract class BaseController {
 	protected void out(HttpServletResponse response, Object json) throws IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		if (json != null) {
-			out.print(json);
+		PrintWriter out= response.getWriter();
+		try {
+			if (json != null) {
+				out.print(json);
+			}
+		} finally {
+			out.flush();
+			out.close();
 		}
-		out.flush();
-		out.close();
+
 	}
 
 	protected void logException(Exception ex) {

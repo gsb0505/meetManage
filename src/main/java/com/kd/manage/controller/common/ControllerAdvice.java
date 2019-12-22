@@ -33,7 +33,7 @@ public class ControllerAdvice {
     @ExceptionHandler(value = Exception.class)
     public void errorHandler(Exception ex, HttpServletResponse response) {
         logger.error("发生异常 => " + ex.toString());
-
+        ex.printStackTrace();
         try {
             PrintWriter printWriter = response.getWriter();
             response.setCharacterEncoding("UTF-8");

@@ -176,8 +176,7 @@ public class OrderDetailController extends BaseController {
      * @throws IOException
      */
     @RequestMapping(value = "/add.do", method = RequestMethod.POST)
-    @ResponseBody
-    public String add(@RequestBody OrderDetail dto, HttpServletResponse response,
+    public void add(@RequestBody OrderDetail dto, HttpServletResponse response,
                     HttpServletRequest request) throws IOException {
         try {
             WebTarget target = odsu.path("add");
@@ -191,15 +190,15 @@ public class OrderDetailController extends BaseController {
             String value = responses.readEntity(String.class);
             responses.close();
             if ("true".equals(value)) {
-                return SUCCESS;
+                out(response,SUCCESS);
             } else if ("false".equals(value)) {
-                return FAIL;
+                out(response,FAIL);
             } else {
-                return EXCEPTION;
+                out(response,EXCEPTION);
             }
         } catch (Exception e) {
             logException(e);
-            return EXCEPTION;
+            out(response,EXCEPTION);
         }
     }
 

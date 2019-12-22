@@ -23,10 +23,11 @@
             height: 465,
             colModel: [
                 {label: '', name: 'id', sortable: false, width: 1, hidden:true},
+                {label: '', name: 'typeCode', sortable: false, width: 1, hidden:true},
                 {label: '商品名称', name: 'goodsName', sortable: false, width: 150, align: "center",editable : true,editoptions : {size : 10}},
                 {
                     label: '商品分类',
-                    name: 'typeCode',
+                    name: 'typeCodeName',
                     sortable: false,
                     width: 150,
                     align: "center",
@@ -34,7 +35,7 @@
                         if (typeCode == "") {
                             return "-";
                         }
-                        var val = typeCode[cellvalue];
+                        var val = typeCode[rowObject.typeCode];
                         if (val != null && val != "")
                             return val;
                         else
