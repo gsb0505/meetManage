@@ -140,8 +140,8 @@ public abstract class BaseController {
 	 * @throws IOException
 	 */
 	protected void out(HttpServletResponse response, Object json) throws IOException {
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html");
+		//response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out= response.getWriter();
 		try {
 			if (json != null) {

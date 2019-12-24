@@ -91,7 +91,7 @@
         obj.find("input[name='goodsDetailList[][storeCode]']").val(param[0].storeCode);
         obj.find("input[name='goodsDetailList[][goodsName]']").val(param[0].goodsName);
         obj.find("input[name='goodsDetailList[][price]']").val(param[0].price);
-        obj.find("p[name='goodsDetailList[][count]']").html(param[0].count);
+        obj.find("input[name='goodsDetailList[][count]']").val(param[0].count);
 
         window.ymPrompt.close();
     }

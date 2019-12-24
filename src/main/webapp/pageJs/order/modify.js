@@ -1,12 +1,13 @@
-jQuery().ready(function() {
+jQuery().ready(function () {
+    var orderDetailForm = jQuery("#user").serializeJSON();
 
     //商品项添加删除
     jQuery("#addProduct").click(addProFuntion);
-    jQuery(".delProduct").live("click",function(){
-        var parent=jQuery(this).parents("tr");
-        var clas=parent.attr("class");
-        if(clas == "tr-pro0" || clas=== "tr-pro0"){
-        }else{
+    jQuery(".delProduct").live("click", function () {
+        var parent = jQuery(this).parents("tr");
+        var clas = parent.attr("class");
+        if (clas == "tr-pro0" || clas === "tr-pro0") {
+        } else {
             productCount--;
             parent.remove();
         }
@@ -20,134 +21,163 @@ jQuery().ready(function() {
         jQuery("#productAmount").html("0");
 
     });
-    function addProFuntion(){
-        var parent=jQuery(this).parents("tr");
-        parent.parent().append("<tr class='tr-pro0"+trCount+"'> "+productTr() +"</tr>");
+
+    function addProFuntion() {
+        var parent = jQuery(this).parents("tr");
+        parent.parent().append("<tr class='tr-pro0" + trCount + "'> " + productTr() + "</tr>");
         trCount++;
     }
 
 
+    jQuery.validator.addMethod("isUnique", function (value, element) {
+        var result = checkForm();
 
-		/**
-		**	编号名称验证
-		**/
-	  function addzero(v) {if (v < 10) return '0' + v;return v.toString();}
-		jQuery.validator.addMethod("isUnique", function(value, element) {
-			var result=false;
-			var meetDate = jQuery("#meetDate").val();
-			var meetStartTime =jQuery("#meetStartTime").val(); 
-			var meetEndTime =jQuery("#meetEndTime").val(); 
-			var meetRoomID=jQuery("#meetRoomID").val();
-			var glideNo=jQuery("#glideNo").val();
-			
-			var d = new Date();
-			var year = d.getFullYear();       //年
-	        var month = d.getMonth() + 1;     //月
-	        var day = d.getDate();            //日
-	      
-	        var hh = d.getHours();            //时
-	        var mm = d.getMinutes();          //分
-	        var curdate=year+'-'+month+'-'+day;
-			var curhhmm=addzero(hh)+':'+addzero(mm);
+        return this.optional(element) || (result);
+
+    }, "该时间已被预约!");
+
+    jQuery("#user").validate({
+        debug: true,
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            var dd = element.parent("td").next("td");
+            error.appendTo(dd);
+        },
+        success: function (label) {
+            label.addClass("valid");
+        },
+        rules: {
+            meetName: {
+                required: true,
+                maxlength: 20
+            },
+            meetDate: {
+                required: true,
+                isUnique: true
+            },
+            meetStartTime: {
+                required: true,
+                isUnique: true
+            }, meetEndTime: {
+                required: true,
+                isUnique: true
+            }, meetRoomID: {
+                required: true,
+                isUnique: true
+            }
+        },
+        submitHandler: function (form) {
+            jQuery("#meetName").val(trim(jQuery("#meetName").val())); //去空格
+            var user = jQuery("#user").serializeJSON();
+            if (JSON.stringify(user) == JSON.stringify(orderDetailForm)) {
+                alert("请修改后再保存!");
+                return;
+            }
+            if (checkForm() == false) {
+                alert("该时间已被预约!");
+                return;
+            }
+            var nums = jQuery("input[name='goodsDetailList[][num]']");
+            for (var i = 0; i < nums.length; i++) {
+                var _this = jQuery(nums[0]);
+                if (_this.val() == "" || _this.val() == undefined) {
+                    alert("请输入预约的商品数量!");
+                    return;
+                }
+            }
+            jQuery.ajax({
+                url : _path + 'orderDetailAction/modify.do',
+                type : "post",
+                data :JSON.stringify(user),
+                async : false,
+               contentType: "application/json",
+                success : function(data) {
+                    if (data == "success") {
+                        alert("修改成功！");
+                        setTimeout("iFClose();", 1000);
+                    } else if (data == "fail") {
+                        alert("修改失败！请重试！");
+                    } else if (data == "exsit") {
+                        alert("该会议室已经存在!");
+                    } else{
+                        alert(data);
+                    }
+
+                },
+                fail:function(data){
+                    alert("3_fail");
+                }
+
+            });
+            jQuery(parent.window.document).find('#searchResult').click();
+        }
+
+    });
+
+});
+seajs.use('common/common.form.js', function (a) {
+});
+
+
+function checkForm() {
+    var result = false;
+    var meetDate = jQuery("#meetDate").val();
+    var meetStartTime = jQuery("#meetStartTime").val();
+    var meetEndTime = jQuery("#meetEndTime").val();
+    var meetRoomID = jQuery("#meetRoomID").val();
+    var glideNo = jQuery("#glideNo").val();
+
+    var d = new Date();
+    var year = d.getFullYear();       //年
+    var month = d.getMonth() + 1;     //月
+    var day = d.getDate();            //日
+
+    var hh = d.getHours();            //时
+    var mm = d.getMinutes();          //分
+    var curdate = year + '-' + month + '-' + day;
+    var curhhmm = addzero(hh) + ':' + addzero(mm);
 //			if (meetDate.toString() == curdate.toString()){
 //				if (meetStartTime.toString()< curhhmm.toString()){
 //					alert(meetStartTime+'-22-'+curhhmm);
-//					result=false;	
+//					result=false;
 //				}else{
-//				result=true;	
+//				result=true;
 //				}
 //			}else if (meetDate < curdate){
 //				result=false;
-//			}else{			
+//			}else{
 //				result=true;
 //			}
 //	        if (result==true){
-			// 设置同步
-	        jQuery.ajaxSetup({
-	            async: false
-	        });
-	        jQuery.ajax({
-	    		url : _path + 'orderDetailAction/isUnique.do',
-	    		data : {'meetDate':meetDate,'meetStartTime':meetStartTime,'meetEndTime':meetEndTime,'meetRoomID':meetRoomID,'glideNo':glideNo},
-	    		type : "post",
-	    		success : function(data) {
-	    			if(data!="exception"){
-		    			result=(data=="true"?true:false);
-	    			}
-	    			else{
-	    				data="会议预约验证合法性异常，请重试！";	
-	    			}
-	    		}
-	    	});
-	        // 恢复异步
-	        jQuery.ajaxSetup({
-	            async: true
-	        });
-	 //       }
-    		return this.optional(element) || (result);
-			
-		}, "该时间已被预约!");
-		
-		jQuery("#user").validate({
-			debug : true,
-			errorElement : "em",
-			errorPlacement : function(error, element) {
-				var dd=element.parent("td").next("td");
-				error.appendTo(dd);
-			},
-			success : function(label) {
-				label.addClass("valid");
-			},
-			rules : {
-				meetName : {
-					required : true,
-					maxlength:20
-				},
-				meetDate:{
-					required : true,
-					isUnique : true
-				},
-				meetStartTime:{
-					required : true,
-					isUnique : true
-				},meetEndTime:{
-					required : true,
-					isUnique : true
-				},meetRoomID:{
-					required : true,
-					isUnique : true
-				}
-			},
-			submitHandler : function(form) {
-				jQuery("#meetName").val(trim(jQuery("#meetName").val())); //去空格
-				var user = jQuery("#user").serialize();
-				jQuery.ajax({
-					url : _path + 'orderDetailAction/modify.do',
-					type : "post",
-					data :user,
-					async : false,
-					success : function(data) {
-						if (data == "success") {
-							alert("修改成功！");
-							setTimeout("iFClose();", 1000);
-						} else if (data == "fail") {
-							alert("修改失败！请重试！");
-						} else if (data == "exsit") {
-							alert("该会议室已经存在!");
-						} else{
-							alert(data);
-						}
+    // 设置同步
+    jQuery.ajaxSetup({async: false});
+    jQuery.ajax({
+        url: _path + 'orderDetailAction/isUnique.do',
+        data: {
+            'meetDate': meetDate,
+            'meetStartTime': meetStartTime,
+            'meetEndTime': meetEndTime,
+            'meetRoomID': meetRoomID,
+            'glideNo': glideNo
+        },
+        type: "get",
+        contentType: "application/json",
+        success: function (data) {
+            if (data != "exception") {
+                result = (data=="true"?true:false);
+            }
+            else {
+                data = "会议预约验证合法性异常，请重试！";
+            }
+        }
+    });
+    //       }
+    // 恢复异步
+    jQuery.ajaxSetup({async: true});
+    return result
+}
 
-					},
-					fail:function(data){
-						alert("3_fail");
-					}
-				
-				});
-				jQuery(parent.window.document).find('#searchResult').click();
-			}
-
-		});
-		
-});
-seajs.use('common/common.form.js', function(a) {});
+function addzero(v) {
+    if (v < 10) return '0' + v;
+    return v.toString();
+}

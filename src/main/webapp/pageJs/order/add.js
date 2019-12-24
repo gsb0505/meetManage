@@ -121,8 +121,6 @@ jQuery().ready(function() {
 			submitHandler : function(form) {
 				jQuery("#meetName").val(trim(jQuery("#meetName").val())); //去空格
 				var user = jQuery("#user").serializeJSON();
-                var formSerial = {};
-                console.log("user=>"+JSON.stringify(user));
 				if(checkForm() == false){
 					alert("该时间已被预约!");
 					return;
@@ -135,41 +133,18 @@ jQuery().ready(function() {
                         return;
 					}
 				}
-                //var productSerial = [];
-                // jQuery(jQuery("#user").serializeArray()).each(function(){
-                //     if(this.name.indexOf("goodsDetailList[]") != -1){
-                //         productSerial.push()
-					// }else{
-                //         formSerial[this.name] = this.value;
-					// }
-                // });
-                //var formData = new FormData(jQuery("#user")[0]);
-
-                //var fromValue = JSON.stringify(formSerial);
-                //console.log("fromValue=>"+fromValue);
-                //console.log("user=>"+user);
-                //console.log("formData=>"+formData.get("goodsDetailList[]"));
-
 				jQuery.ajax({
 					url : _path + 'orderDetailAction/add.do',
 					type : "post",
 					data :JSON.stringify(user),
 					async : false,
-                    dataType: "json",
                     contentType: "application/json",
 					success : function(data) {
-						console.log("orderDetailAction/add.do =>"+JSON.stringify(data));
 						if (data == "success") {
 							alert("添加成功！");
 
-							jQuery("#meetName").val(""); //去空格
-							jQuery("#meetDate").val(""); //去空格
-							jQuery("#meetStartTime").val(""); //去空格
-							jQuery("#meetEndTime").val(""); //去空格
-							jQuery("#meetRoomID").val(""); //去空格
-							jQuery("#emailNotification").val(""); //去空格
-							jQuery("#specialdemand").val(""); //去空格
-							setTimeout("iFClose();", 1000);
+                            jQuery("#user")[0].reset();
+                            setTimeout("iFClose();", 1000);
 						} else if (data == "fail") {
 							alert("添加失败！请重试！");
 						} else if (data == "exsit") {
@@ -236,11 +211,10 @@ function checkForm(){
             url: _path + 'orderDetailAction/isUnique.do',
             data: param,
             type: "get",
-            dataType: "json",
             contentType: "application/json",
             success: function (data) {
                 if (data != "exception") {
-                    result = true;//(data == "true" ? true : false);
+                    result = (data == "true" ? true : false);
                 } else {
                     data = "会议预约验证合法性异常，请重试！";
                 }

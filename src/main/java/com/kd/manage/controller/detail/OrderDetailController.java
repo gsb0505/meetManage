@@ -175,8 +175,9 @@ public class OrderDetailController extends BaseController {
      *
      * @throws IOException
      */
-    @RequestMapping(value = "/add.do", method = RequestMethod.POST)
-    public void add(@RequestBody OrderDetail dto, HttpServletResponse response,
+    @RequestMapping(value = "/add.do", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public String add(@RequestBody OrderDetail dto, HttpServletResponse response,
                     HttpServletRequest request) throws IOException {
         try {
             WebTarget target = odsu.path("add");
@@ -189,16 +190,10 @@ public class OrderDetailController extends BaseController {
                     .invoke();
             String value = responses.readEntity(String.class);
             responses.close();
-            if ("true".equals(value)) {
-                out(response,SUCCESS);
-            } else if ("false".equals(value)) {
-                out(response,FAIL);
-            } else {
-                out(response,EXCEPTION);
-            }
+            return getResString(value);
         } catch (Exception e) {
             logException(e);
-            out(response,EXCEPTION);
+            return EXCEPTION;
         }
     }
 
@@ -366,9 +361,7 @@ public class OrderDetailController extends BaseController {
             String value = responses.readEntity(String.class);
             responses.close();
             if ("true".equals(value)) {
-
                 out.print(SUCCESS);
-
             } else if ("false".equals(value)) {
                 out.print(FAIL);
             } else {
@@ -410,18 +403,15 @@ public class OrderDetailController extends BaseController {
 
     /**
      * 修改
-     *
      * @param orderDetail
      * @param response
-     * @param model
      * @throws Exception
      */
     @RequestMapping(value = "/modify.do", method = RequestMethod.POST)
-    public void modify(OrderDetail orderDetail, HttpServletResponse response,
-                       HttpServletRequest request, String model) throws Exception {
+    @ResponseBody
+    public String modify(@RequestBody OrderDetail orderDetail, HttpServletResponse response,
+                       HttpServletRequest request) {
         String getId = (String) request.getSession().getAttribute("userId");
-        PrintWriter out = response.getWriter();
-
         try {
             if (orderDetail == null
                     || StringUtils.isEmpty(orderDetail.getMeetName())
@@ -429,8 +419,7 @@ public class OrderDetailController extends BaseController {
                     || StringUtils.isEmpty(orderDetail.getMeetEndTime())
                     || StringUtils.isEmpty(orderDetail.getMeetStartTime())
                     || StringUtils.isEmpty(orderDetail.getMeetRoomID())) {
-                out.print(FAIL);
-                return;
+                return FAIL;
             }
             orderDetail.setAuditor(getId);
             orderDetail.setErrCode(1);
@@ -442,24 +431,22 @@ public class OrderDetailController extends BaseController {
                                     MediaType.APPLICATION_XML)).invoke();
             String value = responses.readEntity(String.class);
             responses.close();
-            if ("true".equals(value)) {
-
-                out.print(SUCCESS);
-
-            } else if ("false".equals(value)) {
-                out.print(FAIL);
-            } else {
-                out.print(EXCEPTION);
-            }
-
+            return getResString(value);
         } catch (Exception e) {
-            out.print(EXCEPTION);
-
-        } finally {
-            out.flush();
-            out.close();
+            e.printStackTrace();
+            return EXCEPTION;
         }
 
+    }
+
+    private String getResString(String value) {
+        if ("true".equals(value)) {
+            return SUCCESS;
+        } else if ("false".equals(value)) {
+            return FAIL;
+        } else {
+            return EXCEPTION;
+        }
     }
 
 }

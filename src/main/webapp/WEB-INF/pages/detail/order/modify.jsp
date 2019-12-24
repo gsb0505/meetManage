@@ -108,7 +108,8 @@
 
     <form id="user" action="" method="post">
         <input type="hidden" id="glideNo" class="formText" name="glideNo" maxlength="200" style="width: 495px; height:30px; " value="${orderDetail.glideNo}" >
- 
+        <input type="hidden" id="id" name="id" value="${orderDetail.id}" >
+
         <table class="inputTable_liebiao inputTable_validate clear" border="0">
             <tbody>
             <tr>
@@ -222,7 +223,7 @@
         </table>
         <div class="tanchu_box_button">
 
-            <input type="submit" name="submitName" class="tanchu_button03" value="保存"/> <input
+            <input type="submit" class="tanchu_button03" value="保存"/> <input
                 type="button" name="closeButton" class="tanchu_button04" value="取消"
                 onClick="iFClose()"/>
 
