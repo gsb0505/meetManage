@@ -51,9 +51,9 @@ public class OrderDetailController extends BaseController {
     }
 
     /**
-     * 终端名称唯一验证
+     * 唯一验证
      */
-    @RequestMapping(value = "/isUnique.do", method = {RequestMethod.POST,RequestMethod.GET},consumes="application/json")
+    @RequestMapping(value = "/isUnique.do", method = {RequestMethod.POST,RequestMethod.GET})
     public void isUnique(@RequestParam(value = "meetDate",required = false) String meetDate, @RequestParam(value ="meetStartTime",required = false)String meetStartTime,
                          @RequestParam(value ="meetEndTime",required = false)String meetEndTime, @RequestParam(value ="meetRoomID",required = false)String meetRoomID,
                          @RequestParam(value ="glideNo",required = false)String glideNo,
@@ -115,6 +115,44 @@ public class OrderDetailController extends BaseController {
                 out.print(true);
 
             }
+        } catch (Exception e) {
+            logException(e);
+            out.print(EXCEPTION);
+        } finally {
+            out.flush();
+            out.close();
+        }
+
+    }
+
+    /**
+     * 唯一验证
+     */
+    @RequestMapping(value = "/meetVerifi.do", method = {RequestMethod.POST,RequestMethod.GET})
+    public void meetVerifi(@RequestParam(value = "meetDate",required = false) String meetDate, @RequestParam(value ="meetStartTime",required = false)String meetStartTime,
+                         @RequestParam(value ="meetEndTime",required = false)String meetEndTime, @RequestParam(value ="meetRoomID",required = false)String meetRoomID,
+                         @RequestParam(value ="id",required = false)String id,
+                         HttpServletResponse response) throws Exception {
+        PrintWriter out = response.getWriter();
+        try {
+            if (meetDate == null || meetStartTime == null
+                    || meetEndTime == null || meetRoomID == null) {
+                out.print(true);
+                return;
+            }
+            OrderDetail odto = new OrderDetail();
+            odto.setMeetDate(meetDate);
+            odto.setMeetStartTime(meetStartTime);
+            odto.setMeetEndTime(meetEndTime);
+            odto.setMeetRoomID(meetRoomID);
+            odto.setId(id);
+            String sendData = new Gson().toJson(odto);
+            WebTarget target = odsu.path("meetVerifi").queryParam("orderDetail",
+                    URLEncoder.encode(sendData, "utf-8"));
+            Response res = target.request().get();
+            String result = res.readEntity(String.class);
+
+            out.print(result);
         } catch (Exception e) {
             logException(e);
             out.print(EXCEPTION);

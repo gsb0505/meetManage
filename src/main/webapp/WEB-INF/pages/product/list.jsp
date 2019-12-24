@@ -48,7 +48,7 @@
                         if (storeCode == "") {
                             return "-";
                         }
-                        var val = storeCode[cellvalue];
+                        var val = storeCode[rowObject.storeCode];
                         if (val != null && val != "")
                             return val;
                         else

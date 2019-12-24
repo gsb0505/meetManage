@@ -26,14 +26,16 @@
             height: 100,
             datatype : "local",
             caption : "商品信息",
+            multiselect : false,
+            keepHeader:false,
+            autowidth:false,
+            rownumbers:false,//添加左侧行号
+            colNames:['商品小计', '预定数量','商品单价','商品名称'],
             colModel: [
-                {label: 'id', name: 'ginfoId', hidden: true},
-                {label: '商品类型', name: 'typeCode',hidden:true},
-                {label: '商家编号', name: 'storeCode',hidden:true},
-                {label: '商品名称', name: 'goodsName', index: 'goodsName', width: 90, sortable: false,},
-                {label: '单价', name: 'price', index: 'price', width: 90, sortable: false,},
-                {label: '预定数量', name: 'num', index: 'num', width: 90, sortable: false,},
-                {label: '小计', name: 'amount', index: 'amount', width: 90, sortable: false},
+                {label: '商品名称',name: 'goodsName',index : 'goodsName', width:100, sortable: false,align:'center'},
+                {label: '商品单价',name: 'price',index : 'price', width:100, sortable: false,align:'center'},
+                {label: '预定数量',name: 'num',index : 'num', width:100, sortable: false,align:'center'},
+                {label: '商品小计',name: 'amount',index : 'amount', width:100, sortable: false,align:'center'}
                 //{label: '备注', name: 'remark', width: 15},
             ]
         });
@@ -49,20 +51,23 @@
 
         function commit() {
             var user = jQuery("#user").serialize();
-            var meetDate = jQuery("#meetDate").val();
-            var meetStartTime = jQuery("#meetStartTime").val();
-            var meetEndTime = jQuery("#meetEndTime").val();
-            var meetRoomID = jQuery("#meetRoomID").val();
+            var meetDate = jQuery("input[name='meetDate']").val();
+            var meetStartTime = jQuery("input[name='meetStartTime']").val();
+            var meetEndTime = jQuery("input[name='meetEndTime']").val();
+            var meetRoomID = jQuery("input[name='meetRoomID']").val();
+            var id = jQuery("input[name='id']").val();
 
             jQuery.ajax({
-                url: _path + 'orderDetailAction/isUnique.do',
+                url: _path + 'orderDetailAction/meetVerifi.do',
                 data: {
                     'meetDate': meetDate,
                     'meetStartTime': meetStartTime,
                     'meetEndTime': meetEndTime,
-                    'meetRoomID': meetRoomID
+                    'meetRoomID': meetRoomID,
+                    "id":id,
                 },
-                type: "post",
+                type: "get",
+                contentType: "application/json",
                 success: function (data) {
                     if (data != "exception") {
                         if (data == "true") {
@@ -111,6 +116,7 @@
 <div style="display:;" class="inputTable">
 
     <form id="user" action="" method="post">
+        <input type="hidden" value="${orderDetail.id}" name="id" id="id">
         <table class="inputTable_liebiao inputTable_validate clear">
             <tbody>
             <tr>

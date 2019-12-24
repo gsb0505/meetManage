@@ -27,7 +27,7 @@
                 {label: '会议日期', name: 'meetDate', index: 'meetDate', width: 125, align: "center"},
                 {label: '会议开始时间', name: 'meetStartTime', index: 'meetStartTime', width: 150, align: "center"},
                 {label: '会议结束时间', name: 'meetEndTime', index: 'meetEndTime', width: 125, align: "center"},
-                
+
                 {
                     label: '联系人',
                     name: 'creator',
@@ -40,16 +40,18 @@
                     index: 'phone',
                     width: 90
                 },
-                {label: '审核状态', name: 'errCode', index: 'errCode', width: 90,
-                	 formatter: function (cellvalue, options, rowObject) {
-                         if (cellvalue == '1') {
-                             return '审核中'
-                         } else if (cellvalue == '2') {
-                             return '预约成功'
-                         } else if (cellvalue == '3')  {
-                             return '预约注销';
-                         }
-                     }}
+                {
+                    label: '审核状态', name: 'errCode', index: 'errCode', width: 90,
+                    formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == '1') {
+                            return '审核中'
+                        } else if (cellvalue == '2') {
+                            return '预约成功'
+                        } else if (cellvalue == '3') {
+                            return '预约注销';
+                        }
+                    }
+                }
             ]
         });
 
@@ -59,7 +61,7 @@
             loadJqGrid("#tabGrid", "#pager", jGrid);
             var btnbj = jQuery("#modify");
             var btnzx = jQuery("#logout");
-         // 绑定注销点击事件
+            // 绑定注销点击事件
             if (btnzx != null) {
                 btnzx.click(function () {
                     var id = getChecked();
@@ -86,24 +88,24 @@
                     jQuery(window.document).find('#searchResult').click();
                 });
             }
-         
-          //绑定修改点击事件
+
+            //绑定修改点击事件
             if (btnbj != null) {
                 btnbj.click(function () {
-                	
+
                     var id = getChecked();
                     if (id.length != 1) {
                         alert('请选定一条记录!');
                         return;
                     }
                     var row = jQuery("#tabGrid").jqGrid('getRowData', id);
-                    if (row.errCode=='预约注销'){
-                    	 alert('预约注销记录无法进行修改!');
-                         return;
-                    }else{
-                    showWindow('修改会议预约信息', 1220, 700,
-                        _path + 'orderDetailAction/modifyView.do?ordId='
-                        + row.glideNo);
+                    if (row.errCode == '预约注销') {
+                        alert('预约注销记录无法进行修改!');
+                        return;
+                    } else {
+                        showWindow('修改会议预约信息', 1220, 700,
+                            _path + 'orderDetailAction/modifyView.do?ordId='
+                            + row.glideNo);
                     }
                 });
             }
@@ -118,7 +120,7 @@
             map["errCode"] = jQuery("#errCode").val();
             search('tabGrid', map);
         }
-        
+
 
     </script>
 </head>
@@ -137,44 +139,38 @@
         <tbody>
         <tr>
             <th>
-               会议名称：
+                会议名称：
             </th>
             <td>
-                <input type="text" class="search_jk" id="meetName" name="meetName">
-                
-
+                <input type="text" class="search_jk" id="meetName" name="meetName" style="width: 180px;">
             </td>
             <th>
                 会议室：
             </th>
             <td>
-               <select name="meetRoomID" id="meetRoomID" class="search_jk" style="width: 240px; height:30px; ">
-                        <option value="">-请选择-</option>
-                        <c:forEach items="${meetRoomList }" var="type">
-                            <option value="${type.id }">${type.meetRoomName }</option>
-                        </c:forEach>
-                    </select>
-
+                <select name="meetRoomID" id="meetRoomID" class="search_jk" style="width: 180px; height:30px; ">
+                    <option value="">-请选择-</option>
+                    <c:forEach items="${meetRoomList }" var="type">
+                        <option value="${type.id }">${type.meetRoomName }</option>
+                    </c:forEach>
+                </select>
             </td>
             <th>
                 预约时间：
             </th>
             <td>
-                <input type="text" value="" class="search_jk" id="meetDate" name="meetDate"
-                       onClick="WdatePicker()"/>
-
+                <input type="text" value="" class="search_jk" style="width: 180px;"  id="meetDate" name="meetDate" onClick="WdatePicker()"/>
             </td>
-                        <th>
+            <th>
                 预约状态：
             </th>
-                        <td>
-               <select name="errCode" id="errCode" class="search_jk" style="width: 240px; height:30px; ">
-                        <option value="">-请选择-</option>
-                            <option value="1">审核中</option>
-                            <option value="2">预约成功</option>
-                            <option value="3">预约注销</option>
-                    </select>
-
+            <td>
+                <select name="errCode" id="errCode" class="search_jk" style="width: 180px; height:30px; ">
+                    <option value="">-请选择-</option>
+                    <option value="1">审核中</option>
+                    <option value="2">预约成功</option>
+                    <option value="3">预约注销</option>
+                </select>
             </td>
             <td>
                 <div class="button_weizhi">
@@ -183,7 +179,6 @@
                 </div>
             </td>
         </tr>
-
         </tbody>
     </table>
 
