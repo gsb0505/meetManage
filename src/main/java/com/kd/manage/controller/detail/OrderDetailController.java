@@ -13,6 +13,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.kd.core.dto.MessageDto;
 import com.kd.manage.entity.GoodsDetail;
 import net.sf.json.JSONObject;
 
@@ -53,10 +54,10 @@ public class OrderDetailController extends BaseController {
     /**
      * 唯一验证
      */
-    @RequestMapping(value = "/isUnique.do", method = {RequestMethod.POST,RequestMethod.GET})
-    public void isUnique(@RequestParam(value = "meetDate",required = false) String meetDate, @RequestParam(value ="meetStartTime",required = false)String meetStartTime,
-                         @RequestParam(value ="meetEndTime",required = false)String meetEndTime, @RequestParam(value ="meetRoomID",required = false)String meetRoomID,
-                         @RequestParam(value ="glideNo",required = false)String glideNo,
+    @RequestMapping(value = "/isUnique.do", method = {RequestMethod.POST, RequestMethod.GET})
+    public void isUnique(@RequestParam(value = "meetDate", required = false) String meetDate, @RequestParam(value = "meetStartTime", required = false) String meetStartTime,
+                         @RequestParam(value = "meetEndTime", required = false) String meetEndTime, @RequestParam(value = "meetRoomID", required = false) String meetRoomID,
+                         @RequestParam(value = "glideNo", required = false) String glideNo,
                          HttpServletResponse response) throws Exception {
         PrintWriter out = response.getWriter();
         try {
@@ -128,11 +129,11 @@ public class OrderDetailController extends BaseController {
     /**
      * 唯一验证
      */
-    @RequestMapping(value = "/meetVerifi.do", method = {RequestMethod.POST,RequestMethod.GET})
-    public void meetVerifi(@RequestParam(value = "meetDate",required = false) String meetDate, @RequestParam(value ="meetStartTime",required = false)String meetStartTime,
-                         @RequestParam(value ="meetEndTime",required = false)String meetEndTime, @RequestParam(value ="meetRoomID",required = false)String meetRoomID,
-                         @RequestParam(value ="id",required = false)String id,
-                         HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "/meetVerifi.do", method = {RequestMethod.POST, RequestMethod.GET})
+    public void meetVerifi(@RequestParam(value = "meetDate", required = false) String meetDate, @RequestParam(value = "meetStartTime", required = false) String meetStartTime,
+                           @RequestParam(value = "meetEndTime", required = false) String meetEndTime, @RequestParam(value = "meetRoomID", required = false) String meetRoomID,
+                           @RequestParam(value = "id", required = false) String id,
+                           HttpServletResponse response) throws Exception {
         PrintWriter out = response.getWriter();
         try {
             if (meetDate == null || meetStartTime == null
@@ -216,7 +217,7 @@ public class OrderDetailController extends BaseController {
     @RequestMapping(value = "/add.do", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public String add(@RequestBody OrderDetail dto, HttpServletResponse response,
-                    HttpServletRequest request) throws IOException {
+                      HttpServletRequest request) throws IOException {
         try {
             WebTarget target = odsu.path("add");
 
@@ -226,7 +227,7 @@ public class OrderDetailController extends BaseController {
             Response responses = target.request()
                     .buildPost(Entity.entity(dto, MediaType.APPLICATION_XML))
                     .invoke();
-            String value = responses.readEntity(String.class);
+            MessageDto value = responses.readEntity(MessageDto.class);
             responses.close();
             return getResString(value);
         } catch (Exception e) {
@@ -441,6 +442,7 @@ public class OrderDetailController extends BaseController {
 
     /**
      * 修改
+     *
      * @param orderDetail
      * @param response
      * @throws Exception
@@ -448,7 +450,7 @@ public class OrderDetailController extends BaseController {
     @RequestMapping(value = "/modify.do", method = RequestMethod.POST)
     @ResponseBody
     public String modify(@RequestBody OrderDetail orderDetail, HttpServletResponse response,
-                       HttpServletRequest request) {
+                         HttpServletRequest request) {
         String getId = (String) request.getSession().getAttribute("userId");
         try {
             if (orderDetail == null
@@ -467,9 +469,9 @@ public class OrderDetailController extends BaseController {
                     .buildPost(
                             Entity.entity(orderDetail,
                                     MediaType.APPLICATION_XML)).invoke();
-            String value = responses.readEntity(String.class);
+            MessageDto dto = responses.readEntity(MessageDto.class);
             responses.close();
-            return getResString(value);
+            return getResString(dto);
         } catch (Exception e) {
             e.printStackTrace();
             return EXCEPTION;
@@ -477,14 +479,13 @@ public class OrderDetailController extends BaseController {
 
     }
 
-    private String getResString(String value) {
-        if ("true".equals(value)) {
-            return SUCCESS;
-        } else if ("false".equals(value)) {
+    private String getResString(MessageDto dto) {
+        String value;
+        if (dto == null) {
             return FAIL;
-        } else {
-            return EXCEPTION;
         }
+        value = dto.getMessage();
+        return value;
     }
 
 }
