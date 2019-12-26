@@ -1,17 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
-<%
-    String systemPath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -101,7 +89,7 @@
                 <th>会议室图片:</th>
                 <td>
                     <input name="photoUrl" type="hidden" value="${t.photoUrl}">
-                    <input id="photoUrl" name="photoFile" type="file" value="${t.photoUrl}" class="formText" maxlength="500"></input>
+                    <input id="photoFile" name="photoFile" type="file" value="${t.photoUrl}" class="formText" maxlength="500"></input>
                 </td>
                 <td><a style="font-size: 8px;" id="viewPhone" href="#" >[图片浏览]</a></td>
             </tr>

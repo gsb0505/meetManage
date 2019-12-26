@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
     http://www.springframework.org/schema/aop    
@@ -13,76 +14,75 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
-	<!-- 扫描controller（controller层注入） -->
-	<context:component-scan base-package="com.kd.manage" />
+    <!-- 扫描controller（controller层注入） -->
+    <context:component-scan base-package="com.kd.manage"/>
 
-	<!-- 声明注解驱动的 MVC 控制器 -->
-	<mvc:annotation-driven validator="validator" >
-		<!--<mvc:message-converters register-defaults="true">-->
-			<!--<bean class="org.springframework.http.converter.StringHttpMessageConverter">-->
-				<!--<property name="supportedMediaTypes">-->
-					<!--<list>-->
-						<!--<value>text/html;charset=UTF-8</value>-->
-						<!--<value>application/json;charset=UTF-8</value>-->
-						<!--<value>*/*;charset=UTF-8</value>-->
-					<!--</list>-->
-				<!--</property>-->
-			<!--</bean>-->
-		<!--</mvc:message-converters>-->
-	</mvc:annotation-driven>
-	
-	
-	<aop:aspectj-autoproxy proxy-target-class="true"/> 
-    
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-		<property name="validationMessageSource" ref="messageSource" />
-	</bean>
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="cacheSeconds" value="3600" />
-		<property name="useCodeAsDefaultMessage" value="true" />
-		<property name="basenames">
-			<list>
-				<value>/WEB-INF/language/message</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
-		<property name="defaultLocale" value="zh_CN" />
-	</bean>
+    <!-- 声明注解驱动的 MVC 控制器 -->
+    <mvc:annotation-driven validator="validator">
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>*/*;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
-	<!-- 对模型视图添加前后缀 -->
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/pages/</value>
-		</property>
-		
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
-	<!-- 登陆拦截器对所有的请求进行拦截 -->
-	<mvc:interceptors>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="cacheSeconds" value="3600"/>
+        <property name="useCodeAsDefaultMessage" value="true"/>
+        <property name="basenames">
+            <list>
+                <value>/WEB-INF/language/message</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
+        <property name="defaultLocale" value="zh_CN"/>
+    </bean>
+
+    <!-- 对模型视图添加前后缀 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+    <!-- 登陆拦截器对所有的请求进行拦截 -->
+    <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean id="loginInterceptor" class="com.kd.manage.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
-	<!-- 上传图片配置MultipartFile接口实现类且id必须为如下 -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- 设置上传图片文件的大小 单位为Byte 5M=1024*1024*5 -->
-		<property name="maxUploadSize" value="5242880"></property>
-	</bean>
+    <!-- 上传图片配置MultipartFile接口实现类且id必须为如下 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置上传图片文件的大小 单位为Byte 5M=1024*1024*5 -->
+        <property name="maxUploadSize" value="5242880"></property>
+    </bean>
 
-
-    
     <!--  <aop:config proxy-target-class="true" expose-proxy="true">
 		<aop:aspect id="asp" ref="logAopInterceptor">
 			<aop:pointcut id="modInterAccount" expression="execution(* com.kd.manage.controller.*.*.*(..)) and !execution(* com.kd.manage.controller.user.LoginAction.*(..)) and !execution(* com.kd.manage.controller.menu.MenuAction.*(..))" />
 			<aop:around pointcut-ref="modInterAccount" method="doAround" />
 		</aop:aspect>
 	</aop:config> -->
-    
-    
+
+
 </beans>

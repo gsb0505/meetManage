@@ -66,7 +66,7 @@
                 </td>
                 <td width="80px"><span style="color:red;font-size:20px">*</span></td>
                 <th>商品图片:</th>
-                <td><input type="file" name="photoUrl" id="photoUrl" class="formText" />
+                <td><input type="file" name="photoFile" id="photoFile" class="formText" />
                 </td>
                 <td width="80px"><span style="color:red;font-size:20px">*</span></td>
             </tr>

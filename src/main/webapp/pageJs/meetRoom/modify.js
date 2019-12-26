@@ -68,11 +68,15 @@ jQuery().ready(function() {
 		submitHandler : function(form) {
 			//var user = jQuery("#user").serialize();
             var formData = new FormData(jQuery("#user")[0]);
-            formData.append('photoFile', jQuery("#photoUrl")[0].files[0]);
+            if(jQuery("#photoFile").val()){
+                formData.append('photoFile', jQuery("#photoFile")[0].files[0]);
+			}
 			jQuery.ajax({
 				url : _path + 'meetRoom/modify.do',
 				type : "post",
 				data : formData,
+                processData: false,
+                contentType: false,
 				async : false,
 				success : function(data) {
 					if (data == "success") {

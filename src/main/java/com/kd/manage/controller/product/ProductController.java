@@ -161,7 +161,8 @@ public class ProductController extends BaseController{
 	 * @throws IOException 
 	 */
 	@RequestMapping(value = "/add.do", method = RequestMethod.POST)
-	public String add(GoodsInfo goodsInfo, @RequestParam(value = "photoUrl", required = false) MultipartFile photoUrl,
+	@ResponseBody
+	public String add(GoodsInfo goodsInfo, @RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
 					  HttpServletResponse response, HttpServletRequest request) throws IOException{
 		Response responses = null;
 		try {
@@ -171,7 +172,8 @@ public class ProductController extends BaseController{
 //				;BigDecimal decimal=new BigDecimal(doup);
 //				goodsInfo.setPrice((double)(decimal.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue() * priceUnit));
 //			}
-			savePhoto(photoUrl, request, goodsInfo);
+			String photo = savePhoto(photoFile, request, prefix);
+			goodsInfo.setPhotoUrl(photo);
 
 			WebTarget target = productServiceUri.path("add");
 			responses = target.request().buildPost(Entity.entity(goodsInfo,MediaType.APPLICATION_XML)).invoke();
@@ -200,7 +202,8 @@ public class ProductController extends BaseController{
 		WebTarget target = productServiceUri.path("modify");
 		Response res = null;
 		try {
-			savePhoto(photoFile, request, goodsInfo);
+			String photo = savePhoto(photoFile, request, prefix);
+			goodsInfo.setPhotoUrl(photo);
 
 			res = target.request().put(
 					Entity.entity(goodsInfo, MediaType.APPLICATION_XML));
@@ -398,18 +401,4 @@ public class ProductController extends BaseController{
 		}
 	}
 
-	//保存图片
-	private void savePhoto(MultipartFile photoUrl, HttpServletRequest request, GoodsInfo goodsInfo) throws IOException {
-		//保存图片
-		if (photoUrl != null && photoUrl.getSize() > 0 && photoUrl.getName() != null) {
-			String name = photoUrl.getOriginalFilename();
-			String subffix = name.substring(name.lastIndexOf("."), name.length());
-			String filePath = UUID.randomUUID().toString() + subffix;
-			String path = request.getSession().getServletContext().getRealPath(prefix);
-			File localFile = new File(path + filePath);
-			photoUrl.transferTo(localFile);
-			goodsInfo.setPhotoUrl(prefix + filePath);
-		}
-	}
-	
 }

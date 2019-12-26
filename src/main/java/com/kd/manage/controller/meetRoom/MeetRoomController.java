@@ -230,7 +230,8 @@ public class MeetRoomController extends BaseController{
 					HttpServletResponse response, HttpServletRequest request) throws IOException{
 		PrintWriter out = response.getWriter();
 		try {
-			savePhoto(photoFile, request, meetRoom);
+			String photo = savePhoto(photoFile, request, prefix);
+			meetRoom.setPhotoUrl(photo);
 
 			WebTarget target = tsu.path("add");
 			String user = this.getUserId(request);
@@ -287,7 +288,8 @@ public class MeetRoomController extends BaseController{
 			, HttpServletResponse response,HttpServletRequest request) throws Exception {
 		PrintWriter out = response.getWriter();
 
-		savePhoto(photoFile, request, meetRoom);
+		String photo = savePhoto(photoFile, request, prefix);
+		meetRoom.setPhotoUrl(photo);
 
 		WebTarget target = tsu.path("modify");
 		try {
@@ -476,18 +478,6 @@ public class MeetRoomController extends BaseController{
 		return list;
 	}
 
-	//保存头像图片
-	private void savePhoto(MultipartFile photoUrl, HttpServletRequest request, MeetRoom meetRoom) throws IOException {
-		//保存头像图片
-		if (photoUrl != null && photoUrl.getSize() > 0 && photoUrl.getName() != null) {
-			String name = photoUrl.getOriginalFilename();
-			String subffix = name.substring(name.lastIndexOf("."), name.length());
-			String filePath = UUID.randomUUID().toString() + subffix;
-			String path = request.getSession().getServletContext().getRealPath(prefix);
-			File localFile = new File(path + filePath);
-			photoUrl.transferTo(localFile);
-			meetRoom.setPhotoUrl(prefix + filePath);
-		}
-	}
+
 	
 }

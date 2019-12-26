@@ -14,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -359,6 +360,26 @@ public abstract class BaseController {
 				}
 			}
 		}
+	}
+
+	//保存头像图片
+	protected String savePhoto(MultipartFile photoUrl, HttpServletRequest request,String prefix) throws IOException {
+		//保存头像图片
+		if (photoUrl != null && photoUrl.getSize() > 0 && photoUrl.getName() != null) {
+			String name = photoUrl.getOriginalFilename();
+			String subffix = name.substring(name.lastIndexOf("."), name.length());
+			String filePath = UUID.randomUUID().toString() + subffix;
+			String path = request.getSession().getServletContext().getRealPath(prefix);
+
+			File mark = new File(path);
+			if(!mark.exists()){
+				mark.mkdir();
+			}
+			File localFile = new File(path + filePath);
+			photoUrl.transferTo(localFile);
+			return prefix + filePath;
+		}
+		return null;
 	}
 
 	/**

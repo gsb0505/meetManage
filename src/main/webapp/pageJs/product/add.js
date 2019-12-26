@@ -32,7 +32,9 @@ jQuery().ready(function() {
 				//var product = jQuery("#product").serialize();
 
 				var form = new FormData(jQuery("#product")[0]);
-                form.append("photoFile",jQuery("#photoUrl")[0].files[0]);
+                if(jQuery("#photoFile").val()) {
+                    form.append("photoFile", jQuery("#photoFile")[0].files[0]);
+                }
 				jQuery.ajax({
 					url : _path + 'product/add.do',
 					type : "post",
@@ -44,7 +46,7 @@ jQuery().ready(function() {
 						if (data == "success") {
 							alert("添加成功！");
 							setTimeout("iFClose()", 1000);
-						} else if (data == "fail") {
+						} else if (data == "fail" || data == "exception") {
 							alert("添加失败！请重试！");
 						} else if (data == "exsit") {
 							alert("该商品已经存在!");

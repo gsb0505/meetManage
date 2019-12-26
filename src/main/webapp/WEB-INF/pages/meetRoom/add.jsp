@@ -1,17 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
-<%
-    String systemPath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +16,7 @@
 </script>
 </head>
 <body style="min-width: 540px; overflow: auto; overflow: hidden">
-<div style="display:;" class="inputTable">
+<div class="inputTable">
 
     <form id="user" action="" method="post">
         <table class="inputTable_liebiao inputTable_validate clear">
@@ -89,8 +78,8 @@
             </tr>
             <tr>
                 <th>会议室图片:</th>
-                <td><input type="file" name="photoUrl" class="formText"
-                           id="photoUrl"></input>
+                <td><input type="file" name="photoFile" class="formText"
+                           id="photoFile"></input>
                 </td>
                 <td width="80px"><span style="color:red;font-size:20px">*</span></td>
             </tr>

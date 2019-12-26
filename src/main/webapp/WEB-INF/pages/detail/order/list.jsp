@@ -49,6 +49,8 @@
                             return '预约成功'
                         } else if (cellvalue == '3') {
                             return '预约注销';
+                        }else if(cellvalue == '4'){
+                            return '已完成';
                         }
                     }
                 }

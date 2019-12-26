@@ -63,15 +63,17 @@ jQuery().ready(function() {
 			},
 			submitHandler : function(form) {
 				jQuery("#meetRoomName").val(trim(jQuery("#meetRoomName").val())); //去空格
-                var formData = new FormData(user);
-                formData.append('photoFile', jQuery("#photoUrl")[0].files[0]);
-				var user = jQuery("#user").serialize();
-				alert(user);
-				jQuery.ajax({
+                var formData = new FormData(jQuery("#user")[0]);
+                if(jQuery("#photoFile").val()){
+                	formData.append('photoFile', jQuery("#photoFile")[0].files[0]);
+                }
+                jQuery.ajax({
 					url : _path + 'meetRoom/add.do',
 					type : "post",
 					data : formData,
 					async : false,
+                    processData: false,
+                    contentType: false,
 					success : function(data) {
 						if (data == "success") {
 							alert("添加成功！");

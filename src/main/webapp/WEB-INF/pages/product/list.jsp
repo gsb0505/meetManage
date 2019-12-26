@@ -152,8 +152,8 @@
             </td>
             <td>
                 <div class="button_weizhi">
-                    <input name="" class="searchButton" value="" type="button"
-                           id="searchResult" onclick="searchResult()"></input>
+                    <input class="searchButton" type="button"
+                           id="searchResult" onclick="searchResult()"/>
                 </div>
             </td>
         </tr>

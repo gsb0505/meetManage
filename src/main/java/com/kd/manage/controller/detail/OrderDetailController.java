@@ -214,7 +214,7 @@ public class OrderDetailController extends BaseController {
      *
      * @throws IOException
      */
-    @RequestMapping(value = "/add.do", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/add.do", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
     @ResponseBody
     public String add(@RequestBody OrderDetail dto, HttpServletResponse response,
                       HttpServletRequest request) throws IOException {
@@ -391,7 +391,7 @@ public class OrderDetailController extends BaseController {
         PrintWriter out = response.getWriter();
 
         try {
-            WebTarget target = odsu.path("modify");
+            WebTarget target = odsu.path("upOrderDetail");
             Response responses = target
                     .request()
                     .buildPost(
@@ -447,7 +447,7 @@ public class OrderDetailController extends BaseController {
      * @param response
      * @throws Exception
      */
-    @RequestMapping(value = "/modify.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/modify.do", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
     @ResponseBody
     public String modify(@RequestBody OrderDetail orderDetail, HttpServletResponse response,
                          HttpServletRequest request) {

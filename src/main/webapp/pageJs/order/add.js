@@ -140,18 +140,17 @@ jQuery().ready(function() {
 					async : false,
                     contentType: "application/json",
 					success : function(data) {
-						if (data == "success") {
-							alert("添加成功！");
-
-                            jQuery("#user")[0].reset();
-                            setTimeout("iFClose();", 1000);
+						if (data != null && data != "fail") {
+                            alert(data);
+                            if(data.indexOf("成功") != -1){
+                                jQuery("#user")[0].reset();
+                                setTimeout("iFClose();", 1000);
+							}
 						} else if (data == "fail") {
 							alert("添加失败！请重试！");
-						} else if (data == "exsit") {
-							alert("该会议室已经存在!");
-						} else{
-							alert(data);
-						}
+						}else{
+                            alert(data);
+                        }
 					},
 					fail:function(data){
 						alert("3_fail");
