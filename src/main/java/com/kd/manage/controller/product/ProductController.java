@@ -14,10 +14,7 @@ import org.apache.commons.collections.ListUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -355,6 +352,27 @@ public class ProductController extends BaseController{
 	public String confirmOrder(HttpServletResponse response,HttpServletRequest request){
 
 		return null;
+	}
+
+
+
+	@RequestMapping(value = "/{store}/product.do",method = RequestMethod.GET)
+	@ResponseBody
+	public String confirmOrder(@PathVariable("store")String store,@RequestParam("product") String product,
+							   HttpServletResponse response, HttpServletRequest request){
+		GoodsInfo goodsInfo = new GoodsInfo();
+		goodsInfo.setStoreCode(store);
+		goodsInfo.setGoodsName(product);
+
+		Response  response1 = productServiceUri.path("getStoreProductCount").request().post(Entity.entity(goodsInfo,MediaType.APPLICATION_XML));
+		Boolean result = response1.readEntity(new GenericType<Boolean>(){});
+		if(result == null){
+			return EXCEPTION;
+		}else if(result == true){
+			return EXSIT;
+		}else{
+			return SUCCESS;
+		}
 	}
 
 	/**

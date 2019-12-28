@@ -7,6 +7,8 @@ package com.kd.manage.base;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
+import org.codehaus.jackson.jaxrs.JsonParseExceptionMapper;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.JerseyClient;
 import org.glassfish.jersey.client.JerseyClientBuilder;
@@ -125,6 +127,11 @@ public class BaseClient{
 		if(jerseyClient == null || jerseyClient.isClosed()){
 			ClientConfig clientConfig = new ClientConfig();
 			//configRequestLogging(clientConfig);
+			//ObjectMapper jsonMapper = new ObjectMapper();
+
+//			JacksonMessageBodyProvider jsonProvider = new JacksonMessageBodyProvider(jsonMapper);
+//			clientConfig.register(jsonProvider);
+//			clientConfig.register(JsonParseExceptionMapper.class);
 			jerseyClient = JerseyClientBuilder.createClient();
 		}
 		return jerseyClient;

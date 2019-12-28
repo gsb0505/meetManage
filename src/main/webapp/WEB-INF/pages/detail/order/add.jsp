@@ -92,7 +92,8 @@
         obj.find("input[name='goodsDetailList[][goodsName]']").val(param[0].goodsName);
         obj.find("input[name='goodsDetailList[][price]']").val(param[0].price);
         obj.find("input[name='goodsDetailList[][count]']").val(param[0].count);
-
+        var bbnum=obj.find("input[name='goodsDetailList[][num]']");
+        bbnum.trigger("onkeyup");
         window.ymPrompt.close();
     }
     //打开商品窗口
@@ -111,8 +112,8 @@
     function opnumber(a) {
         var price = jQuery(a).parents("tr").find("input[name='goodsDetailList[][price]']").val();
         var count = jQuery(a).parents("tr").find("input[name='goodsDetailList[][count]']").val();
-        var number = jQuery(a).val();
-        if(count < number){
+        var number = jQuery(a).val();console.log("countcount->"+count);console.log("number->"+number);
+        if(parseInt(count) < parseInt(number)){
             jQuery(a).val("");
             alert("当前商品库存不足！");
             return;

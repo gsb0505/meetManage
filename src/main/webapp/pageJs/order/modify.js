@@ -35,6 +35,18 @@ jQuery().ready(function () {
         return this.optional(element) || (result);
 
     }, "该时间已被预约!");
+    jQuery.validator.addMethod("dateVali", function (value, element) {
+        var result = false;
+        result = checkDate();
+        return this.optional(element) || (result);
+
+    }, "请输入大于当前的预约时间!");
+    jQuery.validator.addMethod("dateVali2", function (value, element) {
+        var result = false;
+        result = checkDate2();
+        return this.optional(element) || (result);
+
+    }, "结束时间不能小于开始时间!");
 
     jQuery("#user").validate({
         debug: true,
@@ -60,7 +72,8 @@ jQuery().ready(function () {
                 isUnique: true
             }, meetEndTime: {
                 required: true,
-                isUnique: true
+                isUnique: true,
+                checkDate2:true
             }, meetRoomID: {
                 required: true,
                 isUnique: true
@@ -118,7 +131,48 @@ jQuery().ready(function () {
 seajs.use('common/common.form.js', function (a) {
 });
 
+function checkDate1(){
+    var meetDate = jQuery("#meetDate").val();
+    var meetStartTime = jQuery("#meetStartTime").val();
+    var meetEndTime = jQuery("#meetEndTime").val();
+    var meetRoomID = jQuery("#meetRoomID").val();
+    if(!meetDate || !meetStartTime || !meetEndTime || !meetRoomID){
+        return true;
+    }
+    var result = false;
+    var d = new Date();
+    var year = d.getFullYear();       //年
+    var month = d.getMonth() + 1;     //月
+    var day = d.getDate();            //日
 
+    var hh = d.getHours();            //时
+    var mm = d.getMinutes();          //分
+    var curdate = year + '-' + addzero(month) + '-' + addzero(day);
+    var curhhmm = addzero(hh) + ':' + addzero(mm);
+    if (meetDate.toString() == curdate.toString()) {
+        if (meetStartTime.toString() < curhhmm.toString()) {
+            //alert(meetStartTime+'--'+curhhmm);
+            result = false;
+        } else {
+            result = true;
+        }
+    } else if (meetDate < curdate) {
+        result = false;
+    } else {
+        result = true;
+    }
+    return result;
+}
+function checkDate2(){
+    var meetStartTime = jQuery("#meetStartTime").val();
+    var meetEndTime = jQuery("#meetEndTime").val();
+    var result = false;
+    if (meetStartTime.toString() < meetEndTime.toString()) {
+        result = true;
+    }
+
+    return result;
+}
 function checkForm() {
     var result = false;
     var meetDate = jQuery("#meetDate").val();
@@ -127,28 +181,6 @@ function checkForm() {
     var meetRoomID = jQuery("#meetRoomID").val();
     var glideNo = jQuery("#glideNo").val();
 
-    var d = new Date();
-    var year = d.getFullYear();       //年
-    var month = d.getMonth() + 1;     //月
-    var day = d.getDate();            //日
-
-    var hh = d.getHours();            //时
-    var mm = d.getMinutes();          //分
-    var curdate = year + '-' + month + '-' + day;
-    var curhhmm = addzero(hh) + ':' + addzero(mm);
-//			if (meetDate.toString() == curdate.toString()){
-//				if (meetStartTime.toString()< curhhmm.toString()){
-//					alert(meetStartTime+'-22-'+curhhmm);
-//					result=false;
-//				}else{
-//				result=true;
-//				}
-//			}else if (meetDate < curdate){
-//				result=false;
-//			}else{
-//				result=true;
-//			}
-//	        if (result==true){
     // 设置同步
     jQuery.ajaxSetup({async: false});
     jQuery.ajax({

@@ -225,9 +225,8 @@ public class OrderDetailController extends BaseController {
             dto.setCreator(user);
             dto.setErrCode(1);
             Response responses = target.request()
-                    .buildPost(Entity.entity(dto, MediaType.APPLICATION_XML))
-                    .invoke();
-            MessageDto value = responses.readEntity(MessageDto.class);
+                    .post(Entity.entity(dto, MediaType.APPLICATION_XML));
+            MessageDto value = responses.readEntity(new GenericType<MessageDto>(){});
             responses.close();
             return getResString(value);
         } catch (Exception e) {
@@ -466,10 +465,10 @@ public class OrderDetailController extends BaseController {
             WebTarget target = odsu.path("modify");
             Response responses = target
                     .request()
-                    .buildPost(
+                    .post(
                             Entity.entity(orderDetail,
-                                    MediaType.APPLICATION_XML)).invoke();
-            MessageDto dto = responses.readEntity(MessageDto.class);
+                                    MediaType.APPLICATION_XML));
+            MessageDto dto = responses.readEntity(new GenericType<MessageDto>() {});
             responses.close();
             return getResString(dto);
         } catch (Exception e) {
