@@ -37,7 +37,7 @@ jQuery().ready(function() {
     }, "该时间已被预约!");
 	jQuery.validator.addMethod("dateVali", function (value, element) {
         var result = false;
-        result = checkDate();
+        result = checkDate1();
         return this.optional(element) || (result);
 
     }, "请输入大于当前的预约时间!");

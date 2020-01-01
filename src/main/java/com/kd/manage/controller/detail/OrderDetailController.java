@@ -350,14 +350,10 @@ public class OrderDetailController extends BaseController {
             String value = res.readEntity(String.class);
             res.close();
             if ("true".equals(value)) {
-                if (dto.getEmailNotification() != null) {
-                    Mail.respMeetNoticeEmail(dto.getEmailNotification(),
-                            dto.getMeetName(),
-                            dto.getMeetDate() + ' ' + dto.getMeetStartTime(),
-                            dto.getMeetRoomName(), dto.getCreator());
-                }
                 out.print(SUCCESS);
-
+                if (dto.getEmailNotification() != null) {
+                    new Thread(new SendEmailThread(dto)).start();
+                }
             } else if ("false".equals(value)) {
                 out.print(FAIL);
             } else {
@@ -485,6 +481,25 @@ public class OrderDetailController extends BaseController {
         }
         value = dto.getMessage();
         return value;
+    }
+
+    /**
+     * 发送邮件线程
+     */
+    private class SendEmailThread implements Runnable{
+        private OrderDetail dto;
+
+        public SendEmailThread(OrderDetail dto) {
+            this.dto = dto;
+        }
+
+        @Override
+        public void run() {
+            Mail.respMeetNoticeEmail(dto.getEmailNotification(),
+                    dto.getMeetName(),
+                    dto.getMeetDate() + ' ' + dto.getMeetStartTime(),
+                    dto.getMeetRoomName(), dto.getCreator());
+        }
     }
 
 }

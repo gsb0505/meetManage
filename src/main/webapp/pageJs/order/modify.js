@@ -37,7 +37,7 @@ jQuery().ready(function () {
     }, "该时间已被预约!");
     jQuery.validator.addMethod("dateVali", function (value, element) {
         var result = false;
-        result = checkDate();
+        result = checkDate1();
         return this.optional(element) || (result);
 
     }, "请输入大于当前的预约时间!");
@@ -73,7 +73,7 @@ jQuery().ready(function () {
             }, meetEndTime: {
                 required: true,
                 isUnique: true,
-                checkDate2:true
+                dateVali2:true
             }, meetRoomID: {
                 required: true,
                 isUnique: true
@@ -170,7 +170,6 @@ function checkDate2(){
     if (meetStartTime.toString() < meetEndTime.toString()) {
         result = true;
     }
-
     return result;
 }
 function checkForm() {
