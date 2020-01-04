@@ -4,7 +4,7 @@
  * UserController.java
  * 
  * 2015年1月7日-下午3:34:06
- *  2015杭州宽达信息技术有限公司-版权所有
+ *  杭州铭业管网科技有限公司-版权所有
  *
  */
 package com.kd.manage.controller.util;
@@ -77,6 +77,16 @@ public class PropertiesUtil {
 	public static String getBaseUri(){
 		try {
 			String value = configBase.getProperty("base.uri");
+			return value;
+		} catch (Exception e) {
+			logger.error("ConfigInfoError" + e.toString());
+			return null;
+		}
+	}
+
+	public static String getBaseUri(String name){
+		try {
+			String value = configBase.getProperty(name);
 			return value;
 		} catch (Exception e) {
 			logger.error("ConfigInfoError" + e.toString());

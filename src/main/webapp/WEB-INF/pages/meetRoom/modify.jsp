@@ -89,7 +89,7 @@
                 <th>会议室图片:</th>
                 <td>
                     <input name="photoUrl" type="hidden" value="${t.photoUrl}">
-                    <input id="photoFile" name="photoFile" type="file" value="${t.photoUrl}" class="formText" maxlength="500"></input>
+                    <input id="photoFile" name="photoFile" type="file" value="${t.photoUrl}" class="formText" maxlength="500" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"></input>
                 </td>
                 <td><a style="font-size: 8px;" id="viewPhone" href="#" >[图片浏览]</a></td>
             </tr>

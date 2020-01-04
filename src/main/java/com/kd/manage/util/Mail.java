@@ -2,8 +2,6 @@ package com.kd.manage.util;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -17,13 +15,18 @@ import javax.mail.internet.MimeMessage;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 
+import com.alibaba.fastjson.JSON;
 import com.kd.manage.base.BaseController;
 import com.kd.manage.base.BaseUri;
 import com.kd.manage.controller.user.LoginController;
 import com.kd.manage.controller.util.PropertiesUtil;
 import com.kd.manage.entity.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Mail{
+    private static final Logger LOG = LoggerFactory.getLogger(Mail.class);
+
     private static Properties props = new Properties();
     /**
      * 获取用户名ID
@@ -131,8 +134,10 @@ public class Mail{
 
             // 发送邮件
             Transport.send(message);
+            LOG.info("邮件发送成功！"+ JSON.toJSONString(message));
             return true;
         } catch (MessagingException e) {
+            LOG.error("邮件发送异常！！"+e.toString());
             return false;
         }
 
@@ -153,7 +158,7 @@ public class Mail{
     }
 
     public static boolean respMeetNoticeEmail(String email, String meetName, String meetDate, String meetRoomName, String meetPromoter) {
-
+        LOG.info("开始发送邮件"+email);
         WebTarget tar_config = csu.path("queryById").queryParam("id", mailmeetMailID); // 配置邮件用户名-system_config表
         Config config = tar_config.request().get(new GenericType<Config>() {
         });

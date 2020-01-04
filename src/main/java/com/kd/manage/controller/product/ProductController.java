@@ -72,7 +72,7 @@ public class ProductController extends BaseController{
 //			t.setDoublePrice(t.getPrice() / priceUnit);
 //		}
 
-		List<BaseData> base1List = DataDictDefault.getList(DataDictDefault.type3);
+		List<BaseData> base1List = getGoodsInfoType();
 		List<BaseData> storeList = getStoreCode();
 		model.addAttribute("typeList", base1List);
 		model.addAttribute("storeList", storeList);
@@ -92,19 +92,19 @@ public class ProductController extends BaseController{
 	public String listView(String menuId, Model model,
 			HttpServletRequest request) throws Exception{
 		sendListCommon(menuId, model, request);
-		JSONObject jsonObject = new JSONObject();
+		JSONObject typeDatasObject = new JSONObject();
 		JSONObject jsonObject2 = new JSONObject();
 
-		List<BaseData> datas = getGoodsInfoType();
+		List<BaseData> typeDatas = getGoodsInfoType();
 		List<BaseData> datas2 = getStoreCode();
-		for (BaseData data : datas) {
-			jsonObject.put(Integer.parseInt(data.getCode()), data.getName());
+		for (BaseData data : typeDatas) {
+			typeDatasObject.put(Integer.parseInt(data.getCode()), data.getName());
 		}
 		for (BaseData data : datas2) {
 			jsonObject2.put(Integer.parseInt(data.getCode()), data.getName());
 		}
-		model.addAttribute("typeCodes", jsonObject);
-		model.addAttribute("typeCodess", datas);
+		model.addAttribute("typeCodes", typeDatasObject);
+		model.addAttribute("typeCodess", typeDatas);
 
 		model.addAttribute("storeCodes", jsonObject2);
 		model.addAttribute("storeCodess", datas2);
@@ -145,7 +145,7 @@ public class ProductController extends BaseController{
 		//WebTarget target = productServiceUri.path("queryAll");
 		//List<UserInfo> userList = target.request().get(new GenericType<List<UserInfo>>() { });
 
-		List<BaseData> base1List = DataDictDefault.getList(DataDictDefault.type3);
+		List<BaseData> base1List = getGoodsInfoType();
 		List<BaseData> storeList = getStoreCode();
 		model.addAttribute("typeList", base1List);
 		model.addAttribute("storeList", storeList);
@@ -159,9 +159,10 @@ public class ProductController extends BaseController{
 	 */
 	@RequestMapping(value = "/add.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String add(GoodsInfo goodsInfo, @RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
+	public String add(GoodsInfo goodsInfo,
 					  HttpServletResponse response, HttpServletRequest request) throws IOException{
 		Response responses = null;
+		//, @RequestParam(value = "photoFile", required = false) MultipartFile photoFile
 		try {
 			//价格处理
 //			double doup =goodsInfo.getDoublePrice();
@@ -169,11 +170,11 @@ public class ProductController extends BaseController{
 //				;BigDecimal decimal=new BigDecimal(doup);
 //				goodsInfo.setPrice((double)(decimal.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue() * priceUnit));
 //			}
-			String photo = savePhoto(photoFile, request, prefix);
-			goodsInfo.setPhotoUrl(photo);
+			//String photo = savePhoto(photoFile, request, prefix);
+			//goodsInfo.setPhotoUrl(photo);
 
 			WebTarget target = productServiceUri.path("add");
-			responses = target.request().buildPost(Entity.entity(goodsInfo,MediaType.APPLICATION_XML)).invoke();
+			responses = target.request().post(Entity.entity(goodsInfo,MediaType.APPLICATION_XML));
 			String value = responses.readEntity(String.class);
 			String result = result(value);
 
@@ -354,8 +355,6 @@ public class ProductController extends BaseController{
 		return null;
 	}
 
-
-
 	@RequestMapping(value = "/{store}/product.do",method = RequestMethod.GET)
 	@ResponseBody
 	public String confirmOrder(@PathVariable("store")String store,@RequestParam("product") String product,
@@ -405,7 +404,6 @@ public class ProductController extends BaseController{
 			return list;
 		}
 	}
-
 	/**
 	 * 获取商家
 	 * @return

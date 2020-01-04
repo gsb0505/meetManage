@@ -10,7 +10,6 @@ jQuery(function($) {
                 }
                 var param = [];
                 if(ids.length > 1) {
-                    console.log("ids：" + JSON.stringify(ids));
                     for (var i = 0; i < ids.length; i++) {
                         var row = jQuery("#tabGrid").jqGrid('getRowData', ids[i]);
                         console.log("勾选的内容：" + JSON.stringify(row));

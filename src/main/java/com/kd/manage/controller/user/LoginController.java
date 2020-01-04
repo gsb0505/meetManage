@@ -19,6 +19,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.kd.manage.interceptor.LoginInterceptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -190,7 +191,7 @@ public class LoginController extends BaseController {
 				userRec.setErrNum("0");
 				WebTarget target3 = usu.path("modifyError");
 				Response res3 = target3.request().put(Entity.entity(userRec, MediaType.APPLICATION_XML));
-				Cookie cookie = new Cookie("user", URLEncoder.encode(user.getUserId(), "UTF-8")); // (key,value)
+				Cookie cookie = new Cookie(CURRENT_USER, URLEncoder.encode(user.getUserId(), "UTF-8")); // (key,value)
 				cookie.setPath("/"); // 这个要设置
 				// cookie.setDomain(".aotori.com");//这样设置，能实现两个网站共用
 				cookie.setMaxAge(365 * 24 * 60 * 60);// 不设置的话，则cookies不写入硬盘,而是写在内存,只在当前页面有用,以秒为单位
@@ -279,14 +280,14 @@ public class LoginController extends BaseController {
 	public void logout(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		HttpSession session = request.getSession(false);
-		Cookie cookie = new Cookie("user", null);
+		Cookie cookie = new Cookie(CURRENT_USER, null);
 		cookie.setMaxAge(0);
 		cookie.setPath("/");
 		response.addCookie(cookie);
 		if (session != null) {
 			session.invalidate();
 		}
-		response.sendRedirect("/meetManage");
+		response.sendRedirect(LoginInterceptor.WEB_URI);
 	}
 	
 	/**

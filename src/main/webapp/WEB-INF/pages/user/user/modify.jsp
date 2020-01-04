@@ -88,7 +88,7 @@
                 <th>头像:</th>
                 <td>
                     <input name="photoUrl" type="hidden" value="${user.photoUrl}">
-                    <input id="photoUrl" name="photoFile"  type="file" class="formText" maxlength="500"></input>
+                    <input id="photoUrl" name="photoFile"  type="file" class="formText" maxlength="500" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"></input>
                 </td>
                 <td><a style="font-size: 8px;" id="viewPhone" href="#">[头像浏览]</a></td>
             </tr>

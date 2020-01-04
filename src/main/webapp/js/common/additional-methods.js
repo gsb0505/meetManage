@@ -1,7 +1,7 @@
 jQuery.validator.addMethod("isPhoto", function (value, element) {
     var photo = true;
     var photoExt = value.substr(value.lastIndexOf(".")).toLowerCase();//获得文件后缀名
-    if (photoExt != ".png" && photoExt != ".jpg") {
+    if (photoExt != ".png" && photoExt != ".jpg" && photoExt != ".svg" && photoExt != ".jpeg" ) {
         //alert("请上传后缀名为jpg或png的照片!");
         photo = (false);
     }

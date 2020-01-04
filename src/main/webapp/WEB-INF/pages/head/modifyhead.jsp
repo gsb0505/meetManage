@@ -1,3 +1,4 @@
+<%@ page import="com.kd.manage.base.BaseUri" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
     String path = request.getContextPath();
@@ -26,6 +27,7 @@
 <%--<script type="text/javascript" src="<%=basePath%>js/owned/js.js"></script>--%>
 <script type="text/javascript">
     var _path = "<%=systemPath %>";
+    var _core_path = "<%=BaseUri.corePath %>";
     jQuery.noConflict();
 
     seajs.config({

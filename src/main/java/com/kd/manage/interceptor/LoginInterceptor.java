@@ -42,12 +42,19 @@ import com.kd.manage.entity.UserLog;
  * @修改备注:
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
-    private static final String[] IGNORE_URI = {"loginAction/validLogin.do", "/loginAction/validRandom.do",
-            "/login.jsp", "/loginAction/logout.do", "loginAction/resetPwd.do", "sessJudge.do","/semail/"};
+
     //	private static Map<String,String> menuMap=new HashMap<String, String>();//这个集合表示数据库需要进行日志记录的Action  TODO
-    private final static String WEB_URI = PropertiesUtil.readValue("WEB_URI");
+    public final static String WEB_URI = PropertiesUtil.readValue("WEB_URI");
     //private static String logUri="";
     private static WebTarget target;
+    /**
+     * 登入忽略路径
+     */
+    private static final String[] IGNORE_URI = {"loginAction/validLogin.do", "/loginAction/validRandom.do",
+            "/login.jsp", "/loginAction/logout.do", "loginAction/resetPwd.do", "sessJudge.do","/semail/","transferTo.do"};
+    /**
+     * 写日志忽略路径
+     */
     private static final String[] IGNORE_URI1 = {"loginAction/validLogin.do",
             "/userRolesAction/getUserRolesList.do","/semail/",
             "/userMenu/queryOneLevel.do", "/card/add_1.do", "userMenu/queryOtherLevel.do"};
@@ -99,7 +106,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                     + WEB_URI
                     + "'}</script>";
             response.setContentType("text/html;charset=UTF-8");// 解决中文乱码
-            Cookie cookie = new Cookie("user", null);
+            Cookie cookie = new Cookie(LoginController.CURRENT_USER, null);
             cookie.setMaxAge(0);
             cookie.setPath("/");
             response.addCookie(cookie);

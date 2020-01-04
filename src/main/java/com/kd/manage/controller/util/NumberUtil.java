@@ -3,7 +3,7 @@
  * @package:com.kd.manage.controller.util
  * @projectName:cloud-manage
  * @CreateTime:2015年2月6日-下午3:05:23
- *  2015杭州宽达信息技术有限公司-版权所有
+ *  杭州铭业管网科技有限公司-版权所有
  *
  */
 package com.kd.manage.controller.util;

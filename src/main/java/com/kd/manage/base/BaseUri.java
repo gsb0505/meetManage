@@ -12,6 +12,13 @@ import java.util.Map;
  */
 public class BaseUri {
 
+	private BaseUri(){}
+
+	/**
+	 * core端路径
+	 */
+	public static String corePath;
+
 	/**
 	 * 权限
 	 */

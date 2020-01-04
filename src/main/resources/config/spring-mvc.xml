@@ -15,10 +15,11 @@
     http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
     <!-- 扫描controller（controller层注入） -->
-    <context:component-scan base-package="com.kd.manage"/>
+    <context:component-scan base-package="com.kd.manage.*"/>
+    <context:annotation-config />
 
     <!-- 声明注解驱动的 MVC 控制器 -->
-    <mvc:annotation-driven validator="validator">
+    <mvc:annotation-driven validator="validator" conversion-service="conversionService">
         <mvc:message-converters register-defaults="true">
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <constructor-arg value="UTF-8"/>
@@ -65,11 +66,23 @@
     </bean>
     <!-- 登陆拦截器对所有的请求进行拦截 -->
     <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean id="loginInterceptor" class="com.kd.manage.interceptor.LoginInterceptor"/>
-        </mvc:interceptor>
+    <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+        <bean id="loginInterceptor" class="com.kd.manage.interceptor.LoginInterceptor"/>
+    </mvc:interceptor>
+    <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+        <bean id="corsInterceptor" class="com.kd.manage.controller.common.CorsInterceptor"/>
+    </mvc:interceptor>
     </mvc:interceptors>
+
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.kd.manage.enumerate.ValuedEnumConverter"/>
+            </set>
+        </property>
+    </bean>
 
     <!-- 上传图片配置MultipartFile接口实现类且id必须为如下 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

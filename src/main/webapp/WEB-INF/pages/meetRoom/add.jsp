@@ -79,7 +79,7 @@
             <tr>
                 <th>会议室图片:</th>
                 <td><input type="file" name="photoFile" class="formText"
-                           id="photoFile"></input>
+                           id="photoFile" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"></input>
                 </td>
                 <td width="80px"><span style="color:red;font-size:20px">*</span></td>
             </tr>

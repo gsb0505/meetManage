@@ -34,12 +34,19 @@ public class InitServlet implements Servlet {
 
                     BaseUri.webTarget.put(pname, BaseClient.getClient().target(pname));
                 }
+                Field baseField = BaseUri.class.getDeclaredField("corePath");
+                String uri = PropertiesUtil.getBaseUri("base.uri");
+                String project = PropertiesUtil.getBaseUri("base.project");
+                baseField.setAccessible(true);
+                baseField.set(bc,uri + project);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
     }
