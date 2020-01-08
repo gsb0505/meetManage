@@ -146,6 +146,11 @@ public class BaseUri {
 	public static String productServiceUri;
 
 	/**
+	 * 预约商品明细
+	 */
+	public static String goodsDetailServiceUri;
+
+	/**
 	 * URI Map
 	 */
 	public final static Map<String,WebTarget> webTarget = new HashMap<String, WebTarget>();

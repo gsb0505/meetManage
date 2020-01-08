@@ -17,6 +17,8 @@ window.multipleSelAll = jQuery('.multipleSelAll').SumoSelect();
 
 function setDateTime(map){
 	var type = jQuery("#reportType").val();
+	var createTime = map["createTime"];
+	var updateTime = map["updateTime"];
 	if(type){
 		switch(type){
 		case "1"://day
@@ -27,13 +29,13 @@ function setDateTime(map){
 		case "2"://month
 			//map["createTime"] = year + '-' + map["createTime"] + "-01";
 			//map["updateTime"] = year + '-' + map["updateTime"] + "-31";
-			if(map["updateTime"] && map["createTime"])
+			if(createTime && updateTime)
 				getFirstAndLastMonthDay(map);
             map["serchType"] = 2;
 			break;
 		case "3"://year
-			map["createTime"] = map["createTime"] + "-01" + "-01";
-			map["updateTime"] = map["updateTime"] + "-12" + "-31";
+			map["createTime"] = createTime + "-01" + "-01";
+			map["updateTime"] = updateTime + "-12" + "-31";
             map["serchType"] = 3;
 			break;
 		default:

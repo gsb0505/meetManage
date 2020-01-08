@@ -14,8 +14,11 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -34,6 +37,8 @@ import com.kd.manage.base.BaseUri;
 import com.kd.manage.controller.util.DateJsonValueProcessor;
 import com.kd.manage.controller.util.ManageUtil;
 import com.kd.manage.controller.util.http.ContentType;
+import com.kd.manage.entity.GoodsDetailSReport;
+import com.kd.manage.entity.GoodsInfo;
 import com.kd.manage.entity.MeetRoom;
 import com.kd.manage.entity.PageCount;
 import com.kd.manage.entity.SystemTReport;
@@ -47,6 +52,7 @@ public class ReportController extends BaseController {
 	private static SimpleDateFormat  SDF_2 ;
 	private static SimpleDateFormat  SDF_3 ;
 	private static WebTarget usu ;
+	private static WebTarget productServiceUri;
 	
 	static{
 		SDF = new SimpleDateFormat("yyyy-MM-dd");
@@ -54,6 +60,7 @@ public class ReportController extends BaseController {
 		SDF_3 = new SimpleDateFormat("yyyy");
 		rsu = BaseUri.webTarget.get(BaseUri.reportServiceUri);
 		usu = BaseUri.webTarget.get(BaseUri.meetRoomServiceUri);
+		productServiceUri = BaseUri.webTarget.get(BaseUri.productServiceUri);
 	}
 	
 	@InitBinder
@@ -104,6 +111,7 @@ public class ReportController extends BaseController {
 		model.addAttribute("tradeDate",SDF.format(getYesterday()));
 		return "report/system/list";
 	}
+	
 	@RequestMapping("/systemList.do")
 	public void systemList(SystemTReport systemTReport, PageCount pageCount,HttpServletResponse res) throws Exception{
 		if(systemTReport.getCreateTime() ==null){
@@ -136,7 +144,7 @@ public class ReportController extends BaseController {
 		}*/
 		
 		JsonConfig jsonConfig = new JsonConfig();
-		jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
 		pageCount = ManageUtil.packPage(list, pageCount);
 		JSONObject json = JSONObject.fromObject(pageCount,jsonConfig);// 转化成json对象(jQgrid只能识别json对象)
 		PrintWriter out = res.getWriter();
@@ -310,4 +318,47 @@ public class ReportController extends BaseController {
 		return "report/"+printPage+"/printList";
 	}
 	
+
+	@RequestMapping("/goodsDetailView.do")
+	public String goodsDetailView(Model model){
+		GoodsInfo goodsInfo=new GoodsInfo();
+		Response responses = productServiceUri.path("query").request().post(Entity.entity(goodsInfo,MediaType.APPLICATION_XML));
+		List<GoodsInfo> GoodsInfoList = responses.readEntity(new GenericType<List<GoodsInfo>>(){});
+		model.addAttribute("GoodsInfoList", GoodsInfoList);
+		model.addAttribute("tradeDate",SDF.format(getYesterday()));
+		setDateTimeToModel(model);
+		return "report/goodsDetail/list";
+	}
+	
+	@RequestMapping("/goodsDetailList.do")
+	public void goodsDetailList(GoodsDetailSReport goodsDetailSReport, PageCount pageCount,HttpServletResponse res) throws Exception{
+		if(goodsDetailSReport.getCreateTime() ==null){
+			goodsDetailSReport.setCreateTime(new Date());
+		}
+		goodsDetailSReport.setBuildTime(new SimpleDateFormat("yyyy-MM-dd").format(goodsDetailSReport.getCreateTime()));
+		if(goodsDetailSReport.getUpdateTime() ==null){
+			goodsDetailSReport.setUpdateTime(new Date());
+		}
+		goodsDetailSReport.setUpTime(new SimpleDateFormat("yyyy-MM-dd").format(goodsDetailSReport.getUpdateTime()));
+
+		if(!goodsDetailSReport.getReportType().equals("1")){
+			goodsDetailSReport.setReportType("");
+		}
+		goodsDetailSReport.setPageCount(pageCount);
+		String sendData = new Gson().toJson(goodsDetailSReport);
+		WebTarget target = rsu.path("queryGoodsDetailReport").queryParam("goodsDetailReport",URLEncoder.encode(sendData, "utf-8"));
+		List<GoodsDetailSReport> list = target.request().get(new GenericType<List<GoodsDetailSReport>>() {});
+		
+		if(list != null && list.size() == 1)
+			list.clear();
+		
+		JsonConfig jsonConfig = new JsonConfig();
+		jsonConfig.registerJsonValueProcessor(Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
+		pageCount = ManageUtil.packPage(list, pageCount);
+		JSONObject json = JSONObject.fromObject(pageCount,jsonConfig);// 转化成json对象(jQgrid只能识别json对象)
+		PrintWriter out = res.getWriter();
+		out.print(json);
+		out.flush();
+		out.close();		
+	}
 }
