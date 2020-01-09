@@ -218,6 +218,7 @@
             <artifactId>common</artifactId>
             <scope>system</scope>
             <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/common.jar</systemPath>
+            <version>1.0</version>
         </dependency>
 
 
