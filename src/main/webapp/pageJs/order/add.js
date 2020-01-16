@@ -139,14 +139,26 @@ jQuery().ready(function() {
 					alert("该时间已被预约!");
 					return;
 				}
-				var nums = jQuery("input[name='goodsDetailList[][num]']");
-				for(var i=0;i< nums.length;i++){
-					var _this= jQuery(nums[0]);
-					if(_this.val() == "" || _this.val() == undefined){
-                        alert("请输入预约的商品数量!");
-                        return;
+				var goodsName = jQuery("input[name='goodsDetailList[][goodsName]']");
+				console.log(jQuery(goodsName[0]).val()=='');
+				debugger
+				
+				if (goodsName.length >= 1 &&  jQuery(goodsName[0]).val()!="" ){
+					var nums = jQuery("input[name='goodsDetailList[][num]']");
+					
+					console.log(nums);
+					for(var i=0;i< nums.length;i++){
+						var _this= jQuery(nums[0]);
+						if(_this.val() == "" || _this.val() == undefined){
+							alert("请输入预约的商品数量!");
+							return;
+						}
 					}
+				}else{
+					user.goodsDetailList.splice(i,1);
 				}
+				console.log(user);
+				console.log(JSON.stringify(user));
 				jQuery.ajax({
 					url : _path + 'orderDetailAction/add.do',
 					type : "post",
