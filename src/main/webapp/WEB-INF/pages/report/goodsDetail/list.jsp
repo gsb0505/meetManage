@@ -19,18 +19,19 @@
                 url: '<%=basePath%>report/goodsDetailList.do',
                 datatype: "json",
                 autowidth: true,
-                colNames: ['统计时间', '商户编号', '商户名称', '商品名称', '笔数', '金额'],
+                colNames: [ '商户编号', '统计时间','商户名称', '商品名称', '笔数', '金额'],
                 colModel: [{
+                    name: 'storeCode',
+                    sortable: false,
+                    hidden:true,
+                    align: "center",
+                    width: 150
+                },{
                     name: 'buildTime',
                     width: 150,
                     sortable: false,
                     align: "center"
-                }, {
-                    name: 'storeCode',
-                    sortable: false,
-                    align: "center",
-                    width: 150
-                }, {
+                },  {
                     name: 'storeName',
                     sortable: false,
                     align: "center",
@@ -80,6 +81,7 @@
                 grouping: true,
                 groupingView: {
                     groupColumnShow: [false, false],
+                    groupField : ['buildTime','storeName']
                 }, postData: {reportType: '1'}
             });
         });
@@ -182,7 +184,7 @@
 <body>
 
 <div class="biaoge_head">
-    <div class="biaoge_tittle02">会议统计报表</div>
+    <div class="biaoge_tittle02">商品预约明细报表</div>
 </div>
 
 <ul class="biaoge_butn">

@@ -26,6 +26,7 @@ import net.sf.json.JsonConfig;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -332,18 +333,29 @@ public class ReportController extends BaseController {
 	
 	@RequestMapping("/goodsDetailList.do")
 	public void goodsDetailList(GoodsDetailSReport goodsDetailSReport, PageCount pageCount,HttpServletResponse res) throws Exception{
+		SimpleDateFormat format = SDF;
+		String reportType = goodsDetailSReport.getReportType();
+		if (!StringUtils.isEmpty(reportType)){
+			if("1".equals(reportType)){
+				format = SDF;
+			}else if("2".equals(reportType)){
+				format = SDF_2;
+			}else if("3".equals(reportType)){
+				format = SDF_3;
+			}
+		}
+
 		if(goodsDetailSReport.getCreateTime() ==null){
 			goodsDetailSReport.setCreateTime(new Date());
 		}
-		goodsDetailSReport.setBuildTime(new SimpleDateFormat("yyyy-MM-dd").format(goodsDetailSReport.getCreateTime()));
+		goodsDetailSReport.setBuildTime(format.format(goodsDetailSReport.getCreateTime()));
 		if(goodsDetailSReport.getUpdateTime() ==null){
 			goodsDetailSReport.setUpdateTime(new Date());
 		}
-		goodsDetailSReport.setUpTime(new SimpleDateFormat("yyyy-MM-dd").format(goodsDetailSReport.getUpdateTime()));
-
-		if(!goodsDetailSReport.getReportType().equals("1")){
-			goodsDetailSReport.setReportType("");
-		}
+		goodsDetailSReport.setUpTime(format.format(goodsDetailSReport.getUpdateTime()));
+//		if(!goodsDetailSReport.getReportType().equals("1")){
+//			goodsDetailSReport.setReportType("");
+//		}
 		goodsDetailSReport.setPageCount(pageCount);
 		String sendData = new Gson().toJson(goodsDetailSReport);
 		WebTarget target = rsu.path("queryGoodsDetailReport").queryParam("goodsDetailReport",URLEncoder.encode(sendData, "utf-8"));

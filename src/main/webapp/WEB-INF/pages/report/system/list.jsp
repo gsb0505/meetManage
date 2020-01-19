@@ -79,7 +79,7 @@ jQuery(function($) {
 			grouping: true,
 			 groupingView : {
 	        	 groupColumnShow : [false, false],
-	          groupField : ['meetDate','meetRoomName']
+	          	 groupField : ['meetDate','meetRoomName']
 	    	},postData : {reportType:'1'}
 	});
 

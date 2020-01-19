@@ -301,7 +301,7 @@
 	<div class="footer_content">
 		<div class="cscopy">
 			<p>
-				版权所有：杭州铭业管网科技有限公司 浙ICP备20001587号<br />
+				版权所有：杭州铭业管网科技有限公司 <a href="http://beian.miit.gov.cn/" target="_blank">浙ICP备20001587号</a><br />
 			</p>
 		</div>
 	</div>

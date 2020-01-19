@@ -105,7 +105,9 @@ var userId = "${user.userId}";
 <div class="footer_content">
 
    <div class="cscopy">
-     <p>版权所有：杭州铭业管网科技有限公司&nbsp;&nbsp;浙ICP备20001587号 </p>
+     <p>版权所有：杭州铭业管网科技有限公司&nbsp;&nbsp;
+         <a href="http://beian.miit.gov.cn/" target="_blank">浙ICP备20001587号</a>
+     </p>
     <!--  <p>联系我们：</p> -->
    </div>
  </div>
