@@ -11,12 +11,12 @@
 
 jQuery().ready(function() {
     jQuery("#viewPhone").click(function () {
-        var url = "${t.photoUrl}";
+        var url = jQuery("input[name='photoUrl']").val();
         if(!url || url == ""){
             alert("没有上传图片，无法查看！");
             return;
         }
-        window.open(_path + "${t.photoUrl}");
+        window.open(_core_path_reource  + url);
     })
 });
 </script>

@@ -89,11 +89,13 @@ jQuery().ready(function () {
             jQuery("#userId").val(trim(jQuery("#userId").val())); //去空格
             var user = jQuery("#user")[0];
             var formData = new FormData(user);
-            formData.append('photoFile', jQuery("#photoUrl")[0].files[0]);
+            //formData.append('photoFile', jQuery("#photoUrl")[0].files[0]);
             jQuery.ajax({
                 url: _path + 'userAction/add.do',
                 type: "post",
                 data: formData,
+                processData: false,
+                contentType: false,
                 async: false,
                 success: function (data) {
                     if (data == "success") {
@@ -116,6 +118,45 @@ jQuery().ready(function () {
             jQuery(parent.window.document).find('#searchResult').click();
         }
 
+    });
+
+    jQuery("#photoFile").change(function () {
+        ymPrompt.confirmInfo({
+            message: '是否上传图片?', handler: function (type) {
+                if (type == "ok") {
+                    var form = new FormData();
+                    if (jQuery("#photoFile").val()) {
+                        form.append("photoFile", jQuery("#photoFile")[0].files[0]);
+                        form.append("type", 1);
+                    }
+                    jQuery.ajax({
+                        //url: _path + 'transferTo.do',
+                        url: _core_path + 'external/uploadImage',
+                        type: "post",
+                        data: form,
+                        processData: false,
+                        contentType: false,
+                        crossDomain: true,
+                        dataType: 'json',
+                        async: false,
+                        success: function (data) {
+                            if (data && data.retcode) {
+                                var code = data.retcode;
+                                if (code == "200") {
+                                    jQuery("#photoUrl").val(data.message);
+                                    alert("上传成功");
+                                } else {
+                                    alert(data.message);
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    jQuery("#photoUrl").val("");
+                    jQuery("#photoFile").val("");
+                }
+            }
+        })
     });
 
 });

@@ -8,16 +8,14 @@
 
     <script type="text/javascript">
         var ss = '${t.meetRoomName}';
-
-
         jQuery().ready(function () {
             jQuery("#viewPhone").click(function () {
-                var url = "${t.photoUrl}";
+                var url = jQuery("#photoUrl").val();
                 if (!url || url == "") {
                     alert("没有上传图片，无法查看！");
                     return;
                 }
-                window.open(_path + "${t.photoUrl}");
+                window.open(_core_path_reource + url);
             })
         });
     </script>
@@ -88,7 +86,7 @@
             <tr>
                 <th>会议室图片:</th>
                 <td>
-                    <input name="photoUrl" type="hidden" value="${t.photoUrl}">
+                    <input name="photoUrl" id="photoUrl" type="hidden" value="${t.photoUrl}">
                     <input id="photoFile" name="photoFile" type="file" value="${t.photoUrl}" class="formText" maxlength="500" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"></input>
                 </td>
                 <td><a style="font-size: 8px;" id="viewPhone" href="#" >[图片浏览]</a></td>

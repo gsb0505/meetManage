@@ -46,10 +46,6 @@ public class ProductController extends BaseController{
 	private static WebTarget productServiceUri;
 	//商品图片地址前缀
 	private final static String prefix = PropertiesUtil.readValue("product.prefix");
-	/**
-	 * 价格单位
-	 */
-	private final static int priceUnit = 100;
 
 	static{
 		productServiceUri = BaseUri.webTarget.get(BaseUri.productServiceUri);
@@ -119,7 +115,7 @@ public class ProductController extends BaseController{
 	 */
 	@RequestMapping("/list.do")
 	@ResponseBody
-	public PageCount list(final GoodsInfo goodsInfo, PageCount pageCount, HttpServletResponse res, HttpServletRequest request) throws Exception{
+	public PageCount list(final GoodsInfo goodsInfo, PageCount pageCount, HttpServletRequest request) throws Exception{
 		goodsInfo.setPageCount(pageCount);
 		String sendData = new Gson().toJson(goodsInfo,GoodsInfo.class);
 		//WebTarget target = productServiceUri.path("query").queryParam("goodsInfo", URLEncoder.encode(sendData, "utf-8"));
@@ -174,7 +170,7 @@ public class ProductController extends BaseController{
 			//goodsInfo.setPhotoUrl(photo);
 
 			WebTarget target = productServiceUri.path("add");
-			responses = target.request().post(Entity.entity(goodsInfo,MediaType.APPLICATION_XML));
+			responses = target.request().post(Entity.entity(goodsInfo, MediaType.APPLICATION_XML));
 			String value = responses.readEntity(String.class);
 			String result = result(value);
 
@@ -195,13 +191,13 @@ public class ProductController extends BaseController{
 	 */
 	@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String modify(GoodsInfo goodsInfo,@RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
+	public String modify(GoodsInfo goodsInfo,
 						 HttpServletResponse response,HttpServletRequest request) throws Exception {
 		WebTarget target = productServiceUri.path("modify");
 		Response res = null;
 		try {
-			String photo = savePhoto(photoFile, request, prefix);
-			goodsInfo.setPhotoUrl(photo);
+			//String photo = savePhoto(photoFile, request, prefix);
+			//goodsInfo.setPhotoUrl(photo);
 
 			res = target.request().put(
 					Entity.entity(goodsInfo, MediaType.APPLICATION_XML));

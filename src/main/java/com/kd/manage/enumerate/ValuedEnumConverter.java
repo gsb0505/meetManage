@@ -15,7 +15,6 @@ public class ValuedEnumConverter implements ConverterFactory<String,PathTypeEnum
         return new StringToEnum(aClass);
     }
 
-
     private class StringToEnum<T extends Enum> implements Converter<String,T>{
 
         private Class<T> enumType;

@@ -102,35 +102,42 @@ jQuery().ready(function () {
     // });
 
     jQuery("#photoFile").change(function () {
-        ymPrompt.confirmInfo({message:'是否上传图片?',handler:function(type){
-            if (type=="ok") {
-                var form = new FormData();
-                if (jQuery("#photoFile").val()) {
-                    form.append("photoFile", jQuery("#photoFile")[0].files[0]);
-                    form.append("type", 0);
-                }
-                jQuery.ajax({
-                    url: _path + 'transferTo.do',
-                    type: "post",
-                    data: form,
-                    processData: false,
-                    contentType: false,
-                    async: false,
-                    success: function (data) {
-                        if (data != "fail") {
-                            jQuery("#photoUrl").val(data);
-                            alert("上传成功！");
-                        } else if (data == "fail" || data == "exception") {
-                            alert("上传失败！");
-                        } else {
-                            alert(data);
-                        }
-
+        ymPrompt.confirmInfo({
+            message: '是否上传图片?', handler: function (type) {
+                if (type == "ok") {
+                    var form = new FormData();
+                    if (jQuery("#photoFile").val()) {
+                        form.append("photoFile", jQuery("#photoFile")[0].files[0]);
+                        form.append("type", 0);
                     }
-                });
+                    jQuery.ajax({
+                        //url: _path + 'transferTo.do',
+                        url: _core_path + 'external/uploadImage',
+                        type: "post",
+                        data: form,
+                        processData: false,
+                        contentType: false,
+                        crossDomain: true,
+                        dataType: 'json',
+                        async: false,
+                        success: function (data) {
+                            if (data && data.retcode) {
+                                var code = data.retcode;
+                                if (code == "200") {
+                                    jQuery("#photoUrl").val(data.message);
+                                    alert("上传成功");
+                                } else {
+                                    alert(data.message);
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    jQuery("#photoUrl").val("");
+                    jQuery("#photoFile").val("");
+                }
             }
-        }})
+        })
     });
-
 
 });

@@ -341,8 +341,7 @@ public class UserController extends BaseController {
      * @throws Exception
      */
     @RequestMapping(value = "/modify.do", method = RequestMethod.POST)
-    public void update(UserInfo userInfo, @RequestParam(value = "photoFile", required = false) MultipartFile photoFile,
-                       HttpServletResponse response, HttpServletRequest request) throws Exception {
+    public void update(UserInfo userInfo, HttpServletResponse response, HttpServletRequest request) throws Exception {
         PrintWriter out = response.getWriter();
         try {
             if (userInfo != null && !StringUtils.isEmpty(userInfo.getLoginPSW())
@@ -357,7 +356,7 @@ public class UserController extends BaseController {
                 UserInfo user1 = res.readEntity(UserInfo.class);
                 userInfo.setLoginPSW(user1.getLoginPSW());
             }
-            savePhoto(photoFile, request, userInfo);
+            //savePhoto(photoFile, request, userInfo);
 
             WebTarget target = usu.path("modify");
             Response res = target.request().put(
@@ -422,8 +421,7 @@ public class UserController extends BaseController {
      * @throws Exception
      */
     @RequestMapping(value = "/add.do", method = RequestMethod.POST)
-    public void add(UserInfo user, @RequestParam(value = "photoUrl", required = false) MultipartFile photoUrl,
-                    HttpServletResponse response, HttpServletRequest request)
+    public void add(UserInfo user, HttpServletResponse response, HttpServletRequest request)
             throws Exception {
         PrintWriter out = response.getWriter();
 
@@ -439,7 +437,7 @@ public class UserController extends BaseController {
                 EncryptUtils loginE = new EncryptUtils(user.getUserId(), "MD5");
                 user.setLoginPSW(loginE.encode(user.getLoginPSW()));
                 //保存头像图片
-                savePhoto(photoUrl, request, user);
+                //savePhoto(photoUrl, request, user);
 
                 WebTarget target = usu.path("add");
                 target.request().post(Entity.entity(user, MediaType.APPLICATION_XML)).close();

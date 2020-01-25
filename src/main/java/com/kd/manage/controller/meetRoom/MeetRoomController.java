@@ -230,8 +230,8 @@ public class MeetRoomController extends BaseController{
 					HttpServletResponse response, HttpServletRequest request) throws IOException{
 		PrintWriter out = response.getWriter();
 		try {
-			String photo = savePhoto(photoFile, request, prefix);
-			meetRoom.setPhotoUrl(photo);
+			//String photo = savePhoto(photoFile, request, prefix);
+			//meetRoom.setPhotoUrl(photo);
 
 			WebTarget target = tsu.path("add");
 			String user = this.getUserId(request);
@@ -288,8 +288,8 @@ public class MeetRoomController extends BaseController{
 			, HttpServletResponse response,HttpServletRequest request) throws Exception {
 		PrintWriter out = response.getWriter();
 
-		String photo = savePhoto(photoFile, request, prefix);
-		meetRoom.setPhotoUrl(photo);
+		//String photo = savePhoto(photoFile, request, prefix);
+		//meetRoom.setPhotoUrl(photo);
 
 		WebTarget target = tsu.path("modify");
 		try {

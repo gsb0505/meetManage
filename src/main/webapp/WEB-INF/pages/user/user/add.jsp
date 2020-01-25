@@ -1,18 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://"
-            + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <%@ include file="/WEB-INF/pages/head/pagehead.jsp" %>
+    <%@ include file="/WEB-INF/pages/head/modifyhead.jsp" %>
     <script type="text/javascript" src="<%=basePath%>pageJs/organization/org.js"></script>
     <script type="text/javascript">
+        jQuery().ready(function() {
+            jQuery("#viewPhone").click(function () {
+                var url = jQuery("#photoUrl").val();
+                if(!url || url == ""){
+                    alert("没有上传图片，无法查看！");
+                    return;
+                }
+                window.open(_core_path_reource + url);
+            })
+        });
     </script>
 </head>
 <body style="min-width: 200px; overflow: auto; overflow: hidden">
@@ -69,9 +73,11 @@
                 </td>
                 <td></td>
                 <th>头像:</th>
-                <td><input name="photoUrl" id="photoUrl" type="file" class="formText" maxlength="500"></input>
+                <td>
+                    <input type="hidden" name="photoUrl" id="photoUrl"/>
+                    <input name="photoFile" id="photoFile" type="file" class="formText" maxlength="500"/>
                 </td>
-                <td></td>
+                <td><a style="font-size: 8px;" id="viewPhone" href="#">[头像浏览]</a></td>
             </tr>
             </tbody>
         </table>

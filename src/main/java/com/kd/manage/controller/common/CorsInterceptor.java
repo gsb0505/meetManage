@@ -19,7 +19,6 @@ public class CorsInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
         String origin = request.getHeader("Origin");
 
         if (StringUtils.isNotBlank(origin) && corsOrigins.contains(origin)) {

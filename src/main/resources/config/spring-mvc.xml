@@ -66,14 +66,10 @@
     </bean>
     <!-- 登陆拦截器对所有的请求进行拦截 -->
     <mvc:interceptors>
-    <mvc:interceptor>
-        <mvc:mapping path="/**"/>
-        <bean id="loginInterceptor" class="com.kd.manage.interceptor.LoginInterceptor"/>
-    </mvc:interceptor>
-    <mvc:interceptor>
-        <mvc:mapping path="/**"/>
-        <bean id="corsInterceptor" class="com.kd.manage.controller.common.CorsInterceptor"/>
-    </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id="loginInterceptor" class="com.kd.manage.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
     </mvc:interceptors>
 
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">

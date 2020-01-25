@@ -95,8 +95,44 @@ jQuery().ready(function() {
 		}
 
 	});
-	
 
+    jQuery("#photoFile").change(function () {
+        ymPrompt.confirmInfo({
+            message: '是否上传图片?', handler: function (type) {
+                if (type == "ok") {
+                    var form = new FormData();
+                    if (jQuery("#photoFile").val()) {
+                        form.append("photoFile", jQuery("#photoFile")[0].files[0]);
+                        form.append("type", 2);
+                    }
+                    jQuery.ajax({
+                        url: _core_path + 'external/uploadImage',
+                        type: "post",
+                        data: form,
+                        processData: false,
+                        contentType: false,
+                        crossDomain: true,
+                        dataType: 'json',
+                        async: false,
+                        success: function (data) {
+                            if (data && data.retcode) {
+                                var code = data.retcode;
+                                if (code == "200") {
+                                    jQuery("#photoUrl").val(data.message);
+                                    jQuery("input[name='photoUrl']").val(data.message);
+                                    alert("上传成功");
+                                } else {
+                                    alert(data.message);
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    jQuery("#photoFile").val("");
+                }
+            }
+        })
+    });
 	
 });
 
