@@ -334,7 +334,7 @@ public class LoginController extends BaseController {
 			String pwd = (int) (Math.random() * 1000000) + "";
 			user.setLoginPSW(loginE.encode(pwd));
 			WebTarget tar = usu.path("modify");
-			Response r = tar.request().put(Entity.entity(user, MediaType.APPLICATION_XML));
+			Response r = tar.request().post(Entity.entity(user, MediaType.APPLICATION_XML));
 			String value = r.readEntity(String.class);
 			res.close();
 

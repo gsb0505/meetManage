@@ -98,8 +98,6 @@ public class UserController extends BaseController {
     /**
      * 用户维护主页！跳转到主页以后自动查询并显示所有用户信息，可根据用户名userName和状态flag进行查询
      *
-     * @param userName
-     * @param flag
      * @param res
      * @throws Exception
      */
@@ -170,9 +168,6 @@ public class UserController extends BaseController {
 
     /**
      * 跳转到编辑页面！跳转前先去core取到选中用户的具体信息
-     *
-     * @param id
-     * @param request
      * @return
      */
     @RequestMapping(value = "/modifyView.do")
@@ -232,7 +227,7 @@ public class UserController extends BaseController {
         user.setFlag("0");
         try {
             WebTarget tar = usu.path("modify");
-            Response r = tar.request().put(
+            Response r = tar.request().post(
                     Entity.entity(user, MediaType.APPLICATION_XML));
             String value = r.readEntity(String.class);
             res.close();
@@ -257,7 +252,6 @@ public class UserController extends BaseController {
      * 重置密码账户
      *
      * @param id
-     * @param request
      * @return
      */
     @RequestMapping(value = "/reset.do")
@@ -273,7 +267,7 @@ public class UserController extends BaseController {
         PrintWriter out = response.getWriter();
         try {
             WebTarget tar = usu.path("modify");
-            Response r = tar.request().put(Entity.entity(user, MediaType.APPLICATION_XML));
+            Response r = tar.request().post(Entity.entity(user, MediaType.APPLICATION_XML));
             String value = r.readEntity(String.class);
             res.close();
             if ("true".equals(value)) {
@@ -297,7 +291,6 @@ public class UserController extends BaseController {
      * 启用账户
      *
      * @param id
-     * @param request
      * @return
      */
     @RequestMapping(value = "/backOut.do")
@@ -313,7 +306,7 @@ public class UserController extends BaseController {
         PrintWriter out = response.getWriter();
         try {
             WebTarget tar = usu.path("modify");
-            Response r = tar.request().put(
+            Response r = tar.request().post(
                     Entity.entity(user, MediaType.APPLICATION_XML));
             String value = r.readEntity(String.class);
             res.close();
@@ -359,7 +352,7 @@ public class UserController extends BaseController {
             //savePhoto(photoFile, request, userInfo);
 
             WebTarget target = usu.path("modify");
-            Response res = target.request().put(
+            Response res = target.request().post(
                     Entity.entity(userInfo, MediaType.APPLICATION_XML));
             String value = res.readEntity(String.class);
             res.close();
@@ -393,7 +386,7 @@ public class UserController extends BaseController {
             user.setErrNum("0");
             user.setUserId(userId);
             WebTarget target = usu.path("modifyError");
-            Response res = target.request().put(Entity.entity(user, MediaType.APPLICATION_XML));
+            Response res = target.request().post(Entity.entity(user, MediaType.APPLICATION_XML));
             String value = res.readEntity(String.class);
             res.close();
             if ("true".equals(value)) {
@@ -515,7 +508,6 @@ public class UserController extends BaseController {
     /**
      * 修改账户密码
      *
-     * @param id
      * @param request
      * @return
      */
@@ -534,7 +526,7 @@ public class UserController extends BaseController {
         PrintWriter out = response.getWriter();
         try {
             WebTarget tar = usu.path("modify");
-            Response r = tar.request().put(Entity.entity(user, MediaType.APPLICATION_XML));
+            Response r = tar.request().post(Entity.entity(user, MediaType.APPLICATION_XML));
             String value = r.readEntity(String.class);
             res.close();
             if ("true".equals(value)) {
