@@ -28,7 +28,7 @@ public class DataDictDefault{
 	private static boolean isLoaded = false;
 	public static Map<String,String> types= new HashMap<String, String>();
 	
-	public final static String commonUrl = PropertiesUtil.getBaseUri()+PropertiesUtil.readValue("commonServerUri");
+	public final static String commonUrl = PropertiesUtil.readValue("commonServerUri");
 	/**
 	 * 会议室类型表type-id
 	 */

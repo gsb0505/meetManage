@@ -27,26 +27,24 @@ public class InitServlet implements Servlet {
                     pname = PropertiesUtil.readValue(allname);
                     System.out.println(allname);
                     field.setAccessible(true);
-                    pname=PropertiesUtil.getBaseUri()+pname;
+                    //pname=PropertiesUtil.getBaseUri()+pname;
                     if(field.getType() == String.class){
                         field.set(bc,pname);
                     }
 
                     BaseUri.webTarget.put(pname, BaseClient.getClient().target(pname));
                 }
-                Field baseField = BaseUri.class.getDeclaredField("corePath");
-                String uri = PropertiesUtil.getBaseUri("base.uri");
-                String project = PropertiesUtil.getBaseUri("base.project");
-                baseField.setAccessible(true);
-                baseField.set(bc,uri + project);
+//                Field baseField = BaseUri.class.getDeclaredField("corePath");
+//                String uri = PropertiesUtil.getBaseUri("base.uri");
+//                String project = PropertiesUtil.getBaseUri("base.project");
+//                baseField.setAccessible(true);
+//                baseField.set(bc,uri + project);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
     }

@@ -33,9 +33,15 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+    <!-- 登陆拦截器对所有的请求进行拦截 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id="loginInterceptor" class="com.kd.manage.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="validationMessageSource" ref="messageSource"/>
@@ -64,13 +70,7 @@
             <value>.jsp</value>
         </property>
     </bean>
-    <!-- 登陆拦截器对所有的请求进行拦截 -->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean id="loginInterceptor" class="com.kd.manage.interceptor.LoginInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+
 
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
@@ -92,6 +92,6 @@
 			<aop:around pointcut-ref="modInterAccount" method="doAround" />
 		</aop:aspect>
 	</aop:config> -->
-
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 </beans>

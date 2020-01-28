@@ -516,19 +516,20 @@ public class UserController extends BaseController {
         HttpSession session = request.getSession(false);
         UserInfo userInfo = (UserInfo) session.getAttribute(LoginController.CURRENT_USER);
         UserInfo user1 = new UserInfo();
-        user1.setUserId(userInfo.getUserId());
-        String sendData = new Gson().toJson(user1);
-        WebTarget target = usu.path("queryModel").queryParam("user", URLEncoder.encode(sendData, "utf-8"));
-        Response res = target.request().get();
-        UserInfo user = res.readEntity(UserInfo.class);
-        EncryptUtils loginE = new EncryptUtils(user.getUserId(), "MD5");
-        user.setLoginPSW(loginE.encode(newPwd));
+        user1.setId(userInfo.getId());
+        //user1.setUserId(userInfo.getUserId());
+        //String sendData = new Gson().toJson(user1);
+        //WebTarget target = usu.path("queryModel").queryParam("user", URLEncoder.encode(sendData, "utf-8"));
+        //Response res = target.request().get();
+        //UserInfo user = res.readEntity(UserInfo.class);
+        EncryptUtils loginE = new EncryptUtils(userInfo.getUserId(), "MD5");
+        user1.setLoginPSW(loginE.encode(newPwd));
         PrintWriter out = response.getWriter();
         try {
-            WebTarget tar = usu.path("modify");
-            Response r = tar.request().post(Entity.entity(user, MediaType.APPLICATION_XML));
+            WebTarget tar = usu.path("modifyByCondition");
+            Response r = tar.request().post(Entity.entity(user1, MediaType.APPLICATION_XML));
             String value = r.readEntity(String.class);
-            res.close();
+            r.close();
             if ("true".equals(value)) {
                 out.print(SUCCESS);
             } else if ("false".equals(value)) {
