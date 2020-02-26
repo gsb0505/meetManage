@@ -51,6 +51,8 @@
                             return '预约注销';
                         }else if(cellvalue == '4'){
                             return '已完成';
+                        }else if(cellvalue == '5'){
+                            return '使用中';
                         }
                     }
                 }

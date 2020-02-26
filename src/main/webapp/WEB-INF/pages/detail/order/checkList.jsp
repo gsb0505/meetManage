@@ -48,7 +48,9 @@
                              return '预订成功'
                          } else if (cellvalue == '3')  {
                              return '撤消会议';
-                         }
+                         } else if(cellvalue == '5'){
+                            return '使用中';
+                        }
                      }}
 
             ]
